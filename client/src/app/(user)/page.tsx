@@ -2,21 +2,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useProducts } from "@/hooks";
-import WineCard from "@/components/card/wineCard";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
-import Autoplay from "embla-carousel-autoplay";
 import BlogCard from "@/components/card/blogCard";
 import { ClientCarousel } from "./_components/clientCarousel";
 import { formatToVND } from "@/utlis/formatData";
 import { Button } from "@/components/ui/button";
 import SaleCountDown from "./_components/saleCountDown";
 import { routes } from "@/lib/routes";
+import WineCarousel from "@/components/WineCarousel";
 
 
 function HomePage() {
@@ -99,42 +91,7 @@ function HomePage() {
         </div>
       </div>
 
-      <div className="text-foreground flex flex-col space-y-2 mb-20">
-        <h1 className="text-center text-4xl uppercase">Sản phẩm mới</h1>
-        <Image
-          alt="title-dark"
-          src="/title-dark.png"
-          width={150}
-          height={20}
-          className="mx-auto"
-        />
-        {products && products.length > 0 && (
-          <Carousel
-            opts={{
-              align: "start",
-            }}
-            plugins={[
-              Autoplay({
-                delay: 2000,
-              }),
-            ]}
-            className="w-full max-w-5xl mx-auto my-10"
-          >
-            <CarouselContent>
-              {products.map((product) => (
-                <CarouselItem
-                  key={product.id}
-                  className="md:basis-1/2 lg:basis-1/4"
-                >
-                  <WineCard product={product} />
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <CarouselPrevious />
-            <CarouselNext />
-          </Carousel>
-        )}
-      </div>
+      <WineCarousel title="Sản phẩm mới" items={products || []} />
       <div className="grid lg:grid-cols-4 md:grid-cols-2">
         {Array.from({ length: 8 }).map((_, index) => (
           <Image
@@ -148,41 +105,8 @@ function HomePage() {
         ))}
       </div>
 
-      <div className="text-foreground flex flex-col space-y-2 my-20">
-        <h1 className="text-center text-4xl uppercase">Sản phẩm bán chạy</h1>
-        <Image
-          alt="title-dark"
-          src="/title-dark.png"
-          width={150}
-          height={20}
-          className="mx-auto"
-        />
-        {products && products.length > 0 && (
-          <Carousel
-            opts={{
-              align: "start",
-            }}
-            plugins={[
-              Autoplay({
-                delay: 2000,
-              }),
-            ]}
-            className="w-full max-w-5xl mx-auto my-10"
-          >
-            <CarouselContent>
-              {products.map((product) => (
-                <CarouselItem
-                  key={product.id}
-                  className="md:basis-1/2 lg:basis-1/4"
-                >
-                  <WineCard product={product} />
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <CarouselPrevious />
-            <CarouselNext />
-          </Carousel>
-        )}
+      <div className="mt-10">
+        <WineCarousel title="Sản phẩm bán chạy" items={products || []} />
       </div>
 
       <div className="flex max-md:flex-col max-w-7xl mb-20 mx-auto">

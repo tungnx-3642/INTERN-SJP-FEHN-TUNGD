@@ -5,16 +5,14 @@ function SaleCountDown() {
   const [countdown, setCountdown] = useState(INITIAL_COUNTDOWN);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      if (countdown <= 0) {
-        clearInterval(interval);
-        return;
-      }
-      setCountdown((prev) => (prev > 0 ? prev - 1 : 0));
+    if (countdown <= 0) return;
+
+    const timeout = setTimeout(() => {
+      setCountdown(countdown - 1);
     }, 1000);
 
-    return () => clearInterval(interval);
-  }, []);
+    return () => clearTimeout(timeout);
+  }, [countdown]); 
 
   const days = Math.floor(countdown / (24 * 3600));
   const hours = Math.floor((countdown % (24 * 3600)) / 3600);

@@ -10,9 +10,9 @@ const queryClient = new QueryClient();
 
 const fraunces = Fraunces({
   subsets: ["latin", "vietnamese"],
-  weight: ["400", "700", "900"], // Specify the weights you need
+  weight: ["400", "700", "900"],
   display: "swap",
-  variable: "--font-fraunces", // Define the CSS variable name
+  variable: "--font-fraunces",
 });
 
 export default function UserLayout({ children }: { children: ReactNode }) {

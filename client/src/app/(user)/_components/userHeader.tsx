@@ -5,6 +5,7 @@ import DropDownMenu from "./DropDownMenu";
 import { Menu, ChevronsDown, ChevronsUp } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { routes } from "@/lib/routes";
 
 const accountMenu = [
   { label: "Thông tin tài khoản", href: "#" },
@@ -15,8 +16,8 @@ const accountMenu = [
 ];
 
 const mainMenu = [
-  { label: "Trang chủ", href: "#" },
-  { label: "Sản phẩm", href: "/products", hasDropdown: true },
+  { label: "Trang chủ", href: routes.home },
+  { label: "Sản phẩm", href: routes.products.list, hasDropdown: true },
   { label: "Thông tin", href: "#" },
   { label: "Blog", href: "#" },
   { label: "Liên hệ", href: "#" },
