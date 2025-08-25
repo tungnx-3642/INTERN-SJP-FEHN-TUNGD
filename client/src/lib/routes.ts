@@ -7,6 +7,11 @@ export const routes = {
     detail: (id: number | string) => `/products/${id}`,
     create: "/products/create",
   },
+  blogs: {
+    list: "/blogs",
+    detail: (id: number | string) => `/blogs/${id}`,
+    create: "/blogs/create",
+  },
   auth: {
     login: "/login",
     register: "/register",

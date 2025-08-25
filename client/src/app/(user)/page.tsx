@@ -9,10 +9,12 @@ import { Button } from "@/components/ui/button";
 import SaleCountDown from "./_components/SaleCountDown";
 import { routes } from "@/lib/routes";
 import WineCarousel from "@/components/WineCarousel";
+import { useBlogs } from "@/hooks";
 
 
 function HomePage() {
   const { data: products } = useProducts();
+  const {data: blogs} = useBlogs();
 
   return (
     <div className="bg-[url('/product.png')] bg-no-repeat bg-[length:150px_120px] md:bg-[length:210px_180px] lg:bg-[length:300px_250px] bg-top-left">
@@ -120,8 +122,7 @@ function HomePage() {
             className="mx-auto"
           />
           <div className="flex max-sm:flex-col justify-between gap-4">
-            <BlogCard />
-            <BlogCard />
+            {blogs && blogs.length > 0 && blogs.slice(0, 2).map((blog) => <BlogCard key={blog.id} blog={blog} />)}
           </div>
         </div>
 
