@@ -1,16 +1,17 @@
 import { Metadata } from "next";
 import { DynamicBreadcrumb } from "../../_components/DynamicBreadcrumb";
-import ProductSection from "./_components/productSection";
-import RelativeProducts from "./_components/relativeProducts";
+import ProductSection from "./_components/ProductSection";
+import RelativeProducts from "./_components/RelativeProducts";
 import { routes } from "@/lib/routes";
 import { productApi } from "@/api";
 
 export async function generateMetadata({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }): Promise<Metadata> {
-  const product = await productApi.getById(Number(params.id));
+  const { id } = await params;
+  const product = await productApi.getById(Number(id));
 
   if (!product) {
     return {
@@ -30,9 +31,10 @@ export async function generateMetadata({
 export default async function ProductDetailPage({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
-  const product = await productApi.getById(Number(params.id));
+  const { id } = await params;
+  const product = await productApi.getById(Number(id));
 
   if (!product) {
     return (

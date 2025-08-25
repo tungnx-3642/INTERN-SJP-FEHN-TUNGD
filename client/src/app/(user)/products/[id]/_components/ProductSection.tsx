@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import { formatToVND } from "@/utlis/formatData";
-import ReviewSection from "./reviewSection";
+import ReviewSection from "./ReviewSection";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,

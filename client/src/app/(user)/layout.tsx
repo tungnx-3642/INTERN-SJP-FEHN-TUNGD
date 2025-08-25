@@ -1,10 +1,10 @@
 "use client";
 import { ReactNode } from "react";
-import UserHeader from "./_components/userHeader";
+import UserHeader from "./_components/UserHeader";
 import { Fraunces } from "next/font/google";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
-import UserFooter from "./_components/userFooter";
+import UserFooter from "./_components/UserFooter";
 
 const queryClient = new QueryClient();
 

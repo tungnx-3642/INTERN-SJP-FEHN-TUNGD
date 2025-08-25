@@ -2,7 +2,7 @@
 import Image from "next/image";
 import { DynamicBreadcrumb } from "../_components/DynamicBreadcrumb";
 import { CategoriesList } from "./_components/CategoriesList";
-import { useCategories } from "@/hooks/useCategory";
+import { useCategories } from "@/hooks";
 import { Grid3x3, Rows3 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";

@@ -3,10 +3,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { useProducts } from "@/hooks";
 import BlogCard from "@/components/card/blogCard";
-import { ClientCarousel } from "./_components/clientCarousel";
+import { ClientCarousel } from "./_components/ClientCarousel";
 import { formatToVND } from "@/utlis/formatData";
 import { Button } from "@/components/ui/button";
-import SaleCountDown from "./_components/saleCountDown";
+import SaleCountDown from "./_components/SaleCountDown";
 import { routes } from "@/lib/routes";
 import WineCarousel from "@/components/WineCarousel";
 
