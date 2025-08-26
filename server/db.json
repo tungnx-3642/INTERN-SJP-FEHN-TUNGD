@@ -1,1 +1,104 @@
-{}
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Chateau Margaux",
+      "price": 1500000,
+      "description": "Rượu vang Bordeaux cổ điển với hương vị đậm đà của nho đen và gỗ tuyết tùng.",
+      "madeYear": 2015,
+      "imageUrl": "https://res.cloudinary.com/dftiye2et/image/upload/v1755947483/03_07_11_sessions_turnerduckworth4_qi9wrb.jpg",
+      "created_at": "2023-04-15T10:23:45Z",
+      "updated_at": "2024-05-20T14:12:30Z"
+    },
+    {
+      "id": 2,
+      "name": "Penfolds Grange",
+      "price": 1200000,
+      "description": "Shiraz biểu tượng của Úc, vị đậm với hương mận và gia vị.",
+      "madeYear": 2016,
+      "imageUrl": "https://res.cloudinary.com/dftiye2et/image/upload/v1755947483/30c4cca98af958a74f654e4cfd133d9d_fr2cs4.jpg",
+      "created_at": "2022-11-03T08:45:12Z",
+      "updated_at": "2024-03-18T16:05:22Z"
+    },
+    {
+      "id": 3,
+      "name": "Opus One",
+      "price": 950000,
+      "description": "Rượu vang Napa Valley pha trộn với hương thơm của mâm xôi, lý chua đen và cà phê.",
+      "madeYear": 2017,
+      "imageUrl": "https://res.cloudinary.com/dftiye2et/image/upload/v1755947483/1e904be72e9063d0305655ae2d071025_p2bysn.jpg",
+      "created_at": "2023-07-22T13:11:09Z",
+      "updated_at": "2024-06-01T09:33:47Z"
+    },
+    {
+      "id": 4,
+      "name": "Screaming Eagle",
+      "price": 1400000,
+      "description": "Cabernet Sauvignon California huyền thoại, thanh lịch và phức tạp.",
+      "madeYear": 2018,
+      "imageUrl": "https://res.cloudinary.com/dftiye2et/image/upload/v1755947483/1b5b2526a5203f1d35c679e111a8ef5f_kmdlyo.jpg",
+      "created_at": "2021-09-10T17:22:56Z",
+      "updated_at": "2024-04-27T11:19:05Z"
+    },
+    {
+      "id": 5,
+      "name": "Vega Sicilia Unico",
+      "price": 1350000,
+      "description": "Tempranillo xuất sắc của Tây Ban Nha, ủ lâu năm với hương anh đào sâu lắng.",
+      "madeYear": 2012,
+      "imageUrl": "https://res.cloudinary.com/dftiye2et/image/upload/v1755947483/1c222c22ff45469ebc47d2ce85873359_szob3d.jpg",
+      "created_at": "2022-02-28T12:07:33Z",
+      "updated_at": "2024-05-11T18:44:29Z"
+    },
+    {
+      "id": 6,
+      "name": "Barolo Riserva",
+      "price": 800000,
+      "description": "Nebbiolo Ý với hương hoa hồng, nhựa đường và thảo mộc khô.",
+      "madeYear": 2014,
+      "imageUrl": "https://res.cloudinary.com/dftiye2et/image/upload/v1755947482/a3a03fc62a2e2ed45397abc7502e6cad_mz7wwr.jpg",
+      "created_at": "2023-01-19T15:55:41Z",
+      "updated_at": "2024-05-29T20:21:17Z"
+    },
+    {
+      "id": 7,
+      "name": "Cloudy Bay Sauvignon Blanc",
+      "price": 500000,
+      "description": "Rượu vang trắng New Zealand, tươi mát với hương cam chanh.",
+      "madeYear": 2020,
+      "imageUrl": "https://res.cloudinary.com/dftiye2et/image/upload/v1755947482/89d78df437ce675967d141a276f89307_tgudvh.jpg",
+      "created_at": "2022-08-05T09:30:18Z",
+      "updated_at": "2024-05-15T07:42:53Z"
+    },
+    {
+      "id": 8,
+      "name": "Dom Perignon",
+      "price": 1450000,
+      "description": "Champagne danh tiếng, kết cấu kem với hương bánh mì và hạnh nhân.",
+      "madeYear": 2013,
+      "imageUrl": "https://res.cloudinary.com/dftiye2et/image/upload/v1755947481/a3a03fc62a2e2ed45397abc7502e6cad_1_lamiic.jpg",
+      "created_at": "2023-03-14T11:48:27Z",
+      "updated_at": "2024-05-23T13:27:39Z"
+    },
+    {
+      "id": 9,
+      "name": "Chateau d'Yquem",
+      "price": 1300000,
+      "description": "Rượu vang ngọt Sauternes sang trọng, vị mật ong và quyến rũ.",
+      "madeYear": 2009,
+      "imageUrl": "https://res.cloudinary.com/dftiye2et/image/upload/v1755947481/a3a03fc62a2e2ed45397abc7502e6cad_1_lamiic.jpg",
+      "created_at": "2021-12-25T20:02:14Z",
+      "updated_at": "2024-05-30T16:58:11Z"
+    },
+    {
+      "id": 10,
+      "name": "Louis Jadot Beaujolais-Villages",
+      "price": 1100000,
+      "description": "Rượu vang đỏ Pháp nhẹ, tràn đầy hương vị trái cây tươi.",
+      "madeYear": 2021,
+      "imageUrl": "https://res.cloudinary.com/dftiye2et/image/upload/v1755947481/a3a03fc62a2e2ed45397abc7502e6cad_1_lamiic.jpg",
+      "created_at": "2022-06-17T06:39:50Z",
+      "updated_at": "2024-05-25T22:36:02Z"
+    }
+  ]
+}

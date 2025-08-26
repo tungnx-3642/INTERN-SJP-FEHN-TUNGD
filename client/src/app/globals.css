@@ -115,6 +115,12 @@
 @layer base {
   * {
     @apply border-border outline-ring/50;
+
+    .popover-arrow {
+      @apply before:content-[''] before:absolute before:-top-3 before:left-10
+           before:border-l-8 before:border-r-8 before:border-b-8
+           before:border-l-transparent before:border-r-transparent before:border-b-amber-400;
+    }
   }
   body {
     @apply bg-background text-foreground;
