@@ -1,10 +1,11 @@
 import { Product } from "@/api";
 import Image from "next/image";
 import { formatToVND } from "@/utlis/formatData";
+import Link from "next/link";
 
 function WineCard({ product }: { product: Product }) {
   return (
-    <div className="bg-background flex flex-col items-center space-y-4 rounded-lg">
+    <div className="bg-background flex flex-col items-center space-y-4 py-2 rounded-lg">
       <Image
         src={product.imageUrl}
         alt={product.name}
@@ -12,7 +13,7 @@ function WineCard({ product }: { product: Product }) {
         height={400}
         className="w-full h-48 object-contain"
       />
-      <h1>{product.name}</h1>
+      <Link href={`/products/${product.id}`} className="hover:underline">{product.name}</Link>
       <h2>{formatToVND(product.price)}</h2>
       <button className="py-2 px-4 bg-foreground text-background cursor-pointer hover:bg-amber-500">Add to cart</button>
     </div>
