@@ -5,6 +5,7 @@ import { Fraunces } from "next/font/google";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import UserFooter from "./_components/UserFooter";
+import { Toaster } from "@/components/ui/sonner"
 
 const queryClient = new QueryClient();
 
@@ -25,6 +26,7 @@ export default function UserLayout({ children }: { children: ReactNode }) {
         <div className="mt-52 lg:mt-44">{children}</div>
         <UserFooter />
       </div>
+       <Toaster />
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );

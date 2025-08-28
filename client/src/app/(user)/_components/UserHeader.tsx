@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import SearchForm from "./SearchForm";
 import Image from "next/image";
@@ -6,13 +7,16 @@ import { Menu, ChevronsDown, ChevronsUp } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { routes } from "@/lib/routes";
+import { useAuth } from "@/context";
 
-const accountMenu = [
+const loggedInAccountMenu = [
   { label: "Thông tin tài khoản", href: "#" },
   { label: "Danh sách đơn hàng", href: "#" },
   { label: "Danh sách ưu thích", href: "#" },
-  { label: "Đăng nhập", href: "#" },
-  { label: "Đăng ký", href: "#" },
+];
+const loggedOutAccountMenu = [
+  { label: "Đăng nhập", href: routes.auth.login },
+  { label: "Đăng ký", href: routes.auth.register },
 ];
 
 const mainMenu = [
@@ -26,6 +30,10 @@ const mainMenu = [
 function UserHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [bottomMenuOpen, setBottomMenuOpen] = useState(false);
+  const { isAuthenticated, logout } = useAuth();
+  const accountMenu = isAuthenticated
+    ? loggedInAccountMenu
+    : loggedOutAccountMenu;
 
   return (
     <div className="fixed top-0 left-0 right-0 z-50 bg-background shadow-md">
@@ -36,6 +44,13 @@ function UserHeader() {
               <Link href={item.href}>{item.label}</Link>
             </li>
           ))}
+          {isAuthenticated && (
+            <li className="flex items-center">
+              <button onClick={logout} className="hover:underline">
+                Đăng xuất
+              </button>
+            </li>
+          )}
         </ul>
 
         <Button
@@ -57,6 +72,13 @@ function UserHeader() {
               <Link href={item.href}>{item.label}</Link>
             </li>
           ))}
+          {isAuthenticated && (
+            <li>
+              <button onClick={logout} className="hover:underline">
+                Đăng xuất
+              </button>
+            </li>
+          )}
         </ul>
       )}
       <div className="bg-black text-white uppercase text-lg">
