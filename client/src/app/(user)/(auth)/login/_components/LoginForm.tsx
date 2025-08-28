@@ -13,98 +13,66 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { useRegister } from "@/hooks/auth/useRegister";
+import { AuthResponse } from "@/api";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
-import { routes } from "@/lib/routes";
 import { useAuth } from "@/context";
-import { AuthResponse } from "@/api";
+import { routes } from "@/lib/routes";
+import { useLogin } from "@/hooks/auth/useLogin";
 
-const registerSchema = z
-  .object({
-    name: z.string().min(2, "Tên phải có ít nhất 2 ký tự"),
-    email: z.string().email("Email không hợp lệ"),
-    password: z.string().min(6, "Mật khẩu phải có ít nhất 6 ký tự"),
-    confirmPassword: z.string().min(6, "Vui lòng nhập lại mật khẩu"),
-  })
-  .refine((data) => data.password === data.confirmPassword, {
-    path: ["confirmPassword"],
-    message: "Mật khẩu nhập lại không khớp",
-  });
+const loginSchema = z.object({
+  email: z.string().email("Email không hợp lệ"),
+  password: z.string().min(6, "Mật khẩu phải có ít nhất 6 ký tự"),
+});
 
-type RegisterSchema = z.infer<typeof registerSchema>;
+type LoginSchema = z.infer<typeof loginSchema>;
 
-function RegisterForm() {
+function LoginForm() {
   const router = useRouter();
   const { setAuth } = useAuth();
-  const { mutate: register, error } = useRegister({
+
+  const { mutate: login, isPending } = useLogin({
     onSuccess: (res: AuthResponse) => {
       setAuth(res.user, res.accessToken);
-      toast.success("Đăng ký thành công");
+      toast.success("Đăng nhập thành công");
       router.push(routes.home);
     },
     onError: (err) => {
-      toast.error("Đăng ký thất bại", {
-        description: err.message,
-      });
+      toast.error("Đăng nhập thất bại", { description: err.message });
     },
   });
 
-  const form = useForm<RegisterSchema>({
-    resolver: zodResolver(registerSchema),
+  const form = useForm<LoginSchema>({
+    resolver: zodResolver(loginSchema),
     defaultValues: {
-      name: "",
       email: "",
       password: "",
-      confirmPassword: "",
     },
   });
 
   const inputFields: Array<{
-    name: keyof RegisterSchema;
+    name: keyof LoginSchema;
     label: string;
     placeholder: string;
     type?: string;
   }> = [
-    {
-      name: "name",
-      label: "Họ và tên",
-      placeholder: "Nhập họ và tên",
-    },
-    {
-      name: "email",
-      label: "Email",
-      placeholder: "Nhập email",
-      type: "email",
-    },
+    { name: "email", label: "Email", placeholder: "Nhập email", type: "email" },
     {
       name: "password",
       label: "Mật khẩu",
       placeholder: "Nhập mật khẩu",
       type: "password",
     },
-    {
-      name: "confirmPassword",
-      label: "Nhập lại mật khẩu",
-      placeholder: "Nhập lại mật khẩu",
-      type: "password",
-    },
   ];
 
-  const onSubmit = (values: RegisterSchema) => {
-    register({
-      name: values.name,
-      email: values.email,
-      password: values.password,
-    });
+  const onSubmit = (values: LoginSchema) => {
+    login({ email: values.email, password: values.password });
   };
 
   return (
     <Card className="w-full mx-auto shadow-none rounded-none">
       <CardHeader>
-        <CardTitle className="text-xl font-thin uppercase">
-          Thông tin tài khoản
-        </CardTitle>
+        <CardTitle className="text-xl font-thin uppercase">Đăng nhập</CardTitle>
       </CardHeader>
       <CardContent>
         <Form {...form}>
@@ -125,9 +93,8 @@ function RegisterForm() {
                 )}
               />
             ))}
-
-            <Button type="submit" className="rounded-none">
-              Đăng ký
+            <Button type="submit" className="rounded-none" disabled={isPending}>
+              {isPending ? "Đang đăng nhập..." : "Đăng nhập"}
             </Button>
           </form>
         </Form>
@@ -136,4 +103,4 @@ function RegisterForm() {
   );
 }
 
-export default RegisterForm;
+export default LoginForm;
