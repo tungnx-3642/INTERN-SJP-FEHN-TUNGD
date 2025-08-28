@@ -63,7 +63,6 @@ function ReviewSection({ reviews }: { reviews: Review[] }) {
       >
         Add your review
       </Button>
-
       <ReviewDialog
         isOpen={openReivewDialog}
         onClose={() => setOpenReviewDialog(false)}

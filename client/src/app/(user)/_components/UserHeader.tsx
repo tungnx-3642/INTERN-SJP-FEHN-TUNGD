@@ -1,5 +1,5 @@
 import Link from "next/link";
-import SearchForm from "./searchForm";
+import SearchForm from "./SearchForm";
 import Image from "next/image";
 import DropDownMenu from "./DropDownMenu";
 import { Menu, ChevronsDown, ChevronsUp } from "lucide-react";
@@ -18,7 +18,7 @@ const accountMenu = [
 const mainMenu = [
   { label: "Trang chủ", href: routes.home },
   { label: "Sản phẩm", href: routes.products.list, hasDropdown: true },
-  { label: "Thông tin", href: "#" },
+  { label: "Thông tin", href: routes.infor },
   { label: "Blog", href: "#" },
   { label: "Liên hệ", href: "#" },
 ];
