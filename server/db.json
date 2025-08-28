@@ -156,5 +156,175 @@
       "comment": "Chateau Margaux tuyệt vời, hậu vị kéo dài.",
       "created_at": "2024-06-06T14:30:00Z"
     }
+  ],
+  "blogs": [
+    {
+      "id": 1,
+      "title": "Khám phá Chateau Margaux",
+      "content": "Chateau Margaux là một trong những loại rượu vang nổi tiếng nhất thế giới với hương vị đặc trưng của Bordeaux. Được sản xuất từ những giống nho thượng hạng như Cabernet Sauvignon, Merlot, Petit Verdot và Cabernet Franc, rượu mang đến sự cân bằng tuyệt vời giữa vị trái cây đậm đà và hương gỗ tuyết tùng. Những ai yêu thích sự sang trọng và tinh tế chắc chắn sẽ bị cuốn hút bởi hậu vị kéo dài và cấu trúc phức tạp của Chateau Margaux.",
+      "user": "Nguyen Van A",
+      "createdAt": "2024-06-01T09:00:00Z",
+      "imageUrl": "/slide/slide-1.jpg"
+    },
+    {
+      "id": 2,
+      "title": "Penfolds Grange - Biểu tượng của Úc",
+      "content": "Penfolds Grange là biểu tượng của rượu vang Úc, nổi bật với sự pha trộn giữa Shiraz và Cabernet Sauvignon. Loại rượu này mang đến trải nghiệm vị đậm, hương mận chín, gia vị và một chút vị khói đặc trưng. Penfolds Grange thường được lựa chọn trong các dịp đặc biệt, phù hợp với những ai yêu thích rượu vang mạnh mẽ và có chiều sâu. Sự cân bằng giữa tannin và axit giúp rượu giữ được độ tươi mới qua nhiều năm.",
+      "user": "Tran Thi B",
+      "createdAt": "2024-06-02T10:30:00Z",
+      "imageUrl": "/slide/slide-2.jpg"
+    },
+    {
+      "id": 3,
+      "title": "Opus One - Sự pha trộn hoàn hảo",
+      "content": "Opus One là sự kết hợp tuyệt vời giữa các giống nho nổi tiếng của Napa Valley như Cabernet Sauvignon, Merlot, Cabernet Franc, Petit Verdot và Malbec. Rượu vang này nổi bật với hương thơm của mâm xôi, lý chua đen và cà phê, mang lại cảm giác sang trọng và tinh tế. Opus One thường được đánh giá cao bởi sự cân bằng giữa vị trái cây, độ chát và hậu vị kéo dài, phù hợp cho những buổi tiệc sang trọng hoặc thưởng thức cùng các món ăn cao cấp.",
+      "user": "Le Van C",
+      "createdAt": "2024-06-03T11:45:00Z",
+      "imageUrl": "/slide/slide-3.jpg"
+    },
+    {
+      "id": 4,
+      "title": "Screaming Eagle - Huyền thoại California",
+      "content": "Screaming Eagle là một trong những loại rượu vang đắt giá nhất California, nổi bật với sự thanh lịch và phức tạp. Được làm chủ yếu từ Cabernet Sauvignon, rượu mang đến hương vị trái cây chín mọng, hòa quyện cùng hương gỗ sồi và thảo mộc. Sự cân bằng tuyệt vời giữa các thành phần giúp Screaming Eagle trở thành lựa chọn hàng đầu của giới sành vang, đặc biệt trong các buổi thưởng thức rượu vang cao cấp.",
+      "user": "Pham Thi D",
+      "createdAt": "2024-06-04T13:20:00Z",
+      "imageUrl": "/slide/slide-5.jpg"
+    },
+    {
+      "id": 5,
+      "title": "Vega Sicilia Unico - Tinh hoa Tây Ban Nha",
+      "content": "Vega Sicilia Unico là loại rượu Tempranillo xuất sắc của Tây Ban Nha, nổi tiếng với quá trình ủ lâu năm và hương vị sâu lắng, quyến rũ. Rượu mang đến sự hòa quyện giữa vị anh đào, mận chín và một chút hương vani từ thùng gỗ sồi. Vega Sicilia Unico thường được lựa chọn trong các dịp đặc biệt, là biểu tượng của sự sang trọng và truyền thống lâu đời của rượu vang Tây Ban Nha.",
+      "user": "Hoang Van E",
+      "createdAt": "2024-06-05T15:10:00Z",
+      "imageUrl": "/slide/slide-6.jpg"
+    },
+    {
+      "id": 6,
+      "title": "Barolo Riserva - Vang Ý cổ điển",
+      "content": "Barolo Riserva là đại diện tiêu biểu cho rượu vang Ý, được làm từ giống nho Nebbiolo. Rượu nổi bật với hương hoa hồng, nhựa đường và thảo mộc khô, mang lại cảm giác cổ điển và thanh lịch. Barolo Riserva thường được ủ lâu năm, giúp phát triển hương vị phức tạp và hậu vị kéo dài. Đây là lựa chọn lý tưởng cho những ai yêu thích sự tinh tế và chiều sâu trong từng giọt rượu.",
+      "user": "Nguyen Thi F",
+      "createdAt": "2024-06-06T16:40:00Z",
+      "imageUrl": "/slide/slide-4.jpg"
+    },
+    {
+      "id": 7,
+      "title": "Cloudy Bay Sauvignon Blanc - Tươi mát từ New Zealand",
+      "content": "Cloudy Bay Sauvignon Blanc là lựa chọn tuyệt vời cho mùa hè, nổi bật với vị cam chanh tươi mát và hương thảo mộc nhẹ nhàng. Được sản xuất tại vùng Marlborough, New Zealand, rượu vang này mang lại cảm giác sảng khoái, dễ uống và phù hợp với các món hải sản hoặc salad. Cloudy Bay Sauvignon Blanc luôn nằm trong top các loại vang trắng được yêu thích trên thế giới.",
+      "user": "Tran Van G",
+      "createdAt": "2024-06-07T18:00:00Z",
+      "imageUrl": "/slide/slide-8.jpg"
+    },
+    {
+      "id": 8,
+      "title": "Dom Perignon - Champagne danh tiếng",
+      "content": "Dom Perignon là một trong những thương hiệu Champagne nổi tiếng nhất thế giới, được biết đến với kết cấu kem mịn và hương bánh mì, hạnh nhân đặc trưng. Loại Champagne này thường được lựa chọn trong các dịp lễ hội, tiệc cưới hoặc sự kiện sang trọng. Sự cân bằng giữa vị trái cây, axit và bọt khí tinh tế giúp Dom Perignon luôn giữ được vị trí đặc biệt trong lòng người yêu rượu vang.",
+      "user": "Le Thi H",
+      "createdAt": "2024-06-09T20:45:00Z",
+      "imageUrl": "/slide/slide-8.jpg"
+    },
+    {
+      "id": 9,
+      "title": "Chateau d'Yquem - Vang ngọt sang trọng",
+      "content": "Chateau d'Yquem là biểu tượng của rượu vang ngọt Sauternes, nổi bật với vị mật ong, quả mơ và hương hoa tinh tế. Loại rượu này thường được phục vụ cùng các món tráng miệng hoặc phô mai, mang lại trải nghiệm vị giác độc đáo và quyến rũ. Sự cân bằng giữa độ ngọt và axit giúp Chateau d'Yquem giữ được sự tươi mới qua nhiều năm.",
+      "user": "Pham Van I",
+      "createdAt": "2024-06-09T20:45:00Z",
+      "imageUrl": "/slide/slide-7.jpg"
+    },
+    {
+      "id": 10,
+      "title": "Louis Jadot Beaujolais-Villages - Vang đỏ Pháp nhẹ nhàng",
+      "content": "Louis Jadot Beaujolais-Villages là loại vang đỏ nổi tiếng của Pháp, mang đến hương vị trái cây tươi mát và cấu trúc nhẹ nhàng. Rượu phù hợp với các món ăn nhẹ, salad hoặc thịt nguội, là lựa chọn lý tưởng cho những buổi gặp mặt bạn bè hoặc picnic ngoài trời.",
+      "user": "Nguyen Van J",
+      "createdAt": "2024-06-10T21:15:00Z",
+      "imageUrl": "/slide/slide-8.jpg"
+    },
+    {
+      "id": 11,
+      "title": "Whisky Scotland - Hương vị truyền thống",
+      "content": "Whisky Scotland nổi bật với hương vị khói, gỗ sồi và trái cây khô. Loại rượu mạnh này thường được thưởng thức nguyên chất hoặc pha chế cocktail, mang lại cảm giác ấm áp và sâu lắng. Sự đa dạng về vùng sản xuất giúp Whisky Scotland có nhiều phong cách khác nhau, phù hợp với sở thích của từng người.",
+      "user": "Tran Thi K",
+      "createdAt": "2024-06-11T22:00:00Z",
+      "imageUrl": "/slide/slide-4.jpg"
+    },
+    {
+      "id": 12,
+      "title": "Brandy - Tinh tế và sang trọng",
+      "content": "Brandy là loại rượu mạnh được chưng cất từ nho hoặc trái cây, nổi bật với hương vị vani, caramel và gỗ sồi. Rượu thường được dùng sau bữa ăn, mang lại cảm giác thư giãn và sang trọng. Brandy là lựa chọn tuyệt vời cho những ai yêu thích sự tinh tế và truyền thống trong thưởng thức rượu.",
+      "user": "Le Van L",
+      "createdAt": "2024-06-12T22:45:00Z",
+      "imageUrl": "/slide/slide-4.jpg"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "name": "Alice",
+      "blogId": 1,
+      "message": "Rượu vang đỏ này có hương vị đậm đà, rất hợp khi dùng với thịt bò.",
+      "createdAt": "2025-08-20T09:15:00Z"
+    },
+    {
+      "id": 2,
+      "name": "Bob",
+      "blogId": 1,
+      "message": "Mình thích vị chát nhẹ của Cabernet Sauvignon, uống rất tròn vị.",
+      "createdAt": "2025-08-20T10:05:00Z"
+    },
+    {
+      "id": 3,
+      "name": "Charlie",
+      "blogId": 1,
+      "message": "Theo mình, rượu vang nên được decant trước khi thưởng thức để hương thơm lan tỏa.",
+      "createdAt": "2025-08-20T11:30:00Z"
+    },
+    {
+      "id": 4,
+      "name": "Diana",
+      "blogId": 1,
+      "message": "Rượu vang trắng Chardonnay khá dễ uống, hợp với hải sản.",
+      "createdAt": "2025-08-20T13:10:00Z"
+    },
+    {
+      "id": 5,
+      "name": "Ethan",
+      "blogId": 1,
+      "message": "Mình thường chọn rượu vang Pháp vì hương vị tinh tế và cân bằng.",
+      "createdAt": "2025-08-20T14:25:00Z"
+    },
+    {
+      "id": 6,
+      "name": "Fiona",
+      "blogId": 2,
+      "message": "Rượu vang Ý có vị đậm và hậu ngọt, rất hợp khi ăn pasta.",
+      "createdAt": "2025-08-21T08:40:00Z"
+    },
+    {
+      "id": 7,
+      "name": "George",
+      "blogId": 2,
+      "message": "Mình nghe nói rượu vang càng để lâu thì càng ngon, có đúng không?",
+      "createdAt": "2025-08-21T09:55:00Z"
+    },
+    {
+      "id": 8,
+      "name": "Hannah",
+      "blogId": 2,
+      "message": "Một ly vang đỏ Merlot vào buổi tối thật sự rất thư giãn.",
+      "createdAt": "2025-08-21T11:20:00Z"
+    },
+    {
+      "id": 9,
+      "name": "Ian",
+      "blogId": 2,
+      "message": "Theo mình, rượu vang Chile có giá hợp lý và chất lượng tốt.",
+      "createdAt": "2025-08-21T12:45:00Z"
+    },
+    {
+      "id": 10,
+      "name": "Julia",
+      "blogId": 2,
+      "message": "Mình thích vang ngọt vì dễ uống và hợp với tiệc nhẹ.",
+      "createdAt": "2025-08-21T14:00:00Z"
+    }
   ]
 }

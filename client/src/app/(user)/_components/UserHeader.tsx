@@ -19,7 +19,7 @@ const mainMenu = [
   { label: "Trang chủ", href: routes.home },
   { label: "Sản phẩm", href: routes.products.list, hasDropdown: true },
   { label: "Thông tin", href: routes.infor },
-  { label: "Blog", href: "#" },
+  { label: "Blog", href: routes.blogs.list },
   { label: "Liên hệ", href: "#" },
 ];
 
