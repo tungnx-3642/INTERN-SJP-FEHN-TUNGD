@@ -1,9 +1,25 @@
+"use client";
 import { Product } from "@/api";
 import Image from "next/image";
 import { formatToVND } from "@/utlis/formatData";
 import Link from "next/link";
+import { useCart } from "@/context";
+import { Button } from "../ui/button";
+import { toast } from "sonner";
+import { routes } from "@/lib/routes";
 
 function WineCard({ product }: { product: Product }) {
+  const { addItem } = useCart();
+
+  const handleAddToCart = () => {
+    try {
+      addItem({productId: product.id, quantity: 1});
+      toast.success("Đã thêm sản phẩm vào giỏ hàng")
+    } catch {
+      toast.error("Không thể được sản phẩm vào giỏ hàng")
+    }
+  }
+
   return (
     <div className="bg-background flex flex-col items-center space-y-4 py-2 rounded-lg">
       <Image
@@ -13,9 +29,16 @@ function WineCard({ product }: { product: Product }) {
         height={400}
         className="w-full h-48 object-contain"
       />
-      <Link href={`/products/${product.id}`} className="hover:underline">{product.name}</Link>
+      <Link href={routes.products.detail(product.id)} className="hover:underline">
+        {product.name}
+      </Link>
       <h2>{formatToVND(product.price)}</h2>
-      <button className="py-2 px-4 bg-foreground text-background cursor-pointer hover:bg-amber-500">Add to cart</button>
+      <Button
+        onClick={handleAddToCart}
+        className="rounded-none cursor-pointer hover:bg-amber-500"
+      >
+        Add to cart
+      </Button>
     </div>
   );
 }

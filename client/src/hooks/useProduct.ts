@@ -22,3 +22,15 @@ export const useProduct = (
     ...options,
   });
 };
+
+export const useProductsList = (
+  ids: number[],
+  options?: Omit<UseQueryOptions<Product[]>, "queryKey" | "queryFn">
+) => {
+  return useQuery<Product[]>({
+    queryKey: ["productsByIds", ids],
+    queryFn: () => productApi.getByIdList(ids),
+    enabled: Array.isArray(ids) && ids.length > 0,
+    ...options,
+  });
+};

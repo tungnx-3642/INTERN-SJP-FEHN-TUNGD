@@ -13,8 +13,10 @@ const loggedInAccountMenu = [
   { label: "Thông tin tài khoản", href: "#" },
   { label: "Danh sách đơn hàng", href: "#" },
   { label: "Danh sách ưu thích", href: "#" },
+  { label: "Giỏ hàng", href: routes.cart },
 ];
 const loggedOutAccountMenu = [
+  { label: "Giỏ hàng", href: routes.cart },
   { label: "Đăng nhập", href: routes.auth.login },
   { label: "Đăng ký", href: routes.auth.register },
 ];

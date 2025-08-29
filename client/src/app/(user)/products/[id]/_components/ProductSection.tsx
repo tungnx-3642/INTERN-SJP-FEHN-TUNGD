@@ -12,7 +12,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { useState } from "react";
+import { useState, ChangeEvent } from "react";
 import { Product } from "@/api";
 import {
   ChevronDown,
@@ -26,6 +26,8 @@ import {
 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import ProductTabs from "./ProductTabs";
+import { useCart } from "@/context";
+import { toast } from "sonner";
 
 const colorList = [
   { name: "Đỏ", value: "#FF0000" },
@@ -41,9 +43,28 @@ const sizesList = [
 ];
 
 function ProductSection({ product }: { product: Product }) {
+  const { addItem } = useCart();
   const [size, setSize] = useState("vừa");
-  const [amount, setAmount] = useState(1);
+  const [quantity, setQuantity] = useState(1);
   const [selectedColor, setSelectedColor] = useState(colorList[0].value);
+
+  const handleQuantityChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const nextValue = Number(event.target.value);
+    if (Number.isNaN(nextValue) || nextValue < 1) {
+      setQuantity(1);
+      return;
+    }
+    setQuantity(nextValue);
+  };
+
+  const handleAddToCart = () => {
+    try {
+      addItem({ productId: product.id, quantity: quantity });
+      toast.success("Đã thêm sản phẩm vào giỏ hàng");
+    } catch {
+      toast.error("Không thể được sản phẩm vào giỏ hàng");
+    }
+  };
 
   return (
     <div>
@@ -139,23 +160,27 @@ function ProductSection({ product }: { product: Product }) {
             <div className="flex">
               <Button
                 className="px-4 py-2 bg-gray-500 rounded-none hover:bg-yellow-400"
-                onClick={() => setAmount((prev) => (prev > 1 ? prev - 1 : 1))}
+                onClick={() => setQuantity((prev) => (prev > 1 ? prev - 1 : 1))}
               >
                 <ChevronLeft />
               </Button>
               <Input
                 type="number"
-                value={amount}
+                value={quantity}
                 className="w-14 no-spinner text-center rounded-none"
+                onChange={handleQuantityChange}
               />
               <Button
                 className="px-4 py-2 bg-gray-500 rounded-none hover:bg-yellow-400"
-                onClick={() => setAmount((prev) => prev + 1)}
+                onClick={() => setQuantity((prev) => prev + 1)}
               >
                 <ChevronRight />
               </Button>
             </div>
-            <Button className="px=+-4 py-2 bg-foreground rounded-none hover:bg-yellow-400">
+            <Button
+              className="px=+-4 py-2 bg-foreground rounded-none hover:bg-yellow-400"
+              onClick={handleAddToCart}
+            >
               Add to cart
             </Button>
           </div>

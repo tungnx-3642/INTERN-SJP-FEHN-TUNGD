@@ -29,5 +29,9 @@ export const productApi = {
   },
   getById: async (id: number): Promise<Product> => {
     return apiClient.get(`${resource}/${id}?_embed=${reviewResource}`);
-  }
+  },
+  getByIdList: async (ids: number[]): Promise<Product[]> => {
+    const queryString = ids.map((id) => `id=${id}`).join("&");
+    return apiClient.get(`${resource}?${queryString}`);
+  },
 };
