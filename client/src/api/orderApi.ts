@@ -2,6 +2,15 @@ import apiClient from "./apiClient";
 
 const resource = "/orders";
 
+export enum OrderStatus {
+  Pending = "pending",
+  Confirmed = "confirmed",
+  Shipped = "shipped",
+  Delivered = "delivered",
+  Cancelled = "cancelled",
+}
+
+
 export interface OrderItem {
   productId: number;
   quantity: number;
@@ -12,7 +21,7 @@ export interface Order {
   userId: number;
   items: OrderItem[];
   total: number;
-  status: "pending" | "confirmed" | "shipped" | "delivered" | "cancelled";
+  status: OrderStatus;
   created_at?: string;
   updated_at?: string;
 }
@@ -27,4 +36,12 @@ export const orderApi = {
       updated_at: new Date().toISOString(),
     });
   },
+
+  getByUserId: async (userId: number): Promise<Order[]> => {
+    return apiClient.get(`${resource}?userId=${userId}`);
+  },
+
+  getById: async (id: number): Promise<Order> => {
+    return apiClient.get(`${resource}/${id}`);
+  }
 };

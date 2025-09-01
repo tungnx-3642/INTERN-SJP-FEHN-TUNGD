@@ -129,22 +129,71 @@
     }
   ],
   "categories": [
-    { "id": 1, "name": "Rượu vang" },
-    { "id": 2, "name": "Rượu mạnh" }
+    {
+      "id": 1,
+      "name": "Rượu vang"
+    },
+    {
+      "id": 2,
+      "name": "Rượu mạnh"
+    }
   ],
   "subcategories": [
-    { "id": 101, "categoryId": 1, "name": "Red Wine" },
-    { "id": 102, "categoryId": 1, "name": "White Wine" },
-    { "id": 103, "categoryId": 1, "name": "Rosé Wine" },
-    { "id": 104, "categoryId": 1, "name": "Sparkling Wine" },
-    { "id": 105, "categoryId": 1, "name": "Fortified Wine" },
-
-    { "id": 201, "categoryId": 2, "name": "Whisky/Whiskey" },
-    { "id": 202, "categoryId": 2, "name": "Brandy" },
-    { "id": 203, "categoryId": 2, "name": "Rum" },
-    { "id": 204, "categoryId": 2, "name": "Vodka" },
-    { "id": 205, "categoryId": 2, "name": "Gin" },
-    { "id": 206, "categoryId": 2, "name": "Tequila/Mezcal" }
+    {
+      "id": 101,
+      "categoryId": 1,
+      "name": "Red Wine"
+    },
+    {
+      "id": 102,
+      "categoryId": 1,
+      "name": "White Wine"
+    },
+    {
+      "id": 103,
+      "categoryId": 1,
+      "name": "Rosé Wine"
+    },
+    {
+      "id": 104,
+      "categoryId": 1,
+      "name": "Sparkling Wine"
+    },
+    {
+      "id": 105,
+      "categoryId": 1,
+      "name": "Fortified Wine"
+    },
+    {
+      "id": 201,
+      "categoryId": 2,
+      "name": "Whisky/Whiskey"
+    },
+    {
+      "id": 202,
+      "categoryId": 2,
+      "name": "Brandy"
+    },
+    {
+      "id": 203,
+      "categoryId": 2,
+      "name": "Rum"
+    },
+    {
+      "id": 204,
+      "categoryId": 2,
+      "name": "Vodka"
+    },
+    {
+      "id": 205,
+      "categoryId": 2,
+      "name": "Gin"
+    },
+    {
+      "id": 206,
+      "categoryId": 2,
+      "name": "Tequila/Mezcal"
+    }
   ],
   "reviews": [
     {

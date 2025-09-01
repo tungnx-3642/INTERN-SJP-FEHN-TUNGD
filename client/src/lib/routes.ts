@@ -3,6 +3,11 @@ export const routes = {
   home: "/",
   infor: "/infor",
   cart: "/cart",
+  orders: {
+    list: "/orders",
+    detail: (id: number | string) => `/orders/${id}`,
+  },
+  addresses: "/addresses",
   products: {
     list: "/products",
     detail: (id: number | string) => `/products/${id}`,

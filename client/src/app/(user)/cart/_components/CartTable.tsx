@@ -15,8 +15,8 @@ import { useProductsList, useCreateOrder } from "@/hooks";
 import { useRouter } from "next/navigation";
 import { routes } from "@/lib/routes";
 import { toast } from "sonner";
-import { Order, OrderItem } from "@/api/orderApi";
-import CartItemRow from "./CartItemRow";
+import { Order, OrderStatus } from "@/api/orderApi";
+import CartItemRow from "../../_components/ItemRow";
 import { useMemo } from "react";
 
 function CartTable() {
@@ -72,7 +72,7 @@ function CartTable() {
       userId: user.id,
       items: cart.items,
       total: total,
-      status: "pending",
+      status: OrderStatus.Pending,
     };
     createOrder(orderData);
   };
@@ -103,7 +103,7 @@ function CartTable() {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {enrichedItems.map((item,index) => <CartItemRow key={index} item={item} />)}
+          {enrichedItems.map((item,index) => <CartItemRow key={index} item={item} isEditable />)}
         </TableBody>
         <TableFooter>
           <TableRow>
