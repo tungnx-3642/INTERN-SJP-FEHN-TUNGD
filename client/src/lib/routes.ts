@@ -22,5 +22,10 @@ export const routes = {
   auth: {
     login: "/login",
     register: "/register",
+  },
+  admin: {
+    dashboard: "/admin",
+    products: "/admin/products",
+    orders: "/admin/orders"
   }
 } as const;

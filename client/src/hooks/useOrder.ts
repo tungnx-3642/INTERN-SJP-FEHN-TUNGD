@@ -49,3 +49,13 @@ export const useOrder = (
     ...options,
   });
 };
+
+export const useOrders = (
+  options?: Omit<UseQueryOptions<Order[]>, "queryKey" | "queryFn">
+) => {
+  return useQuery<Order[]>({
+    queryKey: ["orders"],
+    queryFn: () => orderApi.getAll(),
+    ...options,
+  });
+};
