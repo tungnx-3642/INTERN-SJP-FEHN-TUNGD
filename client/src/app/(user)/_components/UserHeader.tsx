@@ -26,7 +26,7 @@ const mainMenu = [
   { label: "Sản phẩm", href: routes.products.list, hasDropdown: true },
   { label: "Thông tin", href: routes.infor },
   { label: "Blog", href: routes.blogs.list },
-  { label: "Liên hệ", href: "#" },
+  { label: "Liên hệ", href: routes.contact },
 ];
 
 function UserHeader() {
