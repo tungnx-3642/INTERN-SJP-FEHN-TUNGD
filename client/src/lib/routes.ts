@@ -25,7 +25,10 @@ export const routes = {
   },
   admin: {
     dashboard: "/admin",
-    products: "/admin/products",
-    orders: "/admin/orders"
-  }
+    products: {
+      list: "/admin/products",
+      detail: (id: number | string) => `/admin/products/${id}`,
+    },
+    orders: "/admin/orders",
+  },
 } as const;
