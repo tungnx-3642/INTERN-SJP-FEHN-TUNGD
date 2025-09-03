@@ -4,7 +4,7 @@ import { formatToVND } from "@/utlis/formatData";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/context";
 
-interface CartItemRowProps {
+interface ItemRowProps {
   item: {
     productId: number | string;
     quantity: number;
@@ -13,13 +13,14 @@ interface CartItemRowProps {
     imageUrl?: string;
     description?: string;
   };
+  isEditable: boolean;
 }
 
-function CartItemRow({ item }: CartItemRowProps) {
+function ItemRow({ item, isEditable }: ItemRowProps) {
   const { removeItem } = useCart();
   const subtotal = item.price * item.quantity;
   return (
-    <TableRow key={String(item.productId)}>
+    <TableRow>
       <TableCell className="flex items-center gap-3">
         {item.imageUrl && (
           <Image
@@ -42,18 +43,20 @@ function CartItemRow({ item }: CartItemRowProps) {
       <TableCell>{formatToVND(item.price)}</TableCell>
       <TableCell>{item.quantity}</TableCell>
       <TableCell className="font-medium">{formatToVND(subtotal)}</TableCell>
-      <TableCell>
-        <Button
-          variant="destructive"
-          size="sm"
-          onClick={() => removeItem(item.productId)}
-          className="rounded-none"
-        >
-          Xóa
-        </Button>
-      </TableCell>
+      {isEditable && (
+        <TableCell>
+          <Button
+            variant="destructive"
+            size="sm"
+            onClick={() => removeItem(item.productId)}
+            className="rounded-none"
+          >
+            Xóa
+          </Button>
+        </TableCell>
+      )}
     </TableRow>
   );
 }
 
-export default CartItemRow;
+export default ItemRow;

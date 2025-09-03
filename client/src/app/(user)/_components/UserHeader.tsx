@@ -11,7 +11,7 @@ import { useAuth } from "@/context";
 
 const loggedInAccountMenu = [
   { label: "Thông tin tài khoản", href: "#" },
-  { label: "Danh sách đơn hàng", href: "#" },
+  { label: "Danh sách đơn hàng", href: routes.orders.list },
   { label: "Danh sách ưu thích", href: "#" },
   { label: "Giỏ hàng", href: routes.cart },
 ];
