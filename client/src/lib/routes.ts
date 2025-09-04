@@ -8,6 +8,7 @@ export const routes = {
     detail: (id: number | string) => `/orders/${id}`,
   },
   addresses: "/addresses",
+  contact: "/contact",
   products: {
     list: "/products",
     detail: (id: number | string) => `/products/${id}`,
