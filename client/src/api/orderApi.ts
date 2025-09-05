@@ -49,4 +49,10 @@ export const orderApi = {
   getAll: async (): Promise<Order[]> => {
     return apiClient.get(`${resource}?_expand=user`);
   },
+
+  updateStatus: async (id: number, status: OrderStatus): Promise<Order> => {
+    return apiClient.patch(`${resource}/${id}`, {
+      status,
+    });
+  },
 };
