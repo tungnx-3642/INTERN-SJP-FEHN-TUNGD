@@ -28,4 +28,30 @@ export const categoryApi = {
     );
     return subcategory?.products ?? [];
   },
+
+  create: async (data: Omit<Category, "id" | "subcategories">) => {
+    return apiClient.post(resource, data);
+  },
+
+  update: async (id: number, data: Partial<Category>) => {
+    return apiClient.put(`${resource}/${id}`, data);
+  },
+
+  delete: async (id: number) => {
+    return apiClient.delete(`${resource}/${id}`);
+  },
+
+  createSub: async (
+    data: Omit<Subcategory, "id" | "products">
+  ): Promise<Subcategory> => {
+    return apiClient.post(subResource, data);
+  },
+
+  updateSub: async (id: number, data: Partial<Subcategory>) => {
+    return apiClient.put(`${subResource}/${id}`, data);
+  },
+
+  deleteSub: async (id: number) => {
+    return apiClient.delete(`${subResource}/${id}`);
+  },
 };
