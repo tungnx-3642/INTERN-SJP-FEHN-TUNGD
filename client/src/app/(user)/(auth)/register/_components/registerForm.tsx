@@ -19,6 +19,7 @@ import { useRouter } from "next/navigation";
 import { routes } from "@/lib/routes";
 import { useAuth } from "@/context";
 import { AuthResponse } from "@/api";
+import { uploadFile } from "@/api/cloudinary";
 
 const registerSchema = z
   .object({

@@ -18,7 +18,7 @@ import Link from "next/link";
 
 const menu = [
   { label: "Dashboard", icon: Home, href: routes.admin.dashboard },
-  { label: "Products", icon: Package, href: routes.admin.products },
+  { label: "Products", icon: Package, href: routes.admin.products.list },
   { label: "Orders", icon: ShoppingCart, href: routes.admin.orders },
 ];
 
