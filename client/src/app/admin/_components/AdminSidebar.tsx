@@ -1,4 +1,4 @@
-import { Home, Package, ShoppingCart, LogOut } from "lucide-react";
+import { Home, Package, ShoppingCart, LogOut, ChartColumnStacked } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { routes } from "@/lib/routes";
@@ -19,6 +19,7 @@ import Link from "next/link";
 const menu = [
   { label: "Dashboard", icon: Home, href: routes.admin.dashboard },
   { label: "Products", icon: Package, href: routes.admin.products.list },
+  { label: "Categories", icon: ChartColumnStacked, href: routes.admin.categories },
   { label: "Orders", icon: ShoppingCart, href: routes.admin.orders },
 ];
 
