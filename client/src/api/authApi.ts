@@ -4,6 +4,7 @@ export interface User {
   id: number;
   name: string;
   email: string;
+  isAdmin?: boolean;
 }
 
 export interface LoginData {
@@ -24,7 +25,7 @@ export interface AuthResponse {
 
 export const authApi = {
   register: async (data: RegisterData): Promise<AuthResponse> => {
-    return apiClient.post("register", data);
+    return apiClient.post("register", { ...data, isAdmin: false });
   },
   login: async (data: LoginData): Promise<AuthResponse> => {
     return apiClient.post("login", data);
