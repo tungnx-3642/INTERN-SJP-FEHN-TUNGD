@@ -10,6 +10,7 @@ function AdminHeader() {
     "": "Dashboard",
     products: "Products",
     orders: "Orders",
+    categories: "Categories",
     customers: "Customers",
     settings: "Settings",
   };
