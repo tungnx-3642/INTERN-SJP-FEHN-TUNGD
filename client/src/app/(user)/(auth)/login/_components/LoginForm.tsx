@@ -19,6 +19,7 @@ import { useRouter } from "next/navigation";
 import { useAuth } from "@/context";
 import { routes } from "@/lib/routes";
 import { useLogin } from "@/hooks/auth/useLogin";
+import Cookies from "js-cookie";
 
 const loginSchema = z.object({
   email: z.string().email("Email không hợp lệ"),
@@ -35,7 +36,13 @@ function LoginForm() {
     onSuccess: (res: AuthResponse) => {
       setAuth(res.user, res.accessToken);
       toast.success("Đăng nhập thành công");
-      router.push(routes.home);
+      const redirectPath = Cookies.get("redirect");
+      if (redirectPath) {
+        Cookies.remove("redirect");
+        router.push(redirectPath);
+      } else {
+        router.push(routes.home);
+      }
     },
     onError: (err) => {
       toast.error("Đăng nhập thất bại", { description: err.message });

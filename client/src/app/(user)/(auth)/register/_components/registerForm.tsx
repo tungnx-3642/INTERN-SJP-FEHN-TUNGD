@@ -19,7 +19,6 @@ import { useRouter } from "next/navigation";
 import { routes } from "@/lib/routes";
 import { useAuth } from "@/context";
 import { AuthResponse } from "@/api";
-import { uploadFile } from "@/api/cloudinary";
 
 const registerSchema = z
   .object({
@@ -38,7 +37,7 @@ type RegisterSchema = z.infer<typeof registerSchema>;
 function RegisterForm() {
   const router = useRouter();
   const { setAuth } = useAuth();
-  const { mutate: register, error } = useRegister({
+  const { mutate: register } = useRegister({
     onSuccess: (res: AuthResponse) => {
       setAuth(res.user, res.accessToken);
       toast.success("Đăng ký thành công");

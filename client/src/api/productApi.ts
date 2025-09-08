@@ -60,4 +60,12 @@ export const productApi = {
       updated_at: new Date().toISOString(),
     });
   },
+  addReview: async (
+    data: Omit<Review, "id" | "created_at">
+  ): Promise<Review> => {
+    return apiClient.post(reviewResource, {
+      ...data,
+      created_at: new Date().toISOString(),
+    });
+  },
 };

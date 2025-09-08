@@ -28,13 +28,13 @@ function ItemRow({ item, isEditable }: ItemRowProps) {
             alt={item.name}
             width={100}
             height={100}
-            className="w-20 h-32 object-contain"
+            className="w-12 h-20 md:w-20 md:h-32 object-contain"
           />
         )}
         <div>
           <div className="font-medium">{item.name}</div>
           {item.description && (
-            <div className="text-sm text-muted-foreground line-clamp-2">
+            <div className="max-md:hidden text-sm text-muted-foreground line-clamp-2">
               {item.description}
             </div>
           )}

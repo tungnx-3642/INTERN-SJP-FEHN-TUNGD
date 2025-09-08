@@ -17,7 +17,7 @@ export async function uploadFile(file: File): Promise<string | null> {
 
     const data = await res.json();
     return data.url;
-  } catch (err) {
+  } catch {
     return null;
   }
 }

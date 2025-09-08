@@ -24,15 +24,15 @@ function InforPage() {
           height={100}
           className="w-20 h-1.5 mb-6"
         />
-        <div className="flex justify-between">
+        <div className="flex max-md:flex-col justify-between">
           <Image
             src="/wine-background.jpg"
             alt="wine-background"
             width={1000}
             height={1000}
-            className="z-0 w-2/5 h-80 object-cover"
+            className="w-full z-0 md:w-2/5 h-80 object-cover"
           />
-          <div className="w-3/5 pl-10 flex flex-col gap-5">
+          <div className="w-full max-md:mt-5 md:w-3/5 md:pl-10 flex flex-col gap-5">
             <h1 className="uppercase text-3xl">Chào mừng đến với Wine Horse</h1>
             <p className="text-gray-500">
               Wine Horse là nhà sản xuất rượu vang với niềm đam mê và tâm huyết

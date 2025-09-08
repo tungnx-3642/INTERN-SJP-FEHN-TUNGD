@@ -4,7 +4,7 @@ import {
   useQuery,
   UseQueryOptions,
 } from "@tanstack/react-query";
-import { productApi, Product } from "@/api";
+import { productApi, Product, Review } from "@/api";
 
 export const useProducts = (
   options?: Omit<UseQueryOptions<Product[]>, "queryKey" | "queryFn">
@@ -74,3 +74,16 @@ export const useUpdateProduct = (
     ...options,
   });
 };
+
+export const useAddReview = (
+  options?: UseMutationOptions<
+    Review,
+    Error,
+    { data: Omit<Review, "id" | "created_at"> }
+  >
+) => {
+  return useMutation({
+    mutationFn: ({data}) => productApi.addReview(data),
+    ...options,
+  })
+}

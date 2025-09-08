@@ -7,7 +7,7 @@ import Link from "next/link";
 function ClientSection() {
   const { user } = useAuth();
   return (
-    <Card className="w-1/4 rounded-none shadow-none h-fit bg-gray-100">
+    <Card className="w-full md:w-1/4 rounded-none shadow-none h-fit bg-gray-100">
       <CardHeader>
         <CardTitle className="uppercase text-lg font-normal">
           Thông tin khách hàng

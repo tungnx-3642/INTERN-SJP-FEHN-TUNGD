@@ -23,7 +23,7 @@ export default function UserLayout({ children }: { children: ReactNode }) {
       <CartProvider>
         <div className={`min-h-screen flex flex-col ${fraunces.className}`}>
           <UserHeader />
-          <div className="mt-52 lg:mt-44">{children}</div>
+          <div className="mt-60 lg:mt-44">{children}</div>
           <UserFooter />
         </div>
         <Toaster />

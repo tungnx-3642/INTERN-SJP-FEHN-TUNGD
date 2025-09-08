@@ -37,6 +37,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useCategories, useCreateProduct, useUpdateProduct } from "@/hooks";
 import { useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
+import Image from "next/image";
 
 const productSchema = z.object({
   name: z.string().min(1, "Tên sản phẩm không được để trống"),
@@ -296,9 +297,11 @@ export function ProductDialogForm({
                       />
                       {field.value && (
                         <div className="mt-2">
-                          <img
+                          <Image
                             src={URL.createObjectURL(field.value)}
                             alt="Preview"
+                            width={100}
+                            height={100}
                             className="w-40 h-40 object-contain mx-auto rounded-md border"
                           />
                         </div>

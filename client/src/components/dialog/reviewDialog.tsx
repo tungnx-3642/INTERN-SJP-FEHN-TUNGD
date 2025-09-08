@@ -10,6 +10,11 @@ import {
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
+import { useAuth } from "@/context";
+import { useAddReview } from "@/hooks";
+import { toast } from "sonner";
+import { useParams } from "next/navigation";
+import { useQueryClient } from "@tanstack/react-query";
 
 export default function ReviewDialog({
   isOpen,
@@ -18,6 +23,21 @@ export default function ReviewDialog({
   isOpen: boolean;
   onClose?: () => void;
 }) {
+  const params = useParams();
+  const productId = Number(params?.id);
+  const queryClient = useQueryClient();
+  const { user } = useAuth();
+  const { mutate: createReview } = useAddReview({
+    onSuccess: () => {
+      toast.success("Thêm đánh giá sản phẩm thành công");
+      setRating(0);
+      setMessage("");
+      setIsSubmitting(false);
+      queryClient.invalidateQueries({
+        queryKey: ["product", productId]
+      })
+    },
+  });
   const [rating, setRating] = useState(0);
   const [message, setMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -31,9 +51,14 @@ export default function ReviewDialog({
 
     setIsSubmitting(true);
 
-    setRating(0);
-    setMessage("");
-    setIsSubmitting(false);
+    createReview({
+      data: {
+        user: user?.name || "",
+        rating,
+        comment: message,
+        productId: productId,
+      }
+    })
 
     if (onClose) {
       onClose();

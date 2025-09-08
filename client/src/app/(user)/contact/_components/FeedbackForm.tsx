@@ -1,7 +1,6 @@
 "use client";
 
 import * as React from "react";
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -29,13 +28,7 @@ const FeedbackSchema = z.object({
 
 export type FeedbackValues = z.infer<typeof FeedbackSchema>;
 
-export default function FeedbackForm({
-  onSubmit,
-}: {
-  onSubmit?: (values: FeedbackValues) => Promise<void> | void;
-}) {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
+export default function FeedbackForm() {
   const form = useForm<FeedbackValues>({
     resolver: zodResolver(FeedbackSchema),
     defaultValues: {
@@ -47,8 +40,7 @@ export default function FeedbackForm({
     mode: "onBlur",
   });
 
-  async function handleSubmit(values: FeedbackValues) {
-  }
+  async function handleSubmit() {}
 
   return (
     <Card className="mt-5 w-full max-w-3xl shadow-none border-none">
@@ -129,7 +121,7 @@ export default function FeedbackForm({
                   <FormLabel className="w-24">Nội dung</FormLabel>
                   <div className="flex-1">
                     <FormControl>
-                      <Textarea 
+                      <Textarea
                         placeholder="Mô tả chi tiết góp ý của bạn..."
                         className="min-h-[120px]"
                         {...field}
@@ -142,9 +134,9 @@ export default function FeedbackForm({
             />
 
             <div className="pt-2 ml-26">
-              <Button type="submit" disabled={isSubmitting}>
+              <Button type="submit">
                 <Send className="mr-2 h-4 w-4" />
-                {isSubmitting ? "Đang gửi..." : "Gửi góp ý"}
+                Gửi góp ý
               </Button>
             </div>
           </form>

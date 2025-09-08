@@ -29,7 +29,7 @@ function AdminOrderTable({ orders }: { orders: Order[] }) {
           </TableHeader>
           <TableBody>
             {orders.length > 0 ? (
-              orders.map((o,i) => (
+              orders.map((o) => (
                 <TableRow key={o.id}>
                   <TableCell className="text-center">#{o.id}</TableCell>
                   <TableCell className="text-center">{o.user?.name}</TableCell>
