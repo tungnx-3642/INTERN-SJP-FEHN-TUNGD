@@ -4,7 +4,7 @@ import {
   useQuery,
   UseQueryOptions,
 } from "@tanstack/react-query";
-import { orderApi, Order } from "@/api/orderApi";
+import { orderApi, Order, OrderStatus } from "@/api/orderApi";
 
 export const useCreateOrder = (
   options?: Omit<
@@ -56,6 +56,18 @@ export const useOrders = (
   return useQuery<Order[]>({
     queryKey: ["orders"],
     queryFn: () => orderApi.getAll(),
+    ...options,
+  });
+};
+
+export const useUpdateOrderStatus = (
+  options?: Omit<
+    UseMutationOptions<Order, Error, { id: number; status: OrderStatus }>,
+    "mutationFn"
+  >
+) => {
+  return useMutation<Order, Error, { id: number; status: OrderStatus }>({
+    mutationFn: ({ id, status }) => orderApi.updateStatus(id, status),
     ...options,
   });
 };
