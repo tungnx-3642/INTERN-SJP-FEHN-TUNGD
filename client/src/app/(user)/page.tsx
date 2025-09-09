@@ -58,7 +58,7 @@ function HomePage() {
           height={1000}
           className="z-0 w-full h-160 object-cover"
         />
-        <div className="bg-background w-5/6 flex items-center -mt-120 mx-auto z-10 relative">
+        <div className="bg-background w-full max-w-6xl flex items-center -mt-120 mx-auto z-10 relative">
           {products && products.length > 0 && (
             <div className="flex mx-auto max-md:flex-col py-15 items-center">
               <div className="w-full lg:w-1/2">
@@ -67,7 +67,7 @@ function HomePage() {
                   alt={products[0].name}
                   width={300}
                   height={300}
-                  className="w-72 h-96 mx-auto md:h-120 lg:h-140 object-cover"
+                  className="w-60 h-80 lg:w-72 mx-auto md:h-120 lg:h-140 object-cover"
                 />
               </div>
               <div className="w-full p-4 mt-5 lg:mt-0 lg:p-0 lg:w-1/2">
@@ -121,7 +121,7 @@ function HomePage() {
             height={20}
             className="mx-auto"
           />
-          <div className="flex max-sm:flex-col justify-between gap-4">
+          <div className="flex max-sm:flex-col justify-between gap-4 max-md:p-4">
             {blogs && blogs.length > 0 && blogs.slice(0, 2).map((blog) => <BlogCard key={blog.id} blog={blog} />)}
           </div>
         </div>

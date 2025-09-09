@@ -46,7 +46,7 @@ export default function CategoryCard({ category }: { category: Category }) {
   });
 
   return (
-    <Card className="shadow-md flex flex-col justify-between">
+    <Card className="shadow-md flex flex-col justify-between pb-0">
       <CardContent className="p-4 space-y-3">
         <div className="flex justify-between items-center mb-3">
           <h2 className="font-semibold">{category.name}</h2>
@@ -109,11 +109,10 @@ export default function CategoryCard({ category }: { category: Category }) {
         )}
       </CardContent>
 
-      <CardFooter>
+      <CardFooter className="px-0">
         <Button
           variant="ghost"
           className="w-full"
-          size="sm"
           onClick={() => {
             setSelectedSub(null);
             setSubName("");
@@ -125,6 +124,7 @@ export default function CategoryCard({ category }: { category: Category }) {
       </CardFooter>
 
       <CategoryEditDialog
+        key={category.id}
         open={openCategoryDialog}
         onOpenChange={setOpenCategoryDialog}
         title="Edit Category"
@@ -136,12 +136,13 @@ export default function CategoryCard({ category }: { category: Category }) {
 
       <CategoryEditDialog
         open={openSubDialog}
+        key={`sub-${selectedSub?.id ?? "new"}`}
         onOpenChange={setOpenSubDialog}
         title={selectedSub ? "Edit Subcategory" : "Add Subcategory"}
         defaultValue={subName}
         onSave={(val) => {
           if (selectedSub)
-            updateSub.mutate({ id: selectedSub.id, data: { name: val } });
+            updateSub.mutate({ id: selectedSub.id, data: { name: val, categoryId: category.id } });
           else createSub.mutate({ name: val, categoryId: category.id });
         }}
       />

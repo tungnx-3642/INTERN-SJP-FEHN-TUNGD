@@ -4,6 +4,10 @@ import { Star } from "lucide-react";
 import { useMemo, useState } from "react";
 import ReviewDialog from "@/components/dialog/reviewDialog";
 import { Review } from "@/api";
+import { useRouter } from "next/navigation";
+import { useAuth } from "@/context";
+import { toast } from "sonner";
+import { routes } from "@/lib/routes";
 
 export function StarRating({
   rating,
@@ -31,6 +35,8 @@ export function StarRating({
 }
 
 function ReviewSection({ reviews }: { reviews: Review[] }) {
+  const router = useRouter();
+  const { user } = useAuth();
   const [openReivewDialog, setOpenReviewDialog] = useState(false);
 
   const averageRating = useMemo(() => {
@@ -40,6 +46,15 @@ function ReviewSection({ reviews }: { reviews: Review[] }) {
     const totalRating = reviews.reduce((sum, review) => sum + review.rating, 0);
     return totalRating / reviews.length;
   }, [reviews]);
+
+  const handleAddReview = () => {
+    if(user) {
+      setOpenReviewDialog(true)
+    } else {
+      toast.error("Cần đăng nhập để thêm review sản phẩm");
+      router.push(routes.auth.login);
+    }
+  };
 
   return (
     <div className="border-y py-4 flex gap-2 text-gray-500 text-sm items-center">
@@ -58,7 +73,7 @@ function ReviewSection({ reviews }: { reviews: Review[] }) {
 
       <Button
         variant="link"
-        onClick={() => setOpenReviewDialog(true)}
+        onClick={handleAddReview}
         className="text-gray-500"
       >
         Add your review

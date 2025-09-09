@@ -19,6 +19,7 @@ import { useRouter } from "next/navigation";
 import { routes } from "@/lib/routes";
 import { useAuth } from "@/context";
 import { AuthResponse } from "@/api";
+import { sendActivateAccMail } from "@/api/email";
 
 const registerSchema = z
   .object({
@@ -38,10 +39,11 @@ function RegisterForm() {
   const router = useRouter();
   const { setAuth } = useAuth();
   const { mutate: register } = useRegister({
-    onSuccess: (res: AuthResponse) => {
+    onSuccess: async (res: AuthResponse) => {
       setAuth(res.user, res.accessToken);
       toast.success("Đăng ký thành công");
       router.push(routes.home);
+      sendActivateAccMail(res.user.email);
     },
     onError: (err) => {
       toast.error("Đăng ký thất bại", {

@@ -29,7 +29,7 @@ function WineCard({ product }: { product: Product }) {
         height={400}
         className="w-full h-48 object-contain"
       />
-      <Link href={routes.products.detail(product.id)} className="hover:underline text-center">
+      <Link href={routes.products.detail(product.id)} className="hover:underline text-center line-clamp-1">
         {product.name}
       </Link>
       <h2>{formatToVND(product.price)}</h2>

@@ -17,6 +17,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Send } from "lucide-react";
+import { toast } from "sonner";
 
 // Zod schema for validation
 const FeedbackSchema = z.object({
@@ -40,7 +41,10 @@ export default function FeedbackForm() {
     mode: "onBlur",
   });
 
-  async function handleSubmit() {}
+  async function handleSubmit() {
+    form.reset()
+    toast.success("Cảm ơn ý kiến phản hồi của bạn")
+  }
 
   return (
     <Card className="mt-5 w-full max-w-3xl shadow-none border-none">
@@ -57,9 +61,9 @@ export default function FeedbackForm() {
               control={form.control}
               name="name"
               render={({ field }) => (
-                <FormItem className="flex items-start">
+                <FormItem className="flex items-start max-md:flex-col">
                   <FormLabel className="w-24">Tên</FormLabel>
-                  <div className="flex-1">
+                  <div className="flex-1 w-full">
                     <FormControl>
                       <Input
                         placeholder="Nhập tên của bạn..."
@@ -77,9 +81,9 @@ export default function FeedbackForm() {
               control={form.control}
               name="email"
               render={({ field }) => (
-                <FormItem className="flex items-start">
+                <FormItem className="flex items-start max-md:flex-col">
                   <FormLabel className="w-24">Email</FormLabel>
-                  <div className="flex-1">
+                  <div className="flex-1 w-full">
                     <FormControl>
                       <Input
                         type="email"
@@ -98,9 +102,9 @@ export default function FeedbackForm() {
               control={form.control}
               name="subject"
               render={({ field }) => (
-                <FormItem className="flex items-start">
+                <FormItem className="flex items-start max-md:flex-col">
                   <FormLabel className="w-24">Chủ đề</FormLabel>
-                  <div className="flex-1">
+                  <div className="flex-1 w-full">
                     <FormControl>
                       <Input
                         placeholder="Về trải nghiệm mua hàng..."
@@ -117,9 +121,9 @@ export default function FeedbackForm() {
               control={form.control}
               name="message"
               render={({ field }) => (
-                <FormItem className="flex items-start">
+                <FormItem className="flex items-start max-md:flex-col">
                   <FormLabel className="w-24">Nội dung</FormLabel>
-                  <div className="flex-1">
+                  <div className="flex-1 w-full">
                     <FormControl>
                       <Textarea
                         placeholder="Mô tả chi tiết góp ý của bạn..."
@@ -133,7 +137,7 @@ export default function FeedbackForm() {
               )}
             />
 
-            <div className="pt-2 ml-26">
+            <div className="pt-2 lg:ml-26">
               <Button type="submit">
                 <Send className="mr-2 h-4 w-4" />
                 Gửi góp ý

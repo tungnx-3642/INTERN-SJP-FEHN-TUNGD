@@ -23,15 +23,32 @@ const breadcrumbItems = [
 export default function ProductsPage() {
   const searchParams = useSearchParams();
   const categoryId = searchParams.get("categoryId");
+  const query = searchParams.get("q");
   const { data: categories } = useCategories();
   const isCategorySelected = !!categoryId;
   const { data: allProducts } = useProducts({ enabled: !isCategorySelected });
   const { data: categoryProducts } = useProductByCategory(Number(categoryId), {
     enabled: isCategorySelected,
   });
-  const products: Product[] =
-    (isCategorySelected ? categoryProducts : allProducts) || [];
 
+  function filterProductsByKeyword(
+    products: Product[],
+    keyword: string | null
+  ) {
+    if (!keyword) return products;
+    const lowerKeyword = keyword.toLowerCase();
+    return products.filter(
+      (p) =>
+        p.name.toLowerCase().includes(lowerKeyword) ||
+        (p.description && p.description.toLowerCase().includes(lowerKeyword))
+    );
+  }
+
+  const products: Product[] = filterProductsByKeyword(
+    categoryId ? categoryProducts || [] : allProducts || [],
+    query
+  );
+  
   const [isGridView, setIsGridView] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -129,7 +146,7 @@ export default function ProductsPage() {
 
           {currentProducts.length ? (
             isGridView ? (
-              <div className="mt-6 grid grid-cols-3 gap-6">
+              <div className="mt-6 grid grid-cols-2 lg:grid-cols-3 gap-6">
                 {currentProducts.map((product) => (
                   <WineCard key={product.id} product={product} />
                 ))}

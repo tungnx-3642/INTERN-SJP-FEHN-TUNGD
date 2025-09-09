@@ -13,6 +13,7 @@ function AdminHeader() {
     categories: "Categories",
     customers: "Customers",
     settings: "Settings",
+    users: "Users"
   };
 
   return (

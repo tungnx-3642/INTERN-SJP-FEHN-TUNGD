@@ -11,7 +11,7 @@ export default function ManageCategories() {
   if (isLoading) return <div>Loading...</div>;
 
   return (
-    <div className="p-6">
+    <div className="max-w-10/12 p-6 mx-auto">
       <div className="flex items-center mb-4">
         <h1 className="text-xl font-bold flex-1">Manage Categories</h1>
         <Button>

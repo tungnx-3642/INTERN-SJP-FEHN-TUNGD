@@ -84,9 +84,9 @@ export default function AddressForm({
           control={form.control}
           name="firstName"
           render={({ field }) => (
-            <FormItem className="flex items-start">
+            <FormItem className="flex max-md:flex-col items-start">
               <FormLabel className="w-32">Tên</FormLabel>
-              <div className="flex-1">
+              <div className="flex-1 w-full">
                 <FormControl>
                   <Input {...field} placeholder="Nhập tên" />
                 </FormControl>
@@ -99,9 +99,9 @@ export default function AddressForm({
           control={form.control}
           name="lastName"
           render={({ field }) => (
-            <FormItem className="flex items-start">
+            <FormItem className="flex max-md:flex-col items-start">
               <FormLabel className="w-32">Họ và tên đệm</FormLabel>
-              <div className="flex-1">
+              <div className="flex-1 w-full">
                 <FormControl>
                   <Input {...field} placeholder="Nhập họ" />
                 </FormControl>
@@ -114,9 +114,9 @@ export default function AddressForm({
           control={form.control}
           name="address"
           render={({ field }) => (
-            <FormItem className="flex items-start">
+            <FormItem className="flex max-md:flex-col items-start">
               <FormLabel className="w-32">Địa chỉ</FormLabel>
-              <div className="flex-1">
+              <div className="flex-1 w-full">
                 <FormControl>
                   <Input {...field} placeholder="Nhập địa chỉ" />
                 </FormControl>
@@ -129,9 +129,9 @@ export default function AddressForm({
           control={form.control}
           name="city"
           render={({ field }) => (
-            <FormItem className="flex items-start">
+            <FormItem className="flex max-md:flex-col items-start">
               <FormLabel className="w-32">Thành phố</FormLabel>
-              <div className="flex-1">
+              <div className="flex-1 w-full">
                 <FormControl>
                   <Input {...field} placeholder="Nhập thành phố" />
                 </FormControl>
@@ -144,9 +144,9 @@ export default function AddressForm({
           control={form.control}
           name="nationality"
           render={({ field }) => (
-            <FormItem className="flex">
+            <FormItem className="flex max-md:flex-col items-start">
               <FormLabel className="w-32">Quốc tịch</FormLabel>
-              <div className="flex-1">
+              <div className="flex-1 w-full">
                 <FormControl>
                   <Input {...field} placeholder="Nhập quốc tịch" />
                 </FormControl>
@@ -159,9 +159,9 @@ export default function AddressForm({
           control={form.control}
           name="zipCode"
           render={({ field }) => (
-            <FormItem className="flex">
+            <FormItem className="flex max-md:flex-col items-start">
               <FormLabel className="w-32">Zip code</FormLabel>
-              <div className="flex-1">
+              <div className="flex-1 w-full">
                 <FormControl>
                   <Input {...field} placeholder="Nhập zip code" />
                 </FormControl>
@@ -174,9 +174,9 @@ export default function AddressForm({
           control={form.control}
           name="phone"
           render={({ field }) => (
-            <FormItem className="flex">
+            <FormItem className="flex max-md:flex-col items-start">
               <FormLabel className="w-32">Số điện thoại</FormLabel>
-              <div className="flex-1">
+              <div className="flex-1 w-full">
                 <FormControl>
                   <Input {...field} placeholder="Nhập số điện thoại" />
                 </FormControl>

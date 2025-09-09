@@ -1,4 +1,12 @@
-import { Home, Package, ShoppingCart, LogOut, ChartColumnStacked } from "lucide-react";
+"use client";
+import {
+  Home,
+  Package,
+  ShoppingCart,
+  LogOut,
+  ChartColumnStacked,
+  User,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { routes } from "@/lib/routes";
@@ -15,15 +23,30 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import Link from "next/link";
+import { useAuth } from "@/context";
+import { useRouter } from "next/navigation";
 
 const menu = [
   { label: "Dashboard", icon: Home, href: routes.admin.dashboard },
   { label: "Products", icon: Package, href: routes.admin.products.list },
-  { label: "Categories", icon: ChartColumnStacked, href: routes.admin.categories },
+  { label: "Users", icon: User, href: routes.admin.users.list },
+  {
+    label: "Categories",
+    icon: ChartColumnStacked,
+    href: routes.admin.categories,
+  },
   { label: "Orders", icon: ShoppingCart, href: routes.admin.orders },
 ];
 
 export function AdminSidebar() {
+  const { user, logout } = useAuth();
+  const router = useRouter();
+
+  const handleLogout = () => {
+    logout();
+    router.push(routes.home)
+  };
+
   return (
     <Sidebar>
       <SidebarHeader>
@@ -58,11 +81,16 @@ export function AdminSidebar() {
             className="rounded-full"
           />
           <div>
-            <p className="text-sm font-semibold">Test Admin</p>
+            <p className="text-sm font-semibold">{user?.name}</p>
             <p className="text-xs text-gray-500">Admin manager</p>
           </div>
         </div>
-        <Button size="icon" variant="destructive" className="w-full">
+        <Button
+          size="icon"
+          variant="destructive"
+          className="w-full"
+          onClick={handleLogout}
+        >
           <LogOut />
           <p>Log out</p>
         </Button>
