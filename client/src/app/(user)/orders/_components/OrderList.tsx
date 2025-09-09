@@ -47,7 +47,7 @@ function OrderList() {
             >
               Tất cả ({orders?.length})
             </Button>
-            <Separator orientation="vertical" />
+            <Separator orientation="vertical" className="h-6" />
             {statuses.map((status) => (
               <React.Fragment key={status}>
                 <Button

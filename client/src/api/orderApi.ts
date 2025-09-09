@@ -18,6 +18,7 @@ export interface OrderItem {
 
 export interface Order {
   id?: number;
+  addressId?: number;
   userId: number;
   user?: User;
   items: OrderItem[];
