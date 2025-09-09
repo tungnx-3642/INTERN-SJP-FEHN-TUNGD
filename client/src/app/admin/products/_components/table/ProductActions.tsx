@@ -43,7 +43,7 @@ export function ProductActions({ product }: { product: Product }) {
           Delete
         </DropdownMenuItem>
       </DropdownMenuContent>
-      <ProductDialogForm open={dialogOpen} onClose={() => setDialogOpen(false)} product={product} />
+      <ProductDialogForm key={product.id} open={dialogOpen} onClose={() => setDialogOpen(false)} product={product} />
     </DropdownMenu>
   );
 }

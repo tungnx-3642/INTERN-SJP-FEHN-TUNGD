@@ -12,7 +12,7 @@ import { useAuth } from "@/context";
 const loggedInAccountMenu = [
   { label: "Thông tin tài khoản", href: routes.addresses },
   { label: "Danh sách đơn hàng", href: routes.orders.list },
-  { label: "Danh sách ưu thích", href: "#" },
+  { label: "Danh sách ưu thích", href: routes.favorites },
   { label: "Giỏ hàng", href: routes.cart },
 ];
 const loggedOutAccountMenu = [

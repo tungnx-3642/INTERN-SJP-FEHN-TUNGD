@@ -26,7 +26,7 @@ import {
 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import ProductTabs from "./ProductTabs";
-import { useCart } from "@/context";
+import { useAuth, useCart } from "@/context";
 import { toast } from "sonner";
 
 const colorList = [
@@ -43,10 +43,12 @@ const sizesList = [
 ];
 
 function ProductSection({ product }: { product: Product }) {
+  const { like, dislike, getFavorites } = useAuth();
   const { addItem } = useCart();
   const [size, setSize] = useState("vừa");
   const [quantity, setQuantity] = useState(1);
   const [selectedColor, setSelectedColor] = useState(colorList[0].value);
+  const isFavorite = getFavorites().includes(product.id);
 
   const handleQuantityChange = (event: ChangeEvent<HTMLInputElement>) => {
     const nextValue = Number(event.target.value);
@@ -63,6 +65,16 @@ function ProductSection({ product }: { product: Product }) {
       toast.success("Đã thêm sản phẩm vào giỏ hàng");
     } catch {
       toast.error("Không thể được sản phẩm vào giỏ hàng");
+    }
+  };
+
+  const handleToggleFavorite = () => {
+    if (isFavorite) {
+      dislike(product.id);
+      toast("Đã bỏ khỏi danh sách yêu thích");
+    } else {
+      like(product.id);
+      toast.success("Đã thêm vào danh sách yêu thích");
     }
   };
 
@@ -186,9 +198,9 @@ function ProductSection({ product }: { product: Product }) {
           </div>
 
           <div className="flex mt-10 items-center gap-5">
-            <Button variant="ghost">
-              <Heart />
-              Yêu thích
+            <Button variant="ghost" onClick={handleToggleFavorite}>
+                <Heart className={isFavorite ? "fill-red-500 text-red-500" : ""} />
+                {isFavorite ? "Đã yêu thích" : "Yêu thích"}
             </Button>
 
             <Button variant="ghost">

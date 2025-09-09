@@ -31,13 +31,13 @@ function OrderList() {
   if (!user) return null;
 
   return (
-    <div className="flex gap-5 justify-between">
-      <Card className="w-3/4 rounded-none shadow-none py-0">
+    <div className="flex max-md:flex-col-reverse gap-5 justify-between">
+      <Card className="w-full md:w-3/4 rounded-none shadow-none py-0">
         <CardHeader className="bg-gray-100 py-6 border-b">
           <CardTitle className="uppercase text-lg font-normal">
             Danh sách đơn hàng
           </CardTitle>
-          <div className="flex flex-wrap gap-2 mt-5 mb-3 h-5 items-center space-x-1">
+          <div className="flex flex-wrap gap-2 mt-5 mb-3 items-center space-x-1">
             <Button
               variant="link"
               onClick={() => setActiveStatus(null)}

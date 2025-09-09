@@ -3,6 +3,7 @@ export const routes = {
   home: "/",
   infor: "/infor",
   cart: "/cart",
+  favorites: "/favorites",
   orders: {
     list: "/orders",
     detail: (id: number | string) => `/orders/${id}`,

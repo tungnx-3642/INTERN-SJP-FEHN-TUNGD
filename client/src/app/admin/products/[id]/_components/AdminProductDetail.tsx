@@ -3,8 +3,7 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
-import { Star, Pencil, Trash } from "lucide-react";
+import { Pencil, Trash } from "lucide-react";
 import { useProduct } from "@/hooks";
 import { formatToVND } from "@/utlis/formatData";
 import ReviewCard from "@/components/card/reviewCard";

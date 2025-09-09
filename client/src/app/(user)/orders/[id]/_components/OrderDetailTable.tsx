@@ -13,7 +13,6 @@ import {
 } from "@/components/ui/table";
 import { formatToVND } from "@/utlis/formatData";
 import { useMemo } from "react";
-import Image from "next/image";
 import ItemRow from "@/app/(user)/_components/ItemRow";
 
 function OrderDetailTable({ orderId }: { orderId: number }) {
