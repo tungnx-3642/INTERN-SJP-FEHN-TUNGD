@@ -3,6 +3,8 @@ import { routes } from "@/lib/routes";
 import Link from "next/link";
 import Image from "next/image";
 import LoginForm from "./_components/LoginForm";
+import GoogleSignInButton from "@/components/GoogleLoginButton";
+import FacebookSignInButton from "@/components/FacebookSignInButton";
 
 function LoginPage() {
   const breadcrumbItems = [
@@ -23,12 +25,16 @@ function LoginPage() {
             className="w-20 h-1.5 mt-4 mb-6"
           />
         </div>
-        <Link
-          href={routes.auth.register}
-          className="bg-foreground text-white px-7 h-12 flex justify-center items-center hover:bg-background hover:text-foreground"
-        >
-          Đăng ký
-        </Link>
+        <div className="flex items-center gap-3">
+          <FacebookSignInButton />
+          <GoogleSignInButton />
+          <Link
+            href={routes.auth.register}
+            className="bg-foreground text-white px-7 h-12 flex justify-center items-center hover:bg-background hover:text-foreground"
+          >
+            Đăng ký
+          </Link>
+        </div>
       </div>
       <LoginForm />
     </div>
