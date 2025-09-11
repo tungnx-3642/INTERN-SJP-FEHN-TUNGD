@@ -21,7 +21,7 @@ function AddressCard({
   ];
 
   return (
-    <div className="flex flex-col gap-5 p-4 border rounded-xl text-lg">
+    <div className="flex flex-col gap-5 p-4 border rounded-xl text-lg dark:bg-accent">
       {fields.map((field, idx) => (
         <div key={idx} className="flex items-start">
           <p className="w-40">{field.label}</p>

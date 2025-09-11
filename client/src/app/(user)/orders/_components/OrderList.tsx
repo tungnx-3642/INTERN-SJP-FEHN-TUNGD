@@ -33,7 +33,7 @@ function OrderList() {
   return (
     <div className="flex max-md:flex-col-reverse gap-5 justify-between">
       <Card className="w-full md:w-3/4 rounded-none shadow-none py-0">
-        <CardHeader className="bg-gray-100 py-6 border-b">
+        <CardHeader className="bg-gray-100 py-6 border-b dark:bg-accent">
           <CardTitle className="uppercase text-lg font-normal">
             Danh sách đơn hàng
           </CardTitle>

@@ -31,7 +31,7 @@ export const productColumns: ColumnDef<Product>[] = [
             alt={product.name}
             width={60}
             height={60}
-            className="rounded-md h-20 w-16 object-contain"
+            className="rounded-md h-20 w-16 object-contain dark:bg-white"
           />
           <div className="flex-1 min-w-0">
             <Link

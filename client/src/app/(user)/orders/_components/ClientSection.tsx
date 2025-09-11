@@ -7,7 +7,7 @@ import Link from "next/link";
 function ClientSection() {
   const { user } = useAuth();
   return (
-    <Card className="w-full md:w-1/4 rounded-none shadow-none h-fit bg-gray-100">
+    <Card className="w-full md:w-1/4 rounded-none shadow-none h-fit bg-gray-100 dark:bg-accent">
       <CardHeader>
         <CardTitle className="uppercase text-lg font-normal">
           Thông tin khách hàng
@@ -18,7 +18,7 @@ function ClientSection() {
           <User />
           <div>
             <p>{user?.name}</p>
-            <p className="text-sm text-gray-800">{user?.email}</p>
+            <p className="text-sm text-gray-800 dark:text-white">{user?.email}</p>
           </div>
         </div>
         <div className="flex gap-2">
