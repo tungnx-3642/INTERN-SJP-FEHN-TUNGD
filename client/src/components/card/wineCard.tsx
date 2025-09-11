@@ -27,7 +27,7 @@ function WineCard({ product }: { product: Product }) {
         alt={product.name}
         width={300}
         height={400}
-        className="w-full h-48 object-contain"
+        className="w-30 h-48 object-contain dark:bg-white"
       />
       <Link href={routes.products.detail(product.id)} className="hover:underline text-center line-clamp-1">
         {product.name}

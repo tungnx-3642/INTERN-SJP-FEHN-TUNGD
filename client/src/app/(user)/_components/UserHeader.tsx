@@ -8,6 +8,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { routes } from "@/lib/routes";
 import { useAuth, useCart } from "@/context";
+import ModeToggle from "@/components/ModeToggle";
 
 const loggedInAccountMenu = [
   { label: "Thông tin tài khoản", href: routes.addresses },
@@ -41,9 +42,7 @@ function UserHeader() {
       <div className="flex justify-between max-w-7xl mx-auto items-center px-5 py-2">
         <ul className="hidden md:flex space-x-3">
           <li className="flex items-center hover:underline relative">
-            <Link href={routes.cart}>
-              Giỏ hàng
-            </Link>
+            <Link href={routes.cart}>Giỏ hàng</Link>
             <span
               className="
             absolute -top-1 -right-2
@@ -76,8 +75,9 @@ function UserHeader() {
         >
           <Menu size={24} />
         </Button>
-        <div className="flex-1 flex justify-end">
+        <div className="hidden flex-1 md:flex justify-end gap-2">
           <SearchForm />
+          <ModeToggle />
         </div>
       </div>
 
@@ -98,6 +98,10 @@ function UserHeader() {
               </button>
             </li>
           )}
+          <li className="flex gap-2">
+            <SearchForm />
+            <ModeToggle />
+          </li>
         </ul>
       )}
       <div className="bg-black text-white uppercase text-lg">

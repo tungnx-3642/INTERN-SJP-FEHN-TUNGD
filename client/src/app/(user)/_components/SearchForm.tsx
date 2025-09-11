@@ -25,7 +25,7 @@ function SearchForm() {
         value={query}
         placeholder="Tìm kiếm sản phẩm..."
         onChange={(e) => setQuery(e.target.value)}
-        className="bg-slate-100 rounded-lg pl-4 py-2 pr-12 focus:outline-none focus:ring-2"
+        className="pr-8 bg-slate-100 rounded-lg pl-4 py-2 lg:pr-12 focus:outline-none focus:ring-2"
       />
       <Button
         variant="ghost"

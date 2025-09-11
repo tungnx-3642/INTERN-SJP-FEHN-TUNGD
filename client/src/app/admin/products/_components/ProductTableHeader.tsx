@@ -54,8 +54,8 @@ export function ProductTableHeader({
         <CardContent className="flex flex-col gap-4">
           <div className="flex gap-4 items-center">
             <div>
-              <p className="text-gray-500">Tổng sản phẩm</p>
-              <p className="text-2xl flex gap-1 items-center text-gray-700">
+              <p className="text-gray-500 dark:text-gray-300">Tổng sản phẩm</p>
+              <p className="text-2xl flex gap-1 items-center text-gray-700 dark:text-white">
                 {total}
                 <Box />
               </p>
