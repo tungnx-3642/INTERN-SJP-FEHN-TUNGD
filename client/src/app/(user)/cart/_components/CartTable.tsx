@@ -11,11 +11,10 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { formatToVND } from "@/utlis/formatData";
-import { useProductsList, useCreateOrder } from "@/hooks";
+import { useProductsList } from "@/hooks";
 import { useRouter } from "next/navigation";
 import { routes } from "@/lib/routes";
 import { toast } from "sonner";
-import { Order, OrderStatus } from "@/api/orderApi";
 import CartItemRow from "../../_components/ItemRow";
 import { useMemo } from "react";
 
@@ -25,17 +24,6 @@ function CartTable() {
   const { cart, removeAll } = useCart();
   const productIds = cart.items.map((item) => Number(item.productId));
   const { data: products } = useProductsList(productIds);
-
-  const { mutate: createOrder, isPending } = useCreateOrder({
-    onSuccess: () => {
-      toast.success("Đặt hàng thành công!");
-      removeAll();
-      router.push(routes.products.list);
-    },
-    onError: (error) => {
-      toast.error("Có lỗi xảy ra khi đặt hàng: " + error.message);
-    },
-  });
 
   const enrichedItems = cart.items.map((cartItem) => {
     const product = products?.find((p) => p.id === Number(cartItem.productId));
@@ -68,13 +56,7 @@ function CartTable() {
       return;
     }
 
-    const orderData: Order = {
-      userId: user.id,
-      items: cart.items,
-      total: total,
-      status: OrderStatus.Pending,
-    };
-    createOrder(orderData);
+    router.push(routes.checkout)
   };
 
   if (!cart.items.length) {
@@ -120,8 +102,8 @@ function CartTable() {
           Tiếp tục mua hàng
         </Button>
         <Button onClick={() => removeAll()}>Xóa tất cả</Button>
-        <Button onClick={handleCreateOrder} disabled={isPending}>
-          {isPending ? "Đang xử lý..." : "Đặt đơn"}
+        <Button onClick={handleCreateOrder}>
+          Đặt đơn
         </Button>
       </div>
     </div>

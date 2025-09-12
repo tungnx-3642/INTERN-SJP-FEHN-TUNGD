@@ -13,7 +13,6 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useState, ChangeEvent } from "react";
-import { Product } from "@/api";
 import {
   ChevronDown,
   ChevronLeft,

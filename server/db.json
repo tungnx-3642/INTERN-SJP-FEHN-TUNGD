@@ -4,6 +4,29 @@
       "id": 1,
       "email": "test@example.com",
       "password": "123456"
+    },
+    {
+      "email": "nguenxuantung437@gmail.com",
+      "password": "$2a$10$kL9.MHLmwocKX47V0wFLh.Y3xPKQtZZYp1VI4EUvDRiiDon96VR2K",
+      "name": "Tung Nguyễn Xuân",
+      "favorite": [
+        5,
+        1,
+        2,
+        3
+      ],
+      "isActive": false,
+      "isAdmin": false,
+      "id": 2
+    },
+    {
+      "email": "tung.nx215162@sis.hust.edu.vn",
+      "password": "$2a$10$GoN80xDXueRHQn.nXJTW2eVtS2T4a66mdpthlmjCBGlrvC140YuZe",
+      "name": "Tung Nguyễn Xuân",
+      "favorite": [],
+      "isActive": false,
+      "isAdmin": false,
+      "id": 3
     }
   ],
   "products": [
@@ -126,6 +149,18 @@
       "created_at": "2022-06-17T06:39:50Z",
       "updated_at": "2024-05-25T22:36:02Z",
       "subcategoryId": 101
+    },
+    {
+      "name": "Test product",
+      "description": "Test product",
+      "price": 10000000,
+      "imageUrl": "http://res.cloudinary.com/dhmbivnr2/image/upload/v1757410881/banner01_sdvwei.png",
+      "madeYear": 2025,
+      "made_from": "Việt Nam",
+      "subcategoryId": 204,
+      "created_at": "2025-09-09T09:41:22.489Z",
+      "updated_at": "2025-09-09T09:41:22.489Z",
+      "id": 11
     }
   ],
   "categories": [
@@ -381,8 +416,183 @@
       "blogId": 2,
       "message": "Mình thích vang ngọt vì dễ uống và hợp với tiệc nhẹ.",
       "createdAt": "2025-08-21T14:00:00Z"
+    },
+    {
+      "name": "Tung Nguyễn Xuân",
+      "message": "comment 1",
+      "blogId": 2,
+      "createdAt": "2025-09-09T08:53:41.921Z",
+      "id": 11
+    },
+    {
+      "name": "tung",
+      "message": "comment",
+      "blogId": 3,
+      "createdAt": "2025-09-09T09:37:18.394Z",
+      "id": 12
     }
   ],
-  "orders": [],
-  "addresses": []
+  "orders": [
+    {
+      "userId": 2,
+      "items": [
+        {
+          "productId": 2,
+          "quantity": 1
+        },
+        {
+          "productId": 3,
+          "quantity": 1
+        }
+      ],
+      "total": 2150000,
+      "status": "cancelled",
+      "created_at": "2025-09-09T07:38:24.828Z",
+      "updated_at": "2025-09-09T07:38:24.828Z",
+      "id": 1
+    },
+    {
+      "userId": 2,
+      "items": [
+        {
+          "productId": 5,
+          "quantity": 5
+        }
+      ],
+      "total": 6750000,
+      "status": "delivered",
+      "created_at": "2025-09-09T07:38:31.451Z",
+      "updated_at": "2025-09-09T07:38:31.451Z",
+      "id": 2
+    },
+    {
+      "userId": 2,
+      "items": [
+        {
+          "productId": 5,
+          "quantity": 3
+        }
+      ],
+      "total": 4050000,
+      "status": "delivered",
+      "created_at": "2025-09-09T07:38:49.747Z",
+      "updated_at": "2025-09-09T07:38:49.747Z",
+      "id": 3
+    },
+    {
+      "userId": 2,
+      "addressId": 2,
+      "items": [
+        {
+          "productId": 2,
+          "quantity": 1
+        },
+        {
+          "productId": 3,
+          "quantity": 1
+        }
+      ],
+      "total": 2155000,
+      "status": "pending",
+      "created_at": "2025-09-09T08:27:07.303Z",
+      "updated_at": "2025-09-09T08:27:07.303Z",
+      "id": 4
+    },
+    {
+      "userId": 2,
+      "addressId": 2,
+      "items": [
+        {
+          "productId": 2,
+          "quantity": 1
+        },
+        {
+          "productId": 3,
+          "quantity": 1
+        }
+      ],
+      "total": 2155000,
+      "status": "pending",
+      "created_at": "2025-09-09T08:27:36.285Z",
+      "updated_at": "2025-09-09T08:27:36.285Z",
+      "id": 5
+    },
+    {
+      "userId": 2,
+      "addressId": 2,
+      "items": [
+        {
+          "productId": 2,
+          "quantity": 1
+        },
+        {
+          "productId": 3,
+          "quantity": 1
+        }
+      ],
+      "total": 2155000,
+      "status": "delivered",
+      "created_at": "2025-09-09T08:30:35.715Z",
+      "updated_at": "2025-09-09T08:30:35.715Z",
+      "id": 6
+    },
+    {
+      "userId": 2,
+      "addressId": 2,
+      "items": [
+        {
+          "productId": 2,
+          "quantity": 1
+        }
+      ],
+      "total": 1205000,
+      "status": "pending",
+      "created_at": "2025-09-09T08:37:46.515Z",
+      "updated_at": "2025-09-09T08:37:46.515Z",
+      "id": 7
+    },
+    {
+      "userId": 2,
+      "addressId": 1,
+      "items": [
+        {
+          "productId": 2,
+          "quantity": 2
+        },
+        {
+          "productId": 1,
+          "quantity": 2
+        }
+      ],
+      "total": 5405000,
+      "status": "delivered",
+      "created_at": "2025-09-09T09:39:23.990Z",
+      "updated_at": "2025-09-09T09:39:23.990Z",
+      "id": 8
+    }
+  ],
+  "addresses": [
+    {
+      "firstName": "Tung",
+      "lastName": "Nguyễn Xuân",
+      "address": "Số 33, ngõ 133, phường Thanh Xuân",
+      "city": "Hà Nội",
+      "nationality": "Việt Nam",
+      "zipCode": "10000",
+      "phone": "0311231235",
+      "userid": 2,
+      "id": 1
+    },
+    {
+      "firstName": "Luan",
+      "lastName": "Nguyễn Xuân",
+      "address": "Số 33, ngõ 133, phường Thanh Xuân",
+      "city": "Hà Nội",
+      "nationality": "Việt Nam",
+      "zipCode": "10000",
+      "phone": "0311231235",
+      "userid": 2,
+      "id": 2
+    }
+  ]
 }
