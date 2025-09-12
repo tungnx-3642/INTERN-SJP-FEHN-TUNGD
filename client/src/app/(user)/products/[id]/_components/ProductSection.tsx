@@ -28,6 +28,9 @@ import { Input } from "@/components/ui/input";
 import ProductTabs from "./ProductTabs";
 import { useAuth, useCart } from "@/context";
 import { toast } from "sonner";
+import { DynamicBreadcrumb } from "@/app/(user)/_components/DynamicBreadcrumb";
+import { routes } from "@/lib/routes";
+import { useProduct } from "@/hooks";
 
 const colorList = [
   { name: "Đỏ", value: "#FF0000" },
@@ -42,14 +45,19 @@ const sizesList = [
   { value: "to", label: "To" },
 ];
 
-function ProductSection({ product }: { product: Product }) {
-  const { like, dislike, getFavorites } = useAuth();
+function ProductSection({ productId }: { productId: number }) {
+  const { data: product } = useProduct(productId);
+  const { like, dislike, getFavorites, user } = useAuth();
   const { addItem } = useCart();
   const [size, setSize] = useState("vừa");
   const [quantity, setQuantity] = useState(1);
   const [selectedColor, setSelectedColor] = useState(colorList[0].value);
-  const isFavorite = getFavorites().includes(product.id);
 
+  if (!product) {
+    return <p>Không tìm thấy sản phẩm</p>;
+  }
+
+  const isFavorite = getFavorites().includes(product?.id);
   const handleQuantityChange = (event: ChangeEvent<HTMLInputElement>) => {
     const nextValue = Number(event.target.value);
     if (Number.isNaN(nextValue) || nextValue < 1) {
@@ -69,6 +77,10 @@ function ProductSection({ product }: { product: Product }) {
   };
 
   const handleToggleFavorite = () => {
+    if (!user) {
+      toast.error("Cần đăng nhập để thích sản phẩm");
+      return;
+    }
     if (isFavorite) {
       dislike(product.id);
       toast("Đã bỏ khỏi danh sách yêu thích");
@@ -78,8 +90,15 @@ function ProductSection({ product }: { product: Product }) {
     }
   };
 
+  const breadcrumbItems = [
+    { label: "Trang chủ", href: routes.home },
+    { label: "Sản phẩm", href: routes.products.list },
+    { label: product.name, href: routes.products.detail(product.id) },
+  ];
+
   return (
     <div>
+      <DynamicBreadcrumb items={breadcrumbItems} />
       <div className="flex items-center my-10">
         <div className="w-1/2">
           <div>
@@ -199,8 +218,10 @@ function ProductSection({ product }: { product: Product }) {
 
           <div className="flex mt-10 items-center gap-5">
             <Button variant="ghost" onClick={handleToggleFavorite}>
-                <Heart className={isFavorite ? "fill-red-500 text-red-500" : ""} />
-                {isFavorite ? "Đã yêu thích" : "Yêu thích"}
+              <Heart
+                className={isFavorite ? "fill-red-500 text-red-500" : ""}
+              />
+              {isFavorite ? "Đã yêu thích" : "Yêu thích"}
             </Button>
 
             <Button variant="ghost">

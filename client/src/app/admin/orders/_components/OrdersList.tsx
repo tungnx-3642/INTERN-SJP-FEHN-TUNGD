@@ -89,7 +89,7 @@ function OrderList() {
       {filteredOrders.length === 0 ? (
         <p className="text-center text-muted-foreground">Không có đơn hàng</p>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
           {filteredOrders.map((order: Order) => (
             <OrderCard key={order.id} order={order} />
           ))}

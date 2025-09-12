@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "json-server --watch db.json -m ./node_modules/json-server-auth -p 3001"
+    "start": "node server.js"
   },
   "author": "",
   "license": "ISC",
@@ -12,5 +12,10 @@
   "devDependencies": {
     "json-server": "^0.17.4",
     "json-server-auth": "^2.1.0"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.2",
+    "jsonwebtoken": "^9.0.2",
+    "nodemailer": "^7.0.6"
   }
 }

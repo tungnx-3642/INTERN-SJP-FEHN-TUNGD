@@ -21,7 +21,7 @@ function ItemRow({ item, isEditable }: ItemRowProps) {
   const subtotal = item.price * item.quantity;
   return (
     <TableRow>
-      <TableCell className="flex items-center gap-3">
+      <TableCell className="flex max-md:flex-col items-center gap-3">
         {item.imageUrl && (
           <Image
             src={item.imageUrl}
@@ -40,16 +40,16 @@ function ItemRow({ item, isEditable }: ItemRowProps) {
           )}
         </div>
       </TableCell>
-      <TableCell>{formatToVND(item.price)}</TableCell>
-      <TableCell>{item.quantity}</TableCell>
-      <TableCell className="font-medium">{formatToVND(subtotal)}</TableCell>
+      <TableCell className="text-center">{formatToVND(item.price)}</TableCell>
+      <TableCell className="text-center">{item.quantity}</TableCell>
+      <TableCell className="font-medium text-center">{formatToVND(subtotal)}</TableCell>
       {isEditable && (
-        <TableCell>
+        <TableCell className="text-center">
           <Button
             variant="destructive"
             size="sm"
             onClick={() => removeItem(item.productId)}
-            className="rounded-none"
+            className="rounded-none mx-auto"
           >
             Xóa
           </Button>

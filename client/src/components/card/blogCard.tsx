@@ -6,7 +6,7 @@ import { routes } from "@/lib/routes";
 function BlogCard({ blog }: { blog: Blog }) {
   return (
     <div>
-      <div className="flex flex-col items-center space-y-4 rounded-lg max-md:p-6">
+      <div className="flex flex-col items-center space-y-4 rounded-lg">
         <Image
           src={blog.imageUrl}
           alt={blog.title}

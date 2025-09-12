@@ -27,6 +27,10 @@ export const routes = {
   admin: {
     dashboard: "/admin",
     categories: "/admin/categories",
+    users: {
+      list: "/admin/users",
+      detail: (id: number | string) => `/admin/users/${id}`
+    },
     products: {
       list: "/admin/products",
       detail: (id: number | string) => `/admin/products/${id}`,

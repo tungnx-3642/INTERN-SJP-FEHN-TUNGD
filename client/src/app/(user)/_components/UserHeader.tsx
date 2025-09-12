@@ -7,16 +7,14 @@ import { Menu, ChevronsDown, ChevronsUp } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { routes } from "@/lib/routes";
-import { useAuth } from "@/context";
+import { useAuth, useCart } from "@/context";
 
 const loggedInAccountMenu = [
   { label: "Thông tin tài khoản", href: routes.addresses },
   { label: "Danh sách đơn hàng", href: routes.orders.list },
   { label: "Danh sách ưu thích", href: routes.favorites },
-  { label: "Giỏ hàng", href: routes.cart },
 ];
 const loggedOutAccountMenu = [
-  { label: "Giỏ hàng", href: routes.cart },
   { label: "Đăng nhập", href: routes.auth.login },
   { label: "Đăng ký", href: routes.auth.register },
 ];
@@ -30,6 +28,7 @@ const mainMenu = [
 ];
 
 function UserHeader() {
+  const { cart } = useCart();
   const [menuOpen, setMenuOpen] = useState(false);
   const [bottomMenuOpen, setBottomMenuOpen] = useState(false);
   const { isAuthenticated, logout } = useAuth();
@@ -40,7 +39,22 @@ function UserHeader() {
   return (
     <div className="fixed top-0 left-0 right-0 z-50 bg-background shadow-md">
       <div className="flex justify-between max-w-7xl mx-auto items-center px-5 py-2">
-        <ul className="hidden md:flex space-x-2">
+        <ul className="hidden md:flex space-x-3">
+          <li className="flex items-center hover:underline relative">
+            <Link href={routes.cart}>
+              Giỏ hàng
+            </Link>
+            <span
+              className="
+            absolute -top-1 -right-2
+            bg-red-500 text-white text-xs font-bold
+            rounded-full h-4 w-4 flex items-center justify-center
+            shadow
+          "
+            >
+              {cart.items.length}
+            </span>
+          </li>
           {accountMenu.map((item) => (
             <li key={item.label} className="flex items-center hover:underline">
               <Link href={item.href}>{item.label}</Link>
@@ -69,6 +83,9 @@ function UserHeader() {
 
       {menuOpen && (
         <ul className="md:hidden flex flex-col space-y-2 px-5 py-2 bg-background">
+          <li className="flex items-center hover:underline">
+            <Link href={routes.cart}>Giỏ hàng</Link>
+          </li>
           {accountMenu.map((item) => (
             <li key={item.label} className="hover:underline">
               <Link href={item.href}>{item.label}</Link>
