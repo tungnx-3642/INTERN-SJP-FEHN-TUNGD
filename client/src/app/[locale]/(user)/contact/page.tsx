@@ -13,22 +13,34 @@ import {
   Instagram,
 } from "lucide-react";
 import FeedbackForm from "./_components/FeedbackForm";
+import { getTranslations } from "next-intl/server";
+import { useTranslations } from "next-intl";
 
-export const metadata: Metadata = {
-  title: "Liên hệ",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: { locale: string };
+}) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "Metadata" });
+
+  return {
+    title: t("contact"),
+  };
+}
 
 function ContactPage() {
+  const t = useTranslations("ContactPage");
   const breadcrumbItems = [
-    { label: "Trang chủ", href: routes.home },
-    { label: "Liên hệ", href: routes.contact },
+    { label: t("home"), href: routes.home },
+    { label: t("contact"), href: routes.contact },
   ];
   return (
     <div className="max-md:p-4 max-w-7xl mx-auto my-10">
       <DynamicBreadcrumb items={breadcrumbItems} />
       <div className="flex justify-between mt-5">
         <div>
-          <h1 className="text-2xl uppercase">Liên hệ</h1>
+          <h1 className="text-2xl uppercase">{t("contact")}</h1>
           <Image
             src="/titleleft-dark.png"
             alt="title-left"

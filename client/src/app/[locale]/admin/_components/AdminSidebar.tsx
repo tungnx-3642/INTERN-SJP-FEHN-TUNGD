@@ -84,7 +84,7 @@ export function AdminSidebar() {
           />
           <div>
             <p className="text-sm font-semibold">{user?.name}</p>
-            <p className="text-xs text-gray-500">Admin manager</p>
+            <p className="text-xs text-gray-500">{t("adminRole")}</p>
           </div>
         </div>
         <Button
@@ -94,7 +94,7 @@ export function AdminSidebar() {
           onClick={handleLogout}
         >
           <LogOut />
-          <p>Log out</p>
+          <p>{t("logout")}</p>
         </Button>
       </SidebarFooter>
     </Sidebar>

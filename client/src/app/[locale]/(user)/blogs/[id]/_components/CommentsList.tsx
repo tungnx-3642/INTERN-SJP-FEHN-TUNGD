@@ -4,10 +4,12 @@ import { Comment } from "@/api";
 import { useState } from "react";
 import CommentCard from "@/components/card/commentCard";
 import { CustomPagination } from "@/components/CustomPagination";
+import { useTranslations } from "next-intl";
 
 function CommentLists({ comments = [] }: { comments: Comment[] }) {
   const [page, setPage] = useState(1);
   const perPage = 3;
+  const t = useTranslations("CommentsList");
 
   // Sort comments by createdAt (newest first)
   const sortedComments = [...comments].sort(
@@ -22,21 +24,29 @@ function CommentLists({ comments = [] }: { comments: Comment[] }) {
 
   return (
     <div className="mt-10">
-      <h1 className="mb-5 text-xl uppercase">Bình luận ({comments.length})</h1>
+      <h1 className="mb-5 text-xl uppercase">
+        {t("comments")} ({comments.length})
+      </h1>
 
       <div className="flex flex-col gap-5">
-        {currentComments.map((comment) => (
-          <CommentCard key={comment.id} comment={comment} />
-        ))}
+        {currentComments.length > 0 ? (
+          currentComments.map((comment) => (
+            <CommentCard key={comment.id} comment={comment} />
+          ))
+        ) : (
+          <p className="text-gray-500">{t("noComments")}</p>
+        )}
       </div>
 
-      <CustomPagination
-        total={sortedComments.length}
-        currentPage={page}
-        setPage={setPage}
-        itemsPerPage={perPage}
-        className="lg:justify-end"
-      />
+      {sortedComments.length > perPage && (
+        <CustomPagination
+          total={sortedComments.length}
+          currentPage={page}
+          setPage={setPage}
+          itemsPerPage={perPage}
+          className="lg:justify-end"
+        />
+      )}
     </div>
   );
 }

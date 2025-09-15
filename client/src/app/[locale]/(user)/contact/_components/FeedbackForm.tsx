@@ -18,18 +18,20 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Send } from "lucide-react";
 import { toast } from "sonner";
-
-// Zod schema for validation
-const FeedbackSchema = z.object({
-  name: z.string().min(2, "Tên phải có ít nhất 2 ký tự"),
-  email: z.string().email("Email không hợp lệ"),
-  subject: z.string().min(3, "Chủ đề phải có ít nhất 3 ký tự"),
-  message: z.string().min(10, "Nội dung phải có ít nhất 10 ký tự"),
-});
-
-export type FeedbackValues = z.infer<typeof FeedbackSchema>;
+import { useTranslations } from "next-intl";
 
 export default function FeedbackForm() {
+  const t = useTranslations("ContactPage");
+
+  // Zod schema for validation with translations
+  const FeedbackSchema = z.object({
+    name: z.string().min(2, t("validation.nameMin")),
+    email: z.string().email(t("validation.emailInvalid")),
+    subject: z.string().min(3, t("validation.subjectMin")),
+    message: z.string().min(10, t("validation.messageMin")),
+  });
+
+  type FeedbackValues = z.infer<typeof FeedbackSchema>;
   const form = useForm<FeedbackValues>({
     resolver: zodResolver(FeedbackSchema),
     defaultValues: {
@@ -42,14 +44,14 @@ export default function FeedbackForm() {
   });
 
   async function handleSubmit() {
-    form.reset()
-    toast.success("Cảm ơn ý kiến phản hồi của bạn")
+    form.reset();
+    toast.success(t("submitSuccess"));
   }
 
   return (
     <Card className="mt-5 w-full max-w-3xl shadow-none border-none bg-transparent">
       <CardHeader className="px-0">
-        <CardTitle className="text-2xl">Góp ý / Feedback</CardTitle>
+        <CardTitle className="text-2xl">{t("feedbackTitle")}</CardTitle>
       </CardHeader>
       <CardContent className="px-0">
         <Form {...form}>
@@ -62,11 +64,11 @@ export default function FeedbackForm() {
               name="name"
               render={({ field }) => (
                 <FormItem className="flex items-start max-md:flex-col">
-                  <FormLabel className="w-24">Tên</FormLabel>
+                  <FormLabel className="w-24">{t("name")}</FormLabel>
                   <div className="flex-1 w-full">
                     <FormControl>
                       <Input
-                        placeholder="Nhập tên của bạn..."
+                        placeholder={t("namePlaceholder")}
                         autoComplete="name"
                         {...field}
                       />
@@ -82,12 +84,12 @@ export default function FeedbackForm() {
               name="email"
               render={({ field }) => (
                 <FormItem className="flex items-start max-md:flex-col">
-                  <FormLabel className="w-24">Email</FormLabel>
+                  <FormLabel className="w-24">{t("email")}</FormLabel>
                   <div className="flex-1 w-full">
                     <FormControl>
                       <Input
                         type="email"
-                        placeholder="Nhập email..."
+                        placeholder={t("emailPlaceholder")}
                         autoComplete="email"
                         {...field}
                       />
@@ -103,13 +105,10 @@ export default function FeedbackForm() {
               name="subject"
               render={({ field }) => (
                 <FormItem className="flex items-start max-md:flex-col">
-                  <FormLabel className="w-24">Chủ đề</FormLabel>
+                  <FormLabel className="w-24">{t("subject")}</FormLabel>
                   <div className="flex-1 w-full">
                     <FormControl>
-                      <Input
-                        placeholder="Về trải nghiệm mua hàng..."
-                        {...field}
-                      />
+                      <Input placeholder={t("subjectPlaceholder")} {...field} />
                     </FormControl>
                     <FormMessage />
                   </div>
@@ -122,11 +121,11 @@ export default function FeedbackForm() {
               name="message"
               render={({ field }) => (
                 <FormItem className="flex items-start max-md:flex-col">
-                  <FormLabel className="w-24">Nội dung</FormLabel>
+                  <FormLabel className="w-24">{t("message")}</FormLabel>
                   <div className="flex-1 w-full">
                     <FormControl>
                       <Textarea
-                        placeholder="Mô tả chi tiết góp ý của bạn..."
+                        placeholder={t("messagePlaceholder")}
                         className="min-h-[120px]"
                         {...field}
                       />
@@ -140,7 +139,7 @@ export default function FeedbackForm() {
             <div className="pt-2 lg:ml-26">
               <Button type="submit">
                 <Send className="mr-2 h-4 w-4" />
-                Gửi góp ý
+                {t("submitButton")}
               </Button>
             </div>
           </form>

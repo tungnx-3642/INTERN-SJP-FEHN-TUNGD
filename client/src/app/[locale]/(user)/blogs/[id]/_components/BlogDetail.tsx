@@ -8,15 +8,18 @@ import { Button } from "@/components/ui/button";
 import CommentForm from "./CommentForm";
 import CommentLists from "./CommentsList";
 import RecommendBlogs from "./RecommendBlogs";
+import { useTranslations } from "next-intl";
 
 const tagsList = ["Rượu ngoại", "Rượu vang", "Anh", "Pháp", "Rượu mạnh"];
 
 function BlogDetail({ id }: { id: string }) {
   const { data: blog } = useBlog(id);
+  const t = useTranslations("BlogDetail");
+
   const breadcrumbItems = [
-    { label: "Trang chủ", href: routes.home },
-    { label: "Blogs", href: routes.blogs.list },
-    { label: blog?.title || "BLog not found", href: routes.blogs.detail(id) },
+    { label: t("home"), href: routes.home },
+    { label: t("blogs"), href: routes.blogs.list },
+    { label: blog?.title || t("blogNotFound"), href: routes.blogs.detail(id) },
   ];
 
   return (
@@ -25,7 +28,7 @@ function BlogDetail({ id }: { id: string }) {
       <div className="flex max-md:flex-col-reverse gap-7 my-12">
         <div className="w-full lg:w-1/4 p-4 md:p-2 lg:p-0 flex flex-col gap-3">
           <RecommendBlogs />
-          <h2 className="text-xl uppercase mt-5">Blog Tags</h2>
+          <h2 className="text-xl uppercase mt-5">{t("blogTags")}</h2>
           <div className="flex flex-wrap w-full gap-3">
             {tagsList.map((tag, index) => (
               <Button
@@ -56,12 +59,13 @@ function BlogDetail({ id }: { id: string }) {
               />
               <h1 className="text-4xl uppercase mt-7">{blog.title}</h1>
               <p className="text-gray-500 mt-5">
-                Đăng bởi {blog.user} | {formatTimeToVietnamese(blog.createdAt)}
+                {t("postedBy")} {blog.user} |{" "}
+                {formatTimeToVietnamese(blog.createdAt)}
               </p>
               <p className="mt-2 text-gray-500 min-h-52">{blog.content}</p>
             </>
           ) : (
-            <p>Đang tải...</p>
+            <p>{t("loading")}</p>
           )}
           {blog && <CommentForm blogId={blog.id} />}
           {blog && <CommentLists comments={blog?.comments ?? []} />}

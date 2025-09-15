@@ -115,6 +115,9 @@ export const authOptions = {
       session.accessToken = token.accessToken;
       return session;
     },
+    authorized({ token }) {
+      return token != null;
+    },
   },
   session: {
     strategy: "jwt",

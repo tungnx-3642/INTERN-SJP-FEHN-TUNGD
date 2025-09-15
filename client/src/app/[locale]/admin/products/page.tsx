@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 function AdminProductsPage() {
   return (
     <div className="max-w-10/12 mt-5 mx-auto">
-      <ProductTable columns={productColumns} />
+      <ProductTable />
     </div>
   );
 }

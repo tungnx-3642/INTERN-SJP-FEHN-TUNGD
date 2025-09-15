@@ -27,6 +27,7 @@ const CartContext = createContext<CartContextValue | undefined>(undefined);
 
 export function CartProvider({ children }: { children: React.ReactNode }) {
   const [cart, setCart] = useState<CartState>({ items: [] });
+  const [isHydrated, setIsHydrated] = useState(false);
 
   useEffect(() => {
     try {
@@ -37,14 +38,22 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
           setCart({ items: parsed.items });
         }
       }
-    } catch {
+    } catch (error) {
       setCart({ items: [] });
+    } finally {
+      setIsHydrated(true);
     }
   }, []);
 
   useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(cart));
-  }, [cart]);
+    if (isHydrated) {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(cart));
+      } catch (error) {
+        console.error("Failed to save cart to localStorage:", error);
+      }
+    }
+  }, [cart, isHydrated]);
 
   const getCart = useCallback((): CartState => cart, [cart]);
 

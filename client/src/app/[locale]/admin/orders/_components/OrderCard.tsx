@@ -119,7 +119,7 @@ export default function OrderCard({ order }: OrderCardProps) {
                         "text-red-500": s === OrderStatus.Cancelled,
                       })}
                     >
-                      {s.charAt(0).toUpperCase() + s.slice(1)}
+                      {t(s)}
                     </SelectItem>
                   ))}
                 </SelectContent>

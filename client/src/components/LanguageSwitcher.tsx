@@ -1,6 +1,7 @@
 "use client";
 
-import { useRouter, usePathname, useSearchParams } from "next/navigation";
+import { useRouter, usePathname } from "@/i18n/navigation";
+import { useParams } from "next/navigation";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -9,6 +10,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { Globe } from "lucide-react";
+import { useTransition } from "react";
 
 const locales = [
   { code: "vi", label: "Tiếng Việt" },
@@ -18,24 +20,22 @@ const locales = [
 export default function LanguageSwitcher() {
   const router = useRouter();
   const pathname = usePathname();
-  const searchParams = useSearchParams();
-  const currentLocale = pathname.split("/")[1] || "vi";
+  const params = useParams();
+  const [isPending, startTransition] = useTransition();
+  const currentLocale = params.locale as string;
 
   const handleSwitch = (locale: string) => {
     if (locale === currentLocale) return;
 
-    const queryString = searchParams?.toString();
-    const url = `/${locale}${pathname.replace(/^\/[^/]+/, "")}${
-      queryString ? `?${queryString}` : ""
-    }`;
-
-    router.push(url);
+    startTransition(() => {
+      router.replace(pathname, { locale });
+    });
   };
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost">
+        <Button variant="ghost" disabled={isPending}>
           <Globe />
           {currentLocale}
         </Button>
@@ -46,6 +46,7 @@ export default function LanguageSwitcher() {
             key={locale.code}
             onClick={() => handleSwitch(locale.code)}
             className={locale.code === currentLocale ? "font-bold" : ""}
+            disabled={isPending}
           >
             {locale.label}
           </DropdownMenuItem>
