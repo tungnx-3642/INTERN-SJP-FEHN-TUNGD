@@ -47,7 +47,7 @@ export default function FeedbackForm() {
   }
 
   return (
-    <Card className="mt-5 w-full max-w-3xl shadow-none border-none">
+    <Card className="mt-5 w-full max-w-3xl shadow-none border-none bg-transparent">
       <CardHeader className="px-0">
         <CardTitle className="text-2xl">Góp ý / Feedback</CardTitle>
       </CardHeader>

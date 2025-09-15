@@ -19,8 +19,8 @@ export function UserTableHeader({
     <Card className="shadow-none mb-4 py-4">
       <CardContent className="flex flex-col md:flex-row md:items-center gap-4">
         <div>
-          <p className="text-gray-500">Tổng số người dùng</p>
-          <p className="text-2xl font-semibold flex items-center gap-1 text-gray-700">
+          <p className="text-gray-500 dark:text-gray-300">Tổng số người dùng</p>
+          <p className="text-2xl font-semibold flex items-center gap-1 text-gray-700 dark:text-white">
             {total} <UserPlus />
           </p>
         </div>

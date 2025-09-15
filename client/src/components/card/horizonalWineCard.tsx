@@ -39,13 +39,13 @@ function HorizonalWineCard({ product }: { product: Product }) {
 
   return (
     <div className="flex max-md:flex-col border-b border-gray-300 py-2">
-      <div className="w-full md:w-1/4 mr-4">
+      <div className="w-full md:w-1/4 mr-4 py-2">
         <Image
           src={product.imageUrl}
           alt={product.name}
           width={300}
           height={400}
-          className="w-full h-48 object-contain"
+          className="w-30 h-48 object-contain dark:bg-white mx-auto"
         />
       </div>
       <div>

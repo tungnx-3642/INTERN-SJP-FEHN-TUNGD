@@ -42,7 +42,7 @@ function OrderList() {
         <CardContent className="flex flex-wrap items-center gap-4">
           <div>
             <p className="text-sm text-gary-400">Số lượng đơn hàng</p>
-            <p className="flex gap-2 text-xl text-gray-700 mt-2 font-bold items-center">
+            <p className="flex gap-2 text-xl text-gray-700 mt-2 font-bold items-center dark:text-white">
               {filteredOrders.length} <ShoppingCart size={20} />
             </p>
           </div>
