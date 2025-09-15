@@ -11,6 +11,7 @@ import { useAuth, useCart } from "@/context";
 import ModeToggle from "@/components/ModeToggle";
 import { useTranslations } from "next-intl";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
+import { NotificationsList } from "@/components/NotificationsList";
 
 function UserHeader() {
   const t = useTranslations("Header");
@@ -84,6 +85,9 @@ function UserHeader() {
           <Menu size={24} />
         </Button>
         <div className="hidden flex-1 md:flex justify-end gap-2">
+          {isAuthenticated && (
+            <NotificationsList />
+          )}
           <SearchForm />
           <ModeToggle />
           <LanguageSwitcher />

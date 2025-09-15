@@ -25,6 +25,7 @@ import { cn } from "@/lib/utils";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { useTranslations } from "next-intl";
+import NotiService from "@/api/notiApi";
 
 interface OrderCardProps {
   order: Order;
@@ -43,6 +44,12 @@ export default function OrderCard({ order }: OrderCardProps) {
   const { mutate: updateStatus } = useUpdateOrderStatus({
     onSuccess: () => {
       toast.success(t("updateSuccess"));
+      NotiService.sendNoti(
+        "Đơn hàng của bạn được cập nhật",
+        `Đơn hàng #${order.id} được cập nhật lên trạng thái ${selectedStatus}`,
+        order.userId,
+        order.id!
+      );
       setStatus(selectedStatus);
       queryClient.invalidateQueries({ queryKey: ["orders"] });
       setEditing(false);
@@ -71,7 +78,8 @@ export default function OrderCard({ order }: OrderCardProps) {
       <CardHeader className="flex flex-col sm:flex-row justify-between items-start pt-5">
         <div>
           <CardTitle className="text-lg mb-5">
-            {t("order")} #{order.id} - {order.user?.name ?? `${t("user")} ${order.userId}`}
+            {t("order")} #{order.id} -{" "}
+            {order.user?.name ?? `${t("user")} ${order.userId}`}
           </CardTitle>
           <p className="text-sm text-muted-foreground mb-1">
             {t("status")}: <StatusBadge status={status} />
