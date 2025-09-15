@@ -13,13 +13,12 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { AuthResponse } from "@/api";
-import { toast } from "sonner";
 import { useRouter } from "next/navigation";
-import { useAuth } from "@/context";
+import { toast } from "sonner";
 import { routes } from "@/lib/routes";
-import { useLogin } from "@/hooks/auth/useLogin";
 import Cookies from "js-cookie";
+import { signIn } from "next-auth/react";
+import { useTransition } from "react";
 
 const loginSchema = z.object({
   email: z.string().email("Email không hợp lệ"),
@@ -30,24 +29,7 @@ type LoginSchema = z.infer<typeof loginSchema>;
 
 function LoginForm() {
   const router = useRouter();
-  const { setAuth } = useAuth();
-
-  const { mutate: login, isPending } = useLogin({
-    onSuccess: (res: AuthResponse) => {
-      setAuth(res.user, res.accessToken);
-      toast.success("Đăng nhập thành công");
-      const redirectPath = Cookies.get("redirect");
-      if (redirectPath) {
-        Cookies.remove("redirect");
-        router.push(redirectPath);
-      } else {
-        router.push(routes.home);
-      }
-    },
-    onError: (err) => {
-      toast.error("Đăng nhập thất bại", { description: err.message });
-    },
-  });
+  const [isPending, startTransition] = useTransition();
 
   const form = useForm<LoginSchema>({
     resolver: zodResolver(loginSchema),
@@ -72,8 +54,27 @@ function LoginForm() {
     },
   ];
 
-  const onSubmit = (values: LoginSchema) => {
-    login({ email: values.email, password: values.password });
+  const onSubmit = async (values: LoginSchema) => {
+    startTransition(async () => {
+      const res = await signIn("credentials", {
+        redirect: false,
+        email: values.email,
+        password: values.password,
+      });
+
+      if (res?.error) {
+        toast.error("Đăng nhập thất bại", { description: res.error });
+      } else {
+        toast.success("Đăng nhập thành công");
+        const redirectPath = Cookies.get("redirect");
+        if (redirectPath) {
+          Cookies.remove("redirect");
+          router.push(redirectPath);
+        } else {
+          router.push(routes.home);
+        }
+      }
+    });
   };
 
   return (

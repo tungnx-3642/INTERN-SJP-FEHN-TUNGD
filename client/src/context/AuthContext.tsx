@@ -3,19 +3,18 @@ import {
   createContext,
   useCallback,
   useContext,
-  useEffect,
   useMemo,
   useState,
+  useEffect,
 } from "react";
 import { authApi, type User } from "@/api";
 import { toast } from "sonner";
-import Cookie from "js-cookie";
+import { signOut, useSession } from "next-auth/react";
 
 type AuthContextValue = {
   user: User | null;
   token: string | null;
   isAuthenticated: boolean;
-  setAuth: (user: User | null, token: string | null) => void;
   logout: () => void;
   getFavorites: () => number[];
   like: (productId: number) => Promise<void>;
@@ -25,91 +24,64 @@ type AuthContextValue = {
 const AuthContext = createContext<AuthContextValue | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-  const [user, setUser] = useState<User | null>(null);
-  const [token, setToken] = useState<string | null>(null);
+  const { data: session } = useSession();
+  const token = (session as any)?.accessToken ?? null;
+  const [currentUser, setCurrentUser] = useState<User | null>(
+    (session?.user as User) ?? null
+  );
 
   useEffect(() => {
-    if (typeof window === "undefined") return;
-    try {
-      const storedToken = Cookie.get("accessToken") ?? null;
-      const storedUser = localStorage.getItem("authUser");
-      setToken(storedToken);
-      setUser(storedUser ? (JSON.parse(storedUser) as User) : null);
-    } catch {
-      setToken(null);
-      setUser(null);
-    }
+    setCurrentUser((session?.user as User) ?? null);
+  }, [session]);
+
+  const logout = useCallback(() => {
+    signOut({ callbackUrl: "/login" });
+    toast("Đã đăng xuất tài khoản");
   }, []);
 
-  const setAuth = useCallback(
-    (nextUser: User | null, nextToken: string | null) => {
-      setUser(nextUser);
-      setToken(nextToken);
-
-      if (typeof window !== "undefined") {
-        if (nextToken) {
-          Cookie.set("accessToken", nextToken, {
-            expires: 7,
-            secure: true,
-            sameSite: "strict",
-          });
-        } else {
-          Cookie.remove("accessToken");
-        }
-
-        if (nextUser)
-          localStorage.setItem("authUser", JSON.stringify(nextUser));
-        else localStorage.removeItem("authUser");
-      }
-    },
-    []
+  const getFavorites = useCallback(
+    () => currentUser?.favorite ?? [],
+    [currentUser]
   );
-  const logout = useCallback(() => {
-    setAuth(null, null);
-    toast("Đã đăng xuất tài khoản");
-  }, [setAuth]);
-
-  const getFavorites = useCallback(() => user?.favorite ?? [], [user]);
 
   const like = useCallback(
     async (productId: number) => {
-      if (!user) return;
+      if (!currentUser) return;
       if (getFavorites().includes(productId)) return;
 
-      const updatedUser = await authApi.updateFavorites(user.id, [
+      const updatedUser = await authApi.updateFavorites(currentUser.id, [
         ...getFavorites(),
         productId,
       ]);
-      setAuth(updatedUser, token);
+      setCurrentUser(updatedUser); 
     },
-    [user, token, getFavorites, setAuth]
+    [currentUser, token, getFavorites]
   );
 
   const dislike = useCallback(
     async (productId: number) => {
-      if (!user) return;
+      if (!currentUser) return;
 
       const updatedUser = await authApi.updateFavorites(
-        user.id,
+        currentUser.id,
         getFavorites().filter((id) => id !== productId)
       );
-      setAuth(updatedUser, token);
+      setCurrentUser(updatedUser); 
     },
-    [user, token, getFavorites, setAuth]
+    [currentUser, token, getFavorites]
   );
 
   const value = useMemo<AuthContextValue>(
     () => ({
-      user,
+      user: currentUser,
       token,
-      isAuthenticated: Boolean(token && user),
-      setAuth,
+      isAuthenticated: Boolean(currentUser),
       logout,
       getFavorites,
       like,
       dislike,
     }),
-    [user, token, setAuth, logout, getFavorites, like, dislike]
+    [currentUser, token, logout, getFavorites, like, dislike]
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

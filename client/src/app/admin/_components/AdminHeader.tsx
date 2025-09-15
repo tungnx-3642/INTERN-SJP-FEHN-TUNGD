@@ -3,7 +3,6 @@
 import { usePathname } from "next/navigation";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import ModeToggle from "@/components/ModeToggle";
-
 function AdminHeader() {
   const pathname = usePathname();
   const segments = pathname.split("/").filter(Boolean);

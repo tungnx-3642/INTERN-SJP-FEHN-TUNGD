@@ -1,22 +1,30 @@
-import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
+import { NextResponse } from "next/server"
+import { auth } from "@/auth"
 
-export function middleware(request: NextRequest) {
-  const token = request.cookies.get("accessToken")?.value;
+export default auth(async (req) => {
+  const { nextUrl } = req
 
-  if (!token) {
-    const response = NextResponse.redirect(new URL("/login", request.url));
-    response.cookies.set("redirect", request.nextUrl.pathname, {
+  if (!req.auth) {
+    const response = NextResponse.redirect(new URL("/login", req.url))
+    response.cookies.set("redirect", nextUrl.pathname, {
       httpOnly: false,
       path: "/",
-    });
-
-    return response;
+    })
+    return response
   }
 
-  return NextResponse.next();
-}
+  if (nextUrl.pathname.startsWith("/admin") && !req.auth.user.isAdmin) {
+    const response = NextResponse.redirect(new URL("/login", req.url))
+    response.cookies.set("redirect", nextUrl.pathname, {
+      httpOnly: false,
+      path: "/",
+    })
+    return response
+  }
+
+  return NextResponse.next()
+})
 
 export const config = {
   matcher: ["/orders", "/favorites", "/addresses", "/admin/:path*"],
-};
+}
