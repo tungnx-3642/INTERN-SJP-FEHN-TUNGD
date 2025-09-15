@@ -27,7 +27,7 @@ import {
   SelectGroup,
   SelectLabel,
 } from "@/components/ui/select";
-import { Spinner } from '@/components/ui/shadcn-io/spinner';
+import { Spinner } from "@/components/ui/shadcn-io/spinner";
 import { Product } from "@/api";
 import { toast } from "sonner";
 import { uploadFile } from "@/api/cloudinary";
@@ -38,6 +38,7 @@ import { useCategories, useCreateProduct, useUpdateProduct } from "@/hooks";
 import { useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import Image from "next/image";
+import ImageDropZone from "@/components/ImageDropZone";
 
 const productSchema = z.object({
   name: z.string().min(1, "Tên sản phẩm không được để trống"),
@@ -286,27 +287,10 @@ export function ProductDialogForm({
                 <FormItem>
                   <FormLabel>Hình ảnh</FormLabel>
                   <FormControl>
-                    <div className="space-y-2">
-                      <Input
-                        type="file"
-                        accept="image/*"
-                        onChange={(e) => {
-                          const file = e.target.files?.[0];
-                          field.onChange(file ?? null);
-                        }}
-                      />
-                      {field.value && (
-                        <div className="mt-2">
-                          <Image
-                            src={URL.createObjectURL(field.value)}
-                            alt="Preview"
-                            width={100}
-                            height={100}
-                            className="w-40 h-40 object-contain mx-auto rounded-md border"
-                          />
-                        </div>
-                      )}
-                    </div>
+                    <ImageDropZone
+                      value={field.value}
+                      onChange={(file) => field.onChange(file)}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
