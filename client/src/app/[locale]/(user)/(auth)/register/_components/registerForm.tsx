@@ -23,12 +23,20 @@ import { sendActivateAccMail } from "@/api/email";
 import { signIn } from "next-auth/react";
 import { useTranslations } from "next-intl";
 
+// i18n-friendly validation schema
 const registerSchema = z
   .object({
+<<<<<<< HEAD
     name: z.string().min(2, { message: "nameMin" }),
     email: z.string().email({ message: "invalidEmail" }),
     password: z.string().min(6, { message: "passwordMin" }),
     confirmPassword: z.string().min(6, { message: "confirmPasswordMin" }),
+=======
+    name: z.string().min(2, "nameMin"),
+    email: z.string().email("invalidEmail"),
+    password: z.string().min(6, "passwordMin"),
+    confirmPassword: z.string().min(6, "confirmPasswordMin"),
+>>>>>>> e3b14f8 (localization)
   })
   .refine((data) => data.password === data.confirmPassword, {
     path: ["confirmPassword"],
@@ -71,6 +79,7 @@ function RegisterForm() {
     type?: string;
   }> = [
     { name: "name", label: t("nameLabel"), placeholder: t("namePlaceholder") },
+<<<<<<< HEAD
     {
       name: "email",
       label: t("emailLabel"),
@@ -89,6 +98,11 @@ function RegisterForm() {
       placeholder: t("confirmPasswordPlaceholder"),
       type: "password",
     },
+=======
+    { name: "email", label: t("emailLabel"), placeholder: t("emailPlaceholder"), type: "email" },
+    { name: "password", label: t("passwordLabel"), placeholder: t("passwordPlaceholder"), type: "password" },
+    { name: "confirmPassword", label: t("confirmPasswordLabel"), placeholder: t("confirmPasswordPlaceholder"), type: "password" },
+>>>>>>> e3b14f8 (localization)
   ];
 
   const onSubmit = async (values: RegisterSchema) => {
