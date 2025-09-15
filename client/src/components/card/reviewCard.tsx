@@ -1,5 +1,5 @@
 import { Review } from "@/api";
-import { StarRating } from "@/app/(user)/products/[id]/_components/ReviewSection";
+import { StarRating } from "@/app/[locale]/(user)/products/[id]/_components/ReviewSection";
 import { formatTimeToVietnamese } from "@/utlis/formatData";
 import Image from "next/image";
 function ReviewCard({ review }: { review: Review }) {

@@ -31,11 +31,11 @@ export default function NotFound() {
           height={150}
           className=""
         />
-        <Link href={routes.home} className="underline uppercase font-lg">
+        <Link href="/en/" className="underline uppercase font-lg">
           Quay về trang chủ
         </Link>
         <ChevronRight />
-        <Link href={routes.contact} className="underline uppercase font-lg">
+        <Link href="/en/contact" className="underline uppercase font-lg">
            Liên hệ
         </Link>
       </div>

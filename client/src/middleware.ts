@@ -1,30 +1,34 @@
-import { NextResponse } from "next/server"
-import { auth } from "@/auth"
+import { NextResponse } from "next/server";
+import { auth } from "@/auth";
+import { intlMiddleware } from "./middleware-intl";
 
 export default auth(async (req) => {
-  const { nextUrl } = req
+  const { nextUrl } = req;
+
+  const intlResponse = intlMiddleware(req);
+  if (intlResponse) return intlResponse;
 
   if (!req.auth) {
-    const response = NextResponse.redirect(new URL("/login", req.url))
+    const response = NextResponse.redirect(new URL("/login", req.url));
     response.cookies.set("redirect", nextUrl.pathname, {
       httpOnly: false,
       path: "/",
-    })
-    return response
+    });
+    return response;
   }
 
   if (nextUrl.pathname.startsWith("/admin") && !req.auth.user.isAdmin) {
-    const response = NextResponse.redirect(new URL("/login", req.url))
+    const response = NextResponse.redirect(new URL("/login", req.url));
     response.cookies.set("redirect", nextUrl.pathname, {
       httpOnly: false,
       path: "/",
-    })
-    return response
+    });
+    return response;
   }
 
-  return NextResponse.next()
-})
+  return NextResponse.next();
+});
 
 export const config = {
   matcher: ["/orders", "/favorites", "/addresses", "/admin/:path*"],
-}
+};
