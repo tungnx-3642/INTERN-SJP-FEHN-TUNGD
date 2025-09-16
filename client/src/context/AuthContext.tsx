@@ -35,7 +35,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, [session]);
 
   const logout = useCallback(() => {
-    signOut({ callbackUrl: "/login" });
+    signOut({ callbackUrl: "/vi/login" });
     toast("Đã đăng xuất tài khoản");
   }, []);
 

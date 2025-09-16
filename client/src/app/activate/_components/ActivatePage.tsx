@@ -1,7 +1,7 @@
 "use client";
 import { authApi } from "@/api";
 import { routes } from "@/lib/routes";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 

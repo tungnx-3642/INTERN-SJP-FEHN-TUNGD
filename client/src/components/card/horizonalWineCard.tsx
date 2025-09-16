@@ -3,37 +3,39 @@ import { Product } from "@/api";
 import Image from "next/image";
 import { formatToVND } from "@/utlis/formatData";
 import { Heart, ChartNoAxesColumn } from "lucide-react";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { Button } from "../ui/button";
 import { useAuth, useCart } from "@/context";
 import { toast } from "sonner";
+import { useTranslations } from "next-intl";
 
 function HorizonalWineCard({ product }: { product: Product }) {
   const { addItem } = useCart();
   const { like, dislike, getFavorites, user } = useAuth();
+  const t = useTranslations("HorizonalWineCard");
 
   const isFavorites = getFavorites().includes(product.id);
 
   const handleAddToCart = () => {
     try {
       addItem({ productId: product.id, quantity: 1 });
-      toast.success("Đã thêm sản phẩm vào giỏ hàng");
+      toast.success(t("addedToCart"));
     } catch {
-      toast.error("Không thể được sản phẩm vào giỏ hàng");
+      toast.error(t("addToCartError"));
     }
   };
 
   const handleToggleFavorite = () => {
     if (!user) {
-      toast.error("Cần đăng nhập để thích sản phẩm");
+      toast.error(t("loginToLike"));
       return;
     }
     if (isFavorites) {
       dislike(product.id);
-      toast("Đã bỏ khỏi danh sách yêu thích");
+      toast(t("removedFromFavorites"));
     } else {
       like(product.id);
-      toast.success("Đã thêm vào danh sách yêu thích");
+      toast.success(t("addedToFavorites"));
     }
   };
 
@@ -64,7 +66,7 @@ function HorizonalWineCard({ product }: { product: Product }) {
             className="py-2 px-4 rounded-none bg-foreground text-background cursor-pointer hover:bg-amber-500"
             onClick={handleAddToCart}
           >
-            Add to cart
+            {t("addToCart")}
           </Button>
           <Button
             variant="ghost"
@@ -72,11 +74,11 @@ function HorizonalWineCard({ product }: { product: Product }) {
             onClick={handleToggleFavorite}
           >
             <Heart className={isFavorites ? "fill-red-500 text-red-500" : ""} />
-            {isFavorites ? "Đã yêu thích" : "Yêu thích"}
+            {isFavorites ? t("favorited") : t("like")}
           </Button>
           <Button variant="ghost" className="flex items-center ml-4 gap-1">
             <ChartNoAxesColumn />
-            So sánh
+            {t("compare")}
           </Button>
         </div>
       </div>
