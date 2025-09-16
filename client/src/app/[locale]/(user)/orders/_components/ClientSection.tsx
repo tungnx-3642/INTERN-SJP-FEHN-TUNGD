@@ -4,13 +4,17 @@ import { User, MapPin, Phone } from "lucide-react";
 import { useAuth } from "@/context";
 import { routes } from "@/lib/routes";
 import { Link } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
+
 function ClientSection() {
   const { user } = useAuth();
+  const t = useTranslations("OrdersPage");
+
   return (
     <Card className="w-full md:w-1/4 rounded-none shadow-none h-fit bg-gray-100 dark:bg-accent">
       <CardHeader>
         <CardTitle className="uppercase text-lg font-normal">
-          Thông tin khách hàng
+          {t("customerInfo")}
         </CardTitle>
       </CardHeader>
       <CardContent className="flex flex-col gap-3">
@@ -36,7 +40,7 @@ function ClientSection() {
           </div>
         </div>
         <Link className="mt-3 underline" href={routes.addresses}>
-          Chi tiết địa chỉ
+          {t("addressDetails")}
         </Link>
       </CardContent>
     </Card>

@@ -1,34 +1,45 @@
-import { NextResponse } from "next/server";
-import { auth } from "@/auth";
-import { intlMiddleware } from "./middleware-intl";
+import { NextRequest, NextResponse } from "next/server";
+import { getToken } from "next-auth/jwt";
+import createMiddleware from "next-intl/middleware";
+import { routing } from "./i18n/routing";
 
-export default auth(async (req) => {
-  const { nextUrl } = req;
+const handleI18nRouting = createMiddleware(routing);
 
-  const intlResponse = intlMiddleware(req);
-  if (intlResponse) return intlResponse;
+const protectedPages = ["/orders", "/favorites", "/addresses", "/admin/:path*"];
 
-  if (!req.auth) {
-    const response = NextResponse.redirect(new URL("/login", req.url));
-    response.cookies.set("redirect", nextUrl.pathname, {
-      httpOnly: false,
-      path: "/",
-    });
-    return response;
+export default async function middleware(req: NextRequest) {
+  const pathname = req.nextUrl.pathname;
+  if (
+    pathname.startsWith("/_next") ||
+    pathname.startsWith("/api") ||
+    pathname.startsWith("/favicon.ico") ||
+    pathname.match(/\.(.*)$/)
+  ) {
+    return NextResponse.next();
   }
 
-  if (nextUrl.pathname.startsWith("/admin") && !req.auth.user.isAdmin) {
-    const response = NextResponse.redirect(new URL("/login", req.url));
-    response.cookies.set("redirect", nextUrl.pathname, {
-      httpOnly: false,
-      path: "/",
-    });
-    return response;
+  const match = pathname.match(/^\/(en|vi)(\/.*|$)/);
+  const locale = match?.[1];
+  const pathWithoutLocale = match?.[2] || pathname;
+
+  const isProtectedPage = protectedPages.some((p) =>
+    p.endsWith("/:path*")
+      ? pathWithoutLocale.startsWith(p.replace("/:path*", ""))
+      : pathWithoutLocale === p
+  );
+
+  if (isProtectedPage) {
+    const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
+
+    if (!token) {
+      const localePrefix = locale ? `/${locale}` : "";
+      return NextResponse.redirect(new URL(`${localePrefix}/login`, req.url));
+    }
   }
 
-  return NextResponse.next();
-});
+  return handleI18nRouting(req);
+}
 
 export const config = {
-  matcher: ["/orders", "/favorites", "/addresses", "/admin/:path*"],
+  matcher: ["/((?!api|_next|.*\\..*).*)"],
 };

@@ -30,30 +30,33 @@ import { toast } from "sonner";
 import { DynamicBreadcrumb } from "../../../_components/DynamicBreadcrumb";
 import { routes } from "@/lib/routes";
 import { useProduct } from "@/hooks";
-
-const colorList = [
-  { name: "Đỏ", value: "#FF0000" },
-  { name: "Vàng", value: "#FFD700" },
-  { name: "Đen", value: "#000000" },
-  { name: "Trắng", value: "#FFFFFF" },
-];
-
-const sizesList = [
-  { value: "nhỏ", label: "Nhỏ" },
-  { value: "vừa", label: "Vừa" },
-  { value: "to", label: "To" },
-];
+import { useTranslations } from "next-intl";
 
 function ProductSection({ productId }: { productId: number }) {
+  const t = useTranslations("ProductSection");
   const { data: product } = useProduct(productId);
   const { like, dislike, getFavorites, user } = useAuth();
   const { addItem } = useCart();
-  const [size, setSize] = useState("vừa");
+
+  const colorList = [
+    { name: t("red"), value: "#FF0000" },
+    { name: t("yellow"), value: "#FFD700" },
+    { name: t("black"), value: "#000000" },
+    { name: t("white"), value: "#FFFFFF" },
+  ];
+
+  const sizesList = [
+    { value: "small", label: t("small") },
+    { value: "medium", label: t("medium") },
+    { value: "large", label: t("large") },
+  ];
+
+  const [size, setSize] = useState("medium");
   const [quantity, setQuantity] = useState(1);
   const [selectedColor, setSelectedColor] = useState(colorList[0].value);
 
   if (!product) {
-    return <p>Không tìm thấy sản phẩm</p>;
+    return <p>{t("productNotFound")}</p>;
   }
 
   const isFavorite = getFavorites().includes(product?.id);
@@ -69,29 +72,29 @@ function ProductSection({ productId }: { productId: number }) {
   const handleAddToCart = () => {
     try {
       addItem({ productId: product.id, quantity: quantity });
-      toast.success("Đã thêm sản phẩm vào giỏ hàng");
+      toast.success(t("productAddedToCart"));
     } catch {
-      toast.error("Không thể được sản phẩm vào giỏ hàng");
+      toast.error(t("cannotAddToCart"));
     }
   };
 
   const handleToggleFavorite = () => {
     if (!user) {
-      toast.error("Cần đăng nhập để thích sản phẩm");
+      toast.error(t("loginToLike"));
       return;
     }
     if (isFavorite) {
       dislike(product.id);
-      toast("Đã bỏ khỏi danh sách yêu thích");
+      toast(t("removedFromFavorites"));
     } else {
       like(product.id);
-      toast.success("Đã thêm vào danh sách yêu thích");
+      toast.success(t("addedToFavorites"));
     }
   };
 
   const breadcrumbItems = [
-    { label: "Trang chủ", href: routes.home },
-    { label: "Sản phẩm", href: routes.products.list },
+    { label: t("home"), href: routes.home },
+    { label: t("products"), href: routes.products.list },
     { label: product.name, href: routes.products.detail(product.id) },
   ];
 
@@ -126,17 +129,17 @@ function ProductSection({ productId }: { productId: number }) {
 
           <div className="flex flex-col gap-2 mt-5 text-gray-500 text-sm">
             <p>
-              Năm sản xuất:{" "}
+              {t("productionYear")}:{" "}
               <span className="text-yellow-500 ml-1">{product.madeYear}</span>
             </p>
             <p>
-              Xuất xứ:{" "}
+              {t("origin")}:{" "}
               <span className="text-yellow-500 ml-1">{product.made_from}</span>
             </p>
           </div>
 
           <h1 className="uppercase tracking-wide text-2xl text-gray-500 mt-10">
-            Màu sắc
+            {t("color")}
           </h1>
           <div className="mb-5">
             <div className="flex gap-3">
@@ -157,17 +160,17 @@ function ProductSection({ productId }: { productId: number }) {
             </div>
           </div>
           <h1 className="uppercase tracking-wide text-2xl text-gray-500 mt-10 mb-3">
-            Kích thước
+            {t("size")}
           </h1>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="outline">
-                {size}
+                {sizesList.find((s) => s.value === size)?.label}
                 <ChevronDown className="ml-2 h-4 w-4" />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-56" align="start">
-              <DropdownMenuLabel>Kích thước</DropdownMenuLabel>
+              <DropdownMenuLabel>{t("size")}</DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuRadioGroup value={size} onValueChange={setSize}>
                 {sizesList.map((sizeOption) => (
@@ -183,7 +186,7 @@ function ProductSection({ productId }: { productId: number }) {
           </DropdownMenu>
 
           <h1 className="uppercase tracking-wide text-2xl text-gray-500 mt-10 mb-3">
-            Số lượng
+            {t("quantity")}
           </h1>
 
           <div className="flex items-center gap-7 mt-2">
@@ -211,7 +214,7 @@ function ProductSection({ productId }: { productId: number }) {
               className="px=+-4 py-2 bg-foreground rounded-none hover:bg-yellow-400"
               onClick={handleAddToCart}
             >
-              Add to cart
+              {t("addToCart")}
             </Button>
           </div>
 
@@ -220,12 +223,12 @@ function ProductSection({ productId }: { productId: number }) {
               <Heart
                 className={isFavorite ? "fill-red-500 text-red-500" : ""}
               />
-              {isFavorite ? "Đã yêu thích" : "Yêu thích"}
+              {isFavorite ? t("favorited") : t("favorite")}
             </Button>
 
             <Button variant="ghost">
               <ChartNoAxesColumn />
-              So sánh
+              {t("compare")}
             </Button>
           </div>
 

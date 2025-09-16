@@ -6,6 +6,7 @@ import CustomSessionProvider from "../provider/CustomSessionProvider";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
+import { setRequestLocale } from "next-intl/server";
 
 export const metadata: Metadata = {
   title: {
@@ -14,6 +15,10 @@ export const metadata: Metadata = {
   },
   description: "Discover and explore the world of fine wines with Wine horse.",
 };
+
+export function generateStaticParams() {
+  return [{locale: 'en'}, {locale: 'vi'}];
+}
 
 export default async function RootLayout({
   children,
@@ -27,6 +32,8 @@ export default async function RootLayout({
     notFound();
   }
 
+  setRequestLocale(locale);
+
   let messages;
   try {
     messages = (await import(`../../messages/${locale}.json`)).default;
@@ -35,7 +42,7 @@ export default async function RootLayout({
   }
 
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang={locale} suppressHydrationWarning>
       <CustomSessionProvider>
         <AuthProvider>
           <NextIntlClientProvider locale={locale} messages={messages}>

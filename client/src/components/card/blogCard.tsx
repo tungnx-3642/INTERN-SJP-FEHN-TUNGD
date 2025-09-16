@@ -1,9 +1,15 @@
+"use client";
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import { Blog } from "@/api";
 import { routes } from "@/lib/routes";
+import { useTranslations } from "next-intl";
+import { formatTimeToVietnamese } from "@/utlis/formatData";
 
 function BlogCard({ blog }: { blog: Blog }) {
+  const t = useTranslations("BlogCard");
+  const tBlogDetail = useTranslations("BlogDetail");
+
   return (
     <div>
       <div className="flex flex-col items-center space-y-4 rounded-lg">
@@ -21,7 +27,9 @@ function BlogCard({ blog }: { blog: Blog }) {
           {blog.title}
         </Link>
         <p className="text-left w-full text-gray-600 text-sm mb-2">
-          Đăng bởi {blog.user} | 30/6/2015 | 60 bình luận
+          {tBlogDetail("postedBy")} {blog.user} |{" "}
+          {formatTimeToVietnamese(blog.createdAt)} |{" "}
+          {blog.comments?.length || 0} {t("comments")}
         </p>
         <p className="text-gray-600 text-left mb-1 line-clamp-3">
           {blog.content}
@@ -30,7 +38,7 @@ function BlogCard({ blog }: { blog: Blog }) {
           href={routes.blogs.detail(blog.id)}
           className="text-left w-full text-gray-400 hover:underline"
         >
-          Read More
+          {t("readMore")}
         </Link>
       </div>
     </div>

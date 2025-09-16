@@ -23,12 +23,10 @@ import { useMemo, useState } from "react";
 import { CustomPagination } from "@/components/CustomPagination";
 import { ProductTableHeader } from "../ProductTableHeader";
 import { useTranslations } from "next-intl";
+import { productColumns } from "./ProductsColumns";
 
-export function ProductTable({
-  columns,
-}: {
-  columns: ColumnDef<Product, any>[];
-}) {
+export function ProductTable() {
+  const columns = productColumns();
   const t = useTranslations("AdminProducts")
   const [sorting, setSorting] = useState<SortingState>([]);
   const [globalFilter, setGlobalFilter] = useState<string>("");

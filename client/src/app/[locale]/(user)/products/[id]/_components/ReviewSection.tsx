@@ -8,6 +8,7 @@ import { useRouter } from "@/i18n/navigation";
 import { useAuth } from "@/context";
 import { toast } from "sonner";
 import { routes } from "@/lib/routes";
+import { useTranslations } from "next-intl";
 
 export function StarRating({
   rating,
@@ -35,6 +36,7 @@ export function StarRating({
 }
 
 function ReviewSection({ reviews }: { reviews: Review[] }) {
+  const t = useTranslations("ReviewSection");
   const router = useRouter();
   const { user } = useAuth();
   const [openReivewDialog, setOpenReviewDialog] = useState(false);
@@ -51,7 +53,7 @@ function ReviewSection({ reviews }: { reviews: Review[] }) {
     if (user) {
       setOpenReviewDialog(true);
     } else {
-      toast.error("Cần đăng nhập để thêm review sản phẩm");
+      toast.error(t("loginToReview"));
       router.push(routes.auth.login);
     }
   };
@@ -63,12 +65,12 @@ function ReviewSection({ reviews }: { reviews: Review[] }) {
       {reviews.length ? (
         <>
           <span>
-            {reviews.length} {reviews.length === 1 ? "Review" : "Reviews"}
+            {reviews.length} {reviews.length === 1 ? t("review") : t("reviews")}
           </span>
           <span className="text-gray-300">|</span>
         </>
       ) : (
-        <span>No reviews yet</span>
+        <span>{t("noReviews")}</span>
       )}
 
       <Button
@@ -76,7 +78,7 @@ function ReviewSection({ reviews }: { reviews: Review[] }) {
         onClick={handleAddReview}
         className="text-gray-500"
       >
-        Add your review
+        {t("addReview")}
       </Button>
       <ReviewDialog
         isOpen={openReivewDialog}

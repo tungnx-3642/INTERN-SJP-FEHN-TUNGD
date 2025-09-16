@@ -16,8 +16,10 @@ import AddressForm from "./AddressForm";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { Address } from "@/api";
+import { useTranslations } from "next-intl";
 
 function AddressesList() {
+  const t = useTranslations("AddressesPage");
   const { user } = useAuth();
   const { data: addresses } = useAddressesByUser(user?.id);
   const { mutate: deleteAddress } = useDeleteAddress();
@@ -27,37 +29,37 @@ function AddressesList() {
   const [editingAddress, setEditingAddress] = useState<Address | null>(null);
   const { mutate: createAddress } = useCreateAddress({
     onSuccess: () => {
-      toast.success("Tạo địa chỉ mới thành công");
+      toast.success(t("createSuccess"));
       queryClient.invalidateQueries({
         queryKey: ["addressesByUser", user?.id],
       });
     },
     onError: (err) => {
-      toast.error("Tạo địa chỉ thất bại", { description: err.message });
+      toast.error(t("createError"), { description: err.message });
     },
   });
   const { mutate: updateAddress } = useUpdateAddress({
     onSuccess: () => {
-      toast.success("Cập nhật địa chỉ mới thành công");
+      toast.success(t("updateSuccess"));
       queryClient.invalidateQueries({
         queryKey: ["addressesByUser", user?.id],
       });
     },
     onError: (err) => {
-      toast.error("Cập nhật địa chỉ thất bại", { description: err.message });
+      toast.error(t("updateError"), { description: err.message });
     },
   });
 
   const handleDelete = (id: number) => {
     deleteAddress(id, {
       onSuccess: () => {
-        toast.success("Xóa địa chỉ thành công");
+        toast.success(t("deleteSuccess"));
         queryClient.invalidateQueries({
           queryKey: ["addressesByUser", user?.id],
         });
       },
       onError: () => {
-        toast.error("Xóa địa chỉ thất bại");
+        toast.error(t("deleteError"));
       },
     });
   };
@@ -76,14 +78,14 @@ function AddressesList() {
     <div>
       <div className="mt-5">
         <div className="flex items-center justify-between">
-          <h1 className="text-2xl uppercase">Danh sách địa chỉ</h1>
+          <h1 className="text-2xl uppercase">{t("title")}</h1>
           <Button
             variant="link"
             className="text-lg"
             onClick={() => setAddAddress(true)}
           >
             <Plus />
-            Thêm địa chỉ
+            {t("addAddress")}
           </Button>
         </div>
         <Image
@@ -124,7 +126,7 @@ function AddressesList() {
             )
           : !addAddress && (
               <p className="col-span-full text-center text-gray-500 text-lg">
-                Chưa có địa chỉ nào
+                {t("noAddresses")}
               </p>
             )}
       </div>

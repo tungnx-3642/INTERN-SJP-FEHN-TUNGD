@@ -13,9 +13,11 @@ import { Trash, Pencil, MoreHorizontal } from "lucide-react";
 import { toast } from "sonner";
 import { ProductDialogForm } from "../ProductFormDialog";
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 
 
 export function ProductActions({ product }: { product: Product }) {
+  const t = useTranslations("AdminProducts")
   const queryClient = useQueryClient();
   const [dialogOpen, setDialogOpen] = useState(false)
   const { mutate: deleteProduct } = useDeleteProduct({
@@ -36,11 +38,11 @@ export function ProductActions({ product }: { product: Product }) {
       <DropdownMenuContent align="end">
         <DropdownMenuItem onClick={() => setDialogOpen(true)}>
           <Pencil />
-          Edit
+          {t("edit")}
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => deleteProduct(product.id)}>
           <Trash />
-          Delete
+          {t("delete")}
         </DropdownMenuItem>
       </DropdownMenuContent>
       <ProductDialogForm key={product.id} open={dialogOpen} onClose={() => setDialogOpen(false)} product={product} />
