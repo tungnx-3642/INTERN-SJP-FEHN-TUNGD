@@ -24,9 +24,9 @@ export default async function middleware(req: NextRequest) {
 
   if (!locale) {
     const defaultLocale = routing.defaultLocale;
-    return NextResponse.redirect(
-      new URL(`/${defaultLocale}${pathname}`, req.url)
-    );
+    const url = new URL(req.url);
+    url.pathname = `/${defaultLocale}${url.pathname}`;
+    return NextResponse.redirect(url);
   }
 
   const isProtectedPage = protectedPages.some((p) =>
