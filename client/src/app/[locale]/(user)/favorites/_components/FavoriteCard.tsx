@@ -8,17 +8,19 @@ import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { routes } from "@/lib/routes";
 import { X } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 function FavoriteCard({ product }: { product: Product }) {
   const { dislike } = useAuth();
   const { addItem } = useCart();
+  const t = useTranslations("FavoritesPage");
 
   const handleAddToCart = () => {
     try {
       addItem({ productId: product.id, quantity: 1 });
-      toast.success("Đã thêm sản phẩm vào giỏ hàng");
+      toast.success(t("addedToCart"));
     } catch {
-      toast.error("Không thể được sản phẩm vào giỏ hàng");
+      toast.error(t("addToCartError"));
     }
   };
 
@@ -43,11 +45,11 @@ function FavoriteCard({ product }: { product: Product }) {
           onClick={handleAddToCart}
           className="cursor-pointer hover:bg-amber-500"
         >
-          Add to cart
+          {t("addToCart")}
         </Button>
         <Button onClick={() => dislike(product.id)} variant="ghost">
           <X />
-          Bỏ yêu thích
+          {t("removeFavorite")}
         </Button>
       </div>
     </div>

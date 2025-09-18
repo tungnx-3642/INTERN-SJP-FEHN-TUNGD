@@ -15,24 +15,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Address } from "@/api";
 import { useAuth } from "@/context";
-
-const schema = z.object({
-  firstName: z.string().min(1, "Tên không được để trống"),
-  lastName: z.string().min(1, "Họ không được để trống"),
-  address: z.string().min(1, "Địa chỉ không được để trống"),
-  city: z.string().min(1, "Thành phố không được để trống"),
-  nationality: z.string().min(1, "Quốc tịch không được để trống"),
-  zipCode: z
-    .string()
-    .min(1, "Zip code không được để trống")
-    .regex(/^\d{4,10}$/, "Zip code phải là số từ 4 đến 10 ký tự"),
-  phone: z
-    .string()
-    .min(1, "Số điện thoại không được để trống")
-    .regex(/^0\d{9,10}$/, "Sai định dạng số điện thoại"),
-});
-
-type FormValues = z.infer<typeof schema>;
+import { useTranslations } from "next-intl";
 
 export default function AddressForm({
   address,
@@ -43,6 +26,25 @@ export default function AddressForm({
   onCancel: () => void;
   onSubmitForm: (values: Address, id?: number) => void;
 }) {
+  const t = useTranslations("AddressesPage");
+
+  const schema = z.object({
+    firstName: z.string().min(1, t("firstNameRequired")),
+    lastName: z.string().min(1, t("lastNameRequired")),
+    address: z.string().min(1, t("addressRequired")),
+    city: z.string().min(1, t("cityRequired")),
+    nationality: z.string().min(1, t("nationalityRequired")),
+    zipCode: z
+      .string()
+      .min(1, t("zipCodeRequired"))
+      .regex(/^\d{4,10}$/, t("zipCodeInvalid")),
+    phone: z
+      .string()
+      .min(1, t("phoneRequired"))
+      .regex(/^0\d{9,10}$/, t("phoneInvalid")),
+  });
+
+  type FormValues = z.infer<typeof schema>;
   const form = useForm<FormValues>({
     resolver: zodResolver(schema),
     defaultValues: address
@@ -85,10 +87,10 @@ export default function AddressForm({
           name="firstName"
           render={({ field }) => (
             <FormItem className="flex max-md:flex-col items-start">
-              <FormLabel className="w-32">Tên</FormLabel>
+              <FormLabel className="w-32">{t("firstName")}</FormLabel>
               <div className="flex-1 w-full">
                 <FormControl>
-                  <Input {...field} placeholder="Nhập tên" />
+                  <Input {...field} placeholder={t("firstNamePlaceholder")} />
                 </FormControl>
                 <FormMessage />
               </div>
@@ -100,10 +102,10 @@ export default function AddressForm({
           name="lastName"
           render={({ field }) => (
             <FormItem className="flex max-md:flex-col items-start">
-              <FormLabel className="w-32">Họ và tên đệm</FormLabel>
+              <FormLabel className="w-32">{t("lastName")}</FormLabel>
               <div className="flex-1 w-full">
                 <FormControl>
-                  <Input {...field} placeholder="Nhập họ" />
+                  <Input {...field} placeholder={t("lastNamePlaceholder")} />
                 </FormControl>
                 <FormMessage />
               </div>
@@ -115,10 +117,10 @@ export default function AddressForm({
           name="address"
           render={({ field }) => (
             <FormItem className="flex max-md:flex-col items-start">
-              <FormLabel className="w-32">Địa chỉ</FormLabel>
+              <FormLabel className="w-32">{t("address")}</FormLabel>
               <div className="flex-1 w-full">
                 <FormControl>
-                  <Input {...field} placeholder="Nhập địa chỉ" />
+                  <Input {...field} placeholder={t("addressPlaceholder")} />
                 </FormControl>
                 <FormMessage />
               </div>
@@ -130,10 +132,10 @@ export default function AddressForm({
           name="city"
           render={({ field }) => (
             <FormItem className="flex max-md:flex-col items-start">
-              <FormLabel className="w-32">Thành phố</FormLabel>
+              <FormLabel className="w-32">{t("city")}</FormLabel>
               <div className="flex-1 w-full">
                 <FormControl>
-                  <Input {...field} placeholder="Nhập thành phố" />
+                  <Input {...field} placeholder={t("cityPlaceholder")} />
                 </FormControl>
                 <FormMessage />
               </div>
@@ -145,10 +147,10 @@ export default function AddressForm({
           name="nationality"
           render={({ field }) => (
             <FormItem className="flex max-md:flex-col items-start">
-              <FormLabel className="w-32">Quốc tịch</FormLabel>
+              <FormLabel className="w-32">{t("nationality")}</FormLabel>
               <div className="flex-1 w-full">
                 <FormControl>
-                  <Input {...field} placeholder="Nhập quốc tịch" />
+                  <Input {...field} placeholder={t("nationalityPlaceholder")} />
                 </FormControl>
                 <FormMessage />
               </div>
@@ -160,10 +162,10 @@ export default function AddressForm({
           name="zipCode"
           render={({ field }) => (
             <FormItem className="flex max-md:flex-col items-start">
-              <FormLabel className="w-32">Zip code</FormLabel>
+              <FormLabel className="w-32">{t("zipCode")}</FormLabel>
               <div className="flex-1 w-full">
                 <FormControl>
-                  <Input {...field} placeholder="Nhập zip code" />
+                  <Input {...field} placeholder={t("zipCodePlaceholder")} />
                 </FormControl>
                 <FormMessage />
               </div>
@@ -175,10 +177,10 @@ export default function AddressForm({
           name="phone"
           render={({ field }) => (
             <FormItem className="flex max-md:flex-col items-start">
-              <FormLabel className="w-32">Số điện thoại</FormLabel>
+              <FormLabel className="w-32">{t("phone")}</FormLabel>
               <div className="flex-1 w-full">
                 <FormControl>
-                  <Input {...field} placeholder="Nhập số điện thoại" />
+                  <Input {...field} placeholder={t("phonePlaceholder")} />
                 </FormControl>
                 <FormMessage />
               </div>
@@ -187,10 +189,10 @@ export default function AddressForm({
         />
         <div className="flex gap-2 mt-4 justify-end">
           <Button type="submit">
-            {address ? "Cập nhật địa chỉ" : "Thêm địa chỉ"}
+            {address ? t("updateAddress") : t("addAddress")}
           </Button>
           <Button type="button" variant="ghost" onClick={onCancel}>
-            Hủy
+            {t("cancel")}
           </Button>
         </div>
       </form>

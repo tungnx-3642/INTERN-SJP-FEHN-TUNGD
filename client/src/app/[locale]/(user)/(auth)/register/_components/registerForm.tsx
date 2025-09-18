@@ -23,6 +23,7 @@ import { sendActivateAccMail } from "@/api/email";
 import { signIn } from "next-auth/react";
 import { useTranslations } from "next-intl";
 
+// i18n-friendly validation schema
 const registerSchema = z
   .object({
     name: z.string().min(2, { message: "nameMin" }),

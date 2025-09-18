@@ -36,7 +36,7 @@ export function UserTable() {
 
   const table = useReactTable({
     data: filteredData,
-    columns: userColumns as ColumnDef<any, any>[],
+    columns: userColumns() as ColumnDef<any, any>[],
     getCoreRowModel: getCoreRowModel(),
   });
 

@@ -120,7 +120,7 @@ function UserHeader() {
       )}
       <div className="bg-black text-white uppercase text-lg">
         <div className="flex flex-col max-md:pb-2 md:flex-row items-center justify-center mx-auto h-auto lg:h-32 max-w-7xl">
-          <Image src="/logo-removebg.png" alt="Logo" width={150} height={150} />
+          <Image src="/logo-removebg.png" alt="Logo" width={150} height={150} className="max-md:h-20 max-md:w-20" />
           <ul className="max-md:hidden h-full flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-8 ml-0 md:ml-8 w-full md:w-auto mt-4 md:mt-0">
             {mainMenu.map((item) => (
               <li
@@ -149,12 +149,12 @@ function UserHeader() {
           <button className="lg:hidden mx-auto">
             {bottomMenuOpen ? (
               <ChevronsUp
-                className="md:hidden mt-4 cursor-pointer"
+                className="md:hidden cursor-pointer"
                 onClick={() => setBottomMenuOpen(false)}
               />
             ) : (
               <ChevronsDown
-                className="md:hidden mt-4 cursor-pointer"
+                className="md:hidden cursor-pointer"
                 onClick={() => setBottomMenuOpen(true)}
               />
             )}

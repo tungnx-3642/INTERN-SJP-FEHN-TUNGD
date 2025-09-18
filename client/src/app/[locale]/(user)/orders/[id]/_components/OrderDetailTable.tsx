@@ -14,8 +14,10 @@ import {
 import { formatToVND } from "@/utlis/formatData";
 import { useMemo } from "react";
 import ItemRow from "@/app/[locale]/(user)/_components/ItemRow";
+import { useTranslations } from "next-intl";
 
 function OrderDetailTable({ orderId }: { orderId: number }) {
+  const t = useTranslations("OrderDetailTable");
   const { data: order } = useOrder(orderId);
   const itemsId = order?.items.map((item) => item.productId);
   const { data: products } = useProductsList(itemsId || []);
@@ -37,25 +39,26 @@ function OrderDetailTable({ orderId }: { orderId: number }) {
     <div>
       <div className="flex flex-col space-y-2">
         <p>
-          Mã đơn hàng: <span className="ml-1 italic">#{order?.id}</span>
+          {t("orderCode")}: <span className="ml-1 italic">#{order?.id}</span>
         </p>
         <p>
-          Thời gian đặt:{" "}
+          {t("orderTime")}:{" "}
           <span className="ml-1 italic">
             {formatShortTime(order?.created_at || "")}
           </span>
         </p>
         <p>
-          Trạng thái: {order?.status && <StatusBadge status={order?.status} />}
+          {t("status")}:{" "}
+          {order?.status && <StatusBadge status={order?.status} />}
         </p>
       </div>
       <Table className="my-5">
         <TableHeader>
           <TableRow>
-            <TableHead>Sản phẩm</TableHead>
-            <TableHead className="text-center">Giá</TableHead>
-            <TableHead className="text-center">Số lượng</TableHead>
-            <TableHead className="text-center">Thành tiền</TableHead>
+            <TableHead>{t("product")}</TableHead>
+            <TableHead className="text-center">{t("price")}</TableHead>
+            <TableHead className="text-center">{t("quantity")}</TableHead>
+            <TableHead className="text-center">{t("amount")}</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -67,7 +70,7 @@ function OrderDetailTable({ orderId }: { orderId: number }) {
         <TableFooter>
           <TableRow>
             <TableCell colSpan={3} className="text-right font-medium">
-              Tổng cộng
+              {t("total")}
             </TableCell>
             <TableCell className="font-bold text-center">
               {total && formatToVND(total)}

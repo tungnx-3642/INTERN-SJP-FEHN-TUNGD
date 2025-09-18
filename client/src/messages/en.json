@@ -1,4 +1,21 @@
 {
+  "Metadata": {
+    "infor": "Information",
+    "contact": "Contact",
+    "addresses": "Address List",
+    "login": "Login",
+    "register": "Register",
+    "cart": "Shopping Cart",
+    "blogs": "Blogs",
+    "favorites": "Favorites",
+    "orders": "Order List",
+    "productNotFound": "Product Not Found",
+    "productNotFoundDesc": "The requested product could not be found."
+  },
+  "common": {
+    "before": "Before",
+    "after": "After"
+  },
   "Header": {
     "cart": "Cart",
     "logout": "Logout",
@@ -20,8 +37,19 @@
   },
   "WineCard": {
     "addToCart": "Add to cart",
+
     "addedSuccess": "Product added to cart",
     "addedError": "Could not add product to cart"
+  },
+  "HomePage": {
+    "introduction": "Introduction",
+    "introductionContent": "Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.",
+    "seeMore": "See more",
+    "addToCart": "Add to Cart",
+    "newProducts": "New Products",
+    "bestSellers": "Best Sellers",
+    "blogsTitle": "News & Blog",
+    "clientsTitle": "Clients"
   },
   "InforPage": {
     "introTitle": "Introduction",
@@ -58,6 +86,56 @@
     "loadingCategory": "Loading categories...",
     "categoriesTitle": "Product categories"
   },
+  "ProductSection": {
+    "productNotFound": "Product not found",
+    "productAddedToCart": "Product added to cart",
+    "cannotAddToCart": "Cannot add product to cart",
+    "loginToLike": "Login required to like product",
+    "removedFromFavorites": "Removed from favorites",
+    "addedToFavorites": "Added to favorites",
+    "home": "Home",
+    "products": "Products",
+    "productionYear": "Production Year",
+    "origin": "Origin",
+    "color": "Color",
+    "size": "Size",
+    "quantity": "Quantity",
+    "addToCart": "Add to cart",
+    "favorited": "Favorited",
+    "favorite": "Favorite",
+    "compare": "Compare",
+    "red": "Red",
+    "yellow": "Yellow",
+    "black": "Black",
+    "white": "White",
+    "small": "Small",
+    "medium": "Medium",
+    "large": "Large"
+  },
+  "ProductTabs": {
+    "highlights": "Highlights",
+    "additionalInfo": "Additional Information",
+    "reviews": "Reviews",
+    "noInfo": "No information available",
+    "noReviews": "No reviews yet"
+  },
+  "RelativeProducts": {
+    "similarProducts": "Similar Products"
+  },
+  "ReviewSection": {
+    "review": "Review",
+    "reviews": "Reviews",
+    "noReviews": "No reviews yet",
+    "addReview": "Add your review",
+    "loginToReview": "Login required to add product review"
+  },
+  "StatusBadge": {
+    "pending": "Pending",
+    "confirmed": "Confirmed",
+    "shipped": "Shipped",
+    "delivered": "Delivered",
+    "cancelled": "Cancelled"
+  },
   "UserFooter": {
     "logo": "Logo",
     "information": "Information",
@@ -87,7 +165,8 @@
   "LoginPage": {
     "home": "Home",
     "login": "Login",
-    "register": "Register"
+    "register": "Register",
+    "title": "Login"
   },
   "LoginForm": {
     "loginTitle": "Login",
@@ -105,7 +184,8 @@
   "RegisterPage": {
     "home": "Home",
     "login": "Login",
-    "register": "Register"
+    "register": "Register",
+    "title": "Register"
   },
   "RegisterForm": {
     "accountInfo": "Account Information",
@@ -224,6 +304,190 @@
     "cancel": "Cancel",
     "details": "Details",
     "hide": "Hide",
-    "quantity": "Quantity"
+    "quantity": "Quantity",
+    "pending": "Pending",
+    "confirmed": "Confirmed",
+    "shipped": "Shipped",
+    "delivered": "Delivered",
+    "cancelled": "Cancelled"
+  },
+  "AdminManageUsers": {
+    "totalUser": "Total User",
+    "searchPlaceHolder": "Search by name, email",
+    "index": "No.",
+    "name": "Name",
+    "email": "Email",
+    "actions": "Actions",
+    "viewDetail": "View Detail",
+    "totalOrders": "Total Orders"
+  },
+  "ContactPage": {
+    "home": "Home",
+    "contact": "Contact",
+    "feedbackTitle": "Feedback",
+    "name": "Name",
+    "email": "Email",
+    "subject": "Subject",
+    "message": "Message",
+    "namePlaceholder": "Enter your name...",
+    "emailPlaceholder": "Enter email...",
+    "subjectPlaceholder": "About shopping experience...",
+    "messagePlaceholder": "Describe your feedback in detail...",
+    "submitButton": "Submit Feedback",
+    "submitSuccess": "Thank you for your feedback",
+    "address": "123 ABC Street, District 1, Ho Chi Minh City",
+    "phone": "(04) 6674 2332",
+    "emailContact": "support@milano.com",
+    "followUs": "Follow US:",
+    "validation": {
+      "nameMin": "Name must be at least 2 characters",
+      "emailInvalid": "Invalid email",
+      "subjectMin": "Subject must be at least 3 characters",
+      "messageMin": "Message must be at least 10 characters"
+    }
+  },
+  "BlogsPage": {
+    "home": "Home",
+    "blogs": "Blogs",
+    "title": "Blogs"
+  },
+  "BlogDetail": {
+    "home": "Home",
+    "blogs": "Blogs",
+    "blogNotFound": "Blog not found",
+    "loading": "Loading...",
+    "postedBy": "Posted by",
+    "blogTags": "Blog Tags",
+    "recommendedBlogs": "Recommended Blogs"
+  },
+  "CommentForm": {
+    "addComment": "Add a comment",
+    "name": "Name",
+    "email": "Email",
+    "content": "Content",
+    "namePlaceholder": "Enter your name...",
+    "emailPlaceholder": "Enter your email...",
+    "contentPlaceholder": "Write your comment...",
+    "submitComment": "Submit Comment",
+    "commentSubmitted": "Comment submitted successfully",
+    "validation": {
+      "nameRequired": "Name is required",
+      "emailRequired": "Email is required",
+      "emailInvalid": "Invalid email format",
+      "contentRequired": "Content is required"
+    }
+  },
+  "CommentsList": {
+    "comments": "Comments",
+    "noComments": "No comments yet"
+  },
+  "BlogCard": {
+    "readMore": "Read More",
+    "comments": "comments"
+  },
+  "FavoritesPage": {
+    "home": "Home",
+    "favorites": "Favorites",
+    "title": "Favorites List",
+    "noFavorites": "No favorite products",
+    "addToCart": "Add to cart",
+    "addedToCart": "Added product to cart",
+    "addToCartError": "Could not add product to cart",
+    "removeFavorite": "Remove favorite"
+  },
+  "OrdersPage": {
+    "home": "Home",
+    "orders": "Order List",
+    "title": "Orders",
+    "orderList": "Order List",
+    "all": "All",
+    "customerInfo": "Customer Information",
+    "addressDetails": "Address Details",
+    "orderCode": "Order Code",
+    "orderDate": "Order Date",
+    "quantity": "Quantity",
+    "total": "Total",
+    "status": "Status",
+    "actions": "Actions",
+    "viewDetails": "View Details",
+    "noOrders": "No orders found"
+  },
+  "AddressesPage": {
+    "title": "Address List",
+    "home": "Home",
+    "addresses": "Addresses",
+    "addAddress": "Add Address",
+    "noAddresses": "No addresses yet",
+    "createSuccess": "New address created successfully",
+    "createError": "Failed to create address",
+    "updateSuccess": "Address updated successfully",
+    "updateError": "Failed to update address",
+    "deleteSuccess": "Address deleted successfully",
+    "deleteError": "Failed to delete address",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "address": "Address",
+    "city": "City",
+    "nationality": "Nationality",
+    "zipCode": "Zip Code",
+    "phone": "Phone Number",
+    "edit": "Edit",
+    "delete": "Delete",
+    "updateAddress": "Update Address",
+    "cancel": "Cancel",
+    "firstNamePlaceholder": "Enter first name",
+    "lastNamePlaceholder": "Enter last name",
+    "addressPlaceholder": "Enter address",
+    "cityPlaceholder": "Enter city",
+    "nationalityPlaceholder": "Enter nationality",
+    "zipCodePlaceholder": "Enter zip code",
+    "phonePlaceholder": "Enter phone number",
+    "firstNameRequired": "First name is required",
+    "lastNameRequired": "Last name is required",
+    "addressRequired": "Address is required",
+    "cityRequired": "City is required",
+    "nationalityRequired": "Nationality is required",
+    "zipCodeRequired": "Zip code is required",
+    "zipCodeInvalid": "Zip code must be 4 to 10 digits",
+    "phoneRequired": "Phone number is required",
+    "phoneInvalid": "Invalid phone number format"
+  },
+  "CartPage": {
+    "home": "Home",
+    "cart": "Shopping Cart",
+    "title": "Shopping Cart",
+    "product": "Product",
+    "price": "Price",
+    "quantity": "Quantity",
+    "subtotal": "Subtotal",
+    "actions": "Actions",
+    "total": "Total",
+    "continueShopping": "Continue Shopping",
+    "removeAll": "Remove All",
+    "placeOrder": "Place Order",
+    "emptyCart": "Your cart is empty.",
+    "loginRequired": "You need to login to place an order",
+    "noProducts": "No products in cart"
+  },
+  "OrderDetailPage": {
+    "title": "Order Details",
+    "home": "Home",
+    "orderList": "Order List",
+    "orderDetails": "Order Details"
+  },
+  "OrderDetailTable": {
+    "orderCode": "Order Code",
+    "orderTime": "Order Time",
+    "status": "Status",
+    "product": "Product",
+    "price": "Price",
+    "quantity": "Quantity",
+    "amount": "Amount",
+    "total": "Total"
+  },
+  "NotFound": {
+    "Activating": "Activating...",
+    "backHome": "Go back to home page",
+    "activateFailed": "Activate account failed"
   }
 }

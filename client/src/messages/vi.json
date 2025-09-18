@@ -1,4 +1,21 @@
 {
+  "Metadata": {
+    "infor": "Thông tin",
+    "contact": "Liên hệ",
+    "addresses": "Danh sách địa chỉ",
+    "login": "Đăng nhập",
+    "register": "Đăng ký",
+    "cart": "Giỏ hàng",
+    "blogs": "Blogs",
+    "favorites": "Yêu thích",
+    "orders": "Danh sách đơn hàng",
+    "productNotFound": "Không tìm thấy sản phẩm",
+    "productNotFoundDesc": "Không thể tìm thấy sản phẩm được yêu cầu."
+  },
+  "common": {
+    "before": "Trước",
+    "after": "Sau"
+  },
   "Header": {
     "cart": "Giỏ hàng",
     "logout": "Đăng xuất",
@@ -22,6 +39,29 @@
     "addToCart": "Thêm vào giỏ hàng",
     "addedSuccess": "Đã thêm sản phẩm vào giỏ hàng",
     "addedError": "Không thể thêm sản phẩm vào giỏ hàng"
+  },
+  "HomePage": {
+    "introduction": "Giới thiệu",
+    "introductionContent": "Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.",
+    "seeMore": "Xem thêm",
+    "addToCart": "Thêm vào giỏ hàng",
+    "newProducts": "Sản phẩm mới",
+    "bestSellers": "Sản phẩm bán chạy",
+    "blogsTitle": "Tin tức & Bài viết",
+    "clientsTitle": "Khách hàng"
+  },
+  "BlogCard": {
+    "readMore": "Đọc thêm",
+    "comments": "Bình luận"
+  },
+  "BlogDetail": {
+    "home": "Trang chủ",
+    "blogs": "Bài viết",
+    "blogNotFound": "Không tìm thấy bài viết",
+    "loading": "Đang tải...",
+    "postedBy": "Đăng bởi",
+    "blogTags": "Tags bài viết",
+    "recommendedBlogs": "Bài viết liên quan"
   },
   "InforPage": {
     "introTitle": "Giới thiệu",
@@ -57,6 +97,56 @@
     "noProducts": "Không có sản phẩm nào",
     "loadingCategory": "Đang tải danh mục...",
     "categoriesTitle": "Danh mục sản phẩm"
+  },
+  "ProductSection": {
+    "productNotFound": "Không tìm thấy sản phẩm",
+    "productAddedToCart": "Đã thêm sản phẩm vào giỏ hàng",
+    "cannotAddToCart": "Không thể được sản phẩm vào giỏ hàng",
+    "loginToLike": "Cần đăng nhập để thích sản phẩm",
+    "removedFromFavorites": "Đã bỏ khỏi danh sách yêu thích",
+    "addedToFavorites": "Đã thêm vào danh sách yêu thích",
+    "home": "Trang chủ",
+    "products": "Sản phẩm",
+    "productionYear": "Năm sản xuất",
+    "origin": "Xuất xứ",
+    "color": "Màu sắc",
+    "size": "Kích thước",
+    "quantity": "Số lượng",
+    "addToCart": "Add to cart",
+    "favorited": "Đã yêu thích",
+    "favorite": "Yêu thích",
+    "compare": "So sánh",
+    "red": "Đỏ",
+    "yellow": "Vàng",
+    "black": "Đen",
+    "white": "Trắng",
+    "small": "Nhỏ",
+    "medium": "Vừa",
+    "large": "To"
+  },
+  "ProductTabs": {
+    "highlights": "Đặc điểm nổi bật",
+    "additionalInfo": "Thông tin bổ sung",
+    "reviews": "Đánh giá",
+    "noInfo": "Chưa có thông tin",
+    "noReviews": "Chưa có đánh giá nào"
+  },
+  "RelativeProducts": {
+    "similarProducts": "Sản phẩm tương tự"
+  },
+  "ReviewSection": {
+    "review": "Review",
+    "reviews": "Reviews",
+    "noReviews": "No reviews yet",
+    "addReview": "Add your review",
+    "loginToReview": "Cần đăng nhập để thêm review sản phẩm"
+  },
+  "StatusBadge": {
+    "pending": "Chờ xử lý",
+    "confirmed": "Đã xác nhận",
+    "shipped": "Đang giao",
+    "delivered": "Đã giao",
+    "cancelled": "Đã hủy"
   },
   "UserFooter": {
     "logo": "Logo",
@@ -224,6 +314,120 @@
     "cancel": "Hủy",
     "details": "Chi tiết",
     "hide": "Ẩn",
-    "quantity": "Số lượng"
+    "quantity": "Số lượng",
+    "pending": "Chờ xử lý",
+    "confirmed": "Đã xác nhận",
+    "shipped": "Đang giao",
+    "delivered": "Đã giao",
+    "cancelled": "Đã hủy"
+  },
+  "AdminManageUsers": {
+    "totalUser": "Tổng số người dùng",
+    "searchPlaceHolder": "Tìm kiếm theo tên, email",
+    "index": "STT",
+    "name": "Tên",
+    "email": "Email",
+    "actions": "Thao tác",
+    "viewDetail": "Xem chi tiết",
+    "totalOrders": "Tổng số đơn hàng"
+  },
+  "ContactPage": {
+    "home": "Trang chủ",
+    "contact": "Liên hệ"
+  },
+  "OrdersPage": {
+    "home": "Trang chủ",
+    "orders": "Danh sách đơn hàng",
+    "title": "Đơn hàng",
+    "orderList": "Danh sách đơn hàng",
+    "all": "Tất cả",
+    "customerInfo": "Thông tin khách hàng",
+    "addressDetails": "Chi tiết địa chỉ",
+    "orderCode": "Mã đơn hàng",
+    "orderDate": "Ngày đặt hàng",
+    "quantity": "Số lượng",
+    "total": "Tổng tiền",
+    "status": "Trạng thái",
+    "actions": "Thao tác",
+    "viewDetails": "Xem chi tiết",
+    "noOrders": "Không có đơn hàng nào"
+  },
+  "AddressesPage": {
+    "title": "Danh sách địa chỉ",
+    "home": "Trang chủ",
+    "addresses": "Địa chỉ",
+    "addAddress": "Thêm địa chỉ",
+    "noAddresses": "Chưa có địa chỉ nào",
+    "createSuccess": "Tạo địa chỉ mới thành công",
+    "createError": "Tạo địa chỉ thất bại",
+    "updateSuccess": "Cập nhật địa chỉ thành công",
+    "updateError": "Cập nhật địa chỉ thất bại",
+    "deleteSuccess": "Xóa địa chỉ thành công",
+    "deleteError": "Xóa địa chỉ thất bại",
+    "firstName": "Tên",
+    "lastName": "Họ",
+    "address": "Địa chỉ",
+    "city": "Thành phố",
+    "nationality": "Quốc tịch",
+    "zipCode": "Mã bưu điện",
+    "phone": "Số điện thoại",
+    "edit": "Chỉnh sửa",
+    "delete": "Xóa",
+    "updateAddress": "Cập nhật địa chỉ",
+    "cancel": "Hủy",
+    "firstNamePlaceholder": "Nhập tên",
+    "lastNamePlaceholder": "Nhập họ",
+    "addressPlaceholder": "Nhập địa chỉ",
+    "cityPlaceholder": "Nhập thành phố",
+    "nationalityPlaceholder": "Nhập quốc tịch",
+    "zipCodePlaceholder": "Nhập mã bưu điện",
+    "phonePlaceholder": "Nhập số điện thoại",
+    "firstNameRequired": "Tên là bắt buộc",
+    "lastNameRequired": "Họ là bắt buộc",
+    "addressRequired": "Địa chỉ là bắt buộc",
+    "cityRequired": "Thành phố là bắt buộc",
+    "nationalityRequired": "Quốc tịch là bắt buộc",
+    "zipCodeRequired": "Mã bưu điện là bắt buộc",
+    "zipCodeInvalid": "Mã bưu điện phải có từ 4 đến 10 chữ số",
+    "phoneRequired": "Số điện thoại là bắt buộc",
+    "phoneInvalid": "Định dạng số điện thoại không hợp lệ"
+  },
+  "CartPage": {
+    "home": "Trang chủ",
+    "cart": "Giỏ hàng",
+    "title": "Giỏ hàng",
+    "product": "Sản phẩm",
+    "price": "Giá",
+    "quantity": "Số lượng",
+    "subtotal": "Tạm tính",
+    "actions": "Thao tác",
+    "total": "Tổng cộng",
+    "continueShopping": "Tiếp tục mua sắm",
+    "removeAll": "Xóa tất cả",
+    "placeOrder": "Đặt hàng",
+    "emptyCart": "Giỏ hàng của bạn đang trống.",
+    "loginRequired": "Bạn cần đăng nhập để đặt hàng",
+    "noProducts": "Không có sản phẩm trong giỏ hàng"
+  },
+  "OrderDetailPage": {
+    "title": "Chi tiết đơn hàng",
+    "home": "Trang chủ",
+    "orderList": "Danh sách đơn hàng",
+    "orderDetails": "Chi tiết đơn hàng"
+  },
+  "OrderDetailTable": {
+    "orderCode": "Mã đơn hàng",
+    "orderTime": "Thời gian đặt",
+    "status": "Trạng thái",
+    "product": "Sản phẩm",
+    "price": "Giá",
+    "quantity": "Số lượng",
+    "amount": "Thành tiền",
+    "total": "Tổng cộng"
+  },
+  "NotFound": {
+    "Activating": "Đang kích hoạt...",
+    "backHome": "Quay về trang chủ",
+    "activateFailed": "Lỗi khi kích hoạt"
   }
 }

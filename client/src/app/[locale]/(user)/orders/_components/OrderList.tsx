@@ -11,12 +11,15 @@ import { routes } from "@/lib/routes";
 import { useOrderByUSer } from "@/hooks";
 import OrderTable from "./OrderTable";
 import ClientSection from "./ClientSection";
+import { useTranslations } from "next-intl";
+
 function OrderList() {
   const { user } = useAuth();
   const { data: orders } = useOrderByUSer(user?.id);
   const statuses = Object.values(OrderStatus);
   const [activeStatus, setActiveStatus] = useState<OrderStatus | null>(null);
   const router = useRouter();
+  const t = useTranslations("OrdersPage");
 
   useEffect(() => {
     if (!user) {
@@ -35,7 +38,7 @@ function OrderList() {
       <Card className="w-full md:w-3/4 rounded-none shadow-none py-0">
         <CardHeader className="bg-gray-100 py-6 border-b dark:bg-accent">
           <CardTitle className="uppercase text-lg font-normal">
-            Danh sách đơn hàng
+            {t("orderList")}
           </CardTitle>
           <div className="flex flex-wrap gap-2 mt-5 mb-3 items-center space-x-1">
             <Button
@@ -45,7 +48,7 @@ function OrderList() {
                 "text-yellow-400": !activeStatus,
               })}
             >
-              Tất cả ({orders?.length})
+              {t("all")} ({orders?.length})
             </Button>
             <Separator orientation="vertical" className="h-6" />
             {statuses.map((status) => (

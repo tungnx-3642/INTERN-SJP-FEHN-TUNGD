@@ -1,15 +1,19 @@
+"use client";
 import { useBlogs } from "@/hooks";
 import { Link } from "@/i18n/navigation";
 import Image from "next/image";
 import { routes } from "@/lib/routes";
 import { Clock } from "lucide-react";
 import { formatTimeToVietnamese } from "@/utlis/formatData";
+import { useTranslations } from "next-intl";
 
 function RecommendBlogs() {
   const { data: recommendBlogs } = useBlogs();
+  const t = useTranslations("BlogDetail");
+
   return (
     <div className="flex flex-col gap-2">
-      <h1 className="text-2xl uppercase">Bài viết mới nhất</h1>
+      <h1 className="text-2xl uppercase">{t("recommendedBlogs")}</h1>
       <Image
         src="/titleleft-dark.png"
         alt="title-left"

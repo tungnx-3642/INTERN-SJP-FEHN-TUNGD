@@ -16,15 +16,17 @@ import {
 } from "@/components/ui/form";
 import { useAddComment } from "@/hooks";
 import { useQueryClient } from "@tanstack/react-query";
-
-const formSchema = z.object({
-  name: z.string().min(2, { message: "Tên phải có ít nhất 2 ký tự" }),
-  message: z.string().min(5, { message: "Nội dung phải có ít nhất 5 ký tự" }),
-});
+import { useTranslations } from "next-intl";
 
 function CommentForm({ blogId }: { blogId: number }) {
   const { mutate: addComment } = useAddComment();
   const queryClient = useQueryClient();
+  const t = useTranslations("CommentForm");
+
+  const formSchema = z.object({
+    name: z.string().min(2, { message: t("validation.nameRequired") }),
+    message: z.string().min(5, { message: t("validation.contentRequired") }),
+  });
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -46,13 +48,13 @@ function CommentForm({ blogId }: { blogId: number }) {
       onSuccess: () => {
         form.reset();
         queryClient.invalidateQueries({ queryKey: ["blog"] });
-      }
+      },
     });
   }
 
   return (
     <div>
-      <h1 className="text-xl uppercase my-5">Đóng góp ý kiến</h1>
+      <h1 className="text-xl uppercase my-5">{t("addComment")}</h1>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
           <FormField
@@ -60,9 +62,9 @@ function CommentForm({ blogId }: { blogId: number }) {
             name="name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Tên</FormLabel>
+                <FormLabel>{t("name")}</FormLabel>
                 <FormControl>
-                  <Input placeholder="Nhập tên của bạn" {...field} />
+                  <Input placeholder={t("namePlaceholder")} {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -74,10 +76,10 @@ function CommentForm({ blogId }: { blogId: number }) {
             name="message"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Nội dung</FormLabel>
+                <FormLabel>{t("content")}</FormLabel>
                 <FormControl>
                   <Textarea
-                    placeholder="Nhập đánh giá của bạn..."
+                    placeholder={t("contentPlaceholder")}
                     className="resize-none"
                     rows={4}
                     {...field}
@@ -89,7 +91,7 @@ function CommentForm({ blogId }: { blogId: number }) {
           />
 
           <Button type="submit" className="rounded-none">
-            Bình luận
+            {t("submitComment")}
           </Button>
         </form>
       </Form>

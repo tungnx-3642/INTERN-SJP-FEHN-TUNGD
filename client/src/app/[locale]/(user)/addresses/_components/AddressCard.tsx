@@ -1,5 +1,6 @@
 import { Address } from "@/api";
 import { Button } from "@/components/ui/button";
+import { useTranslations } from "next-intl";
 
 function AddressCard({
   address,
@@ -10,14 +11,16 @@ function AddressCard({
   onEdit: () => void;
   onDelete: () => void;
 }) {
+  const t = useTranslations("AddressesPage");
+
   const fields: { label: string; value: string | undefined }[] = [
-    { label: "Tên", value: address.firstName },
-    { label: "Họ và tên đệm", value: address.lastName },
-    { label: "Địa chỉ", value: address.address },
-    { label: "Thành phố", value: address.city },
-    { label: "Quốc tịch", value: address.nationality },
-    { label: "Zip code", value: address.zipCode },
-    { label: "Số điện thoại", value: address.phone },
+    { label: t("firstName"), value: address.firstName },
+    { label: t("lastName"), value: address.lastName },
+    { label: t("address"), value: address.address },
+    { label: t("city"), value: address.city },
+    { label: t("nationality"), value: address.nationality },
+    { label: t("zipCode"), value: address.zipCode },
+    { label: t("phone"), value: address.phone },
   ];
 
   return (
@@ -29,9 +32,9 @@ function AddressCard({
         </div>
       ))}
       <div className="flex gap-2 mt-auto items-center justify-end">
-        <Button onClick={onEdit}>Chỉnh sửa</Button>
+        <Button onClick={onEdit}>{t("edit")}</Button>
         <Button variant="destructive" onClick={onDelete}>
-          Xóa
+          {t("delete")}
         </Button>
       </div>
     </div>

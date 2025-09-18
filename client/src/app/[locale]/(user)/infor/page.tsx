@@ -2,13 +2,23 @@ import Image from "next/image";
 import { DynamicBreadcrumb } from "../_components/DynamicBreadcrumb";
 import { routes } from "@/lib/routes";
 import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 
-export const metadata = {
-  title: "Thông tin",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: { locale: string };
+}) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "Metadata" });
 
-function InforPage() {
-  const t = useTranslations("InforPage");
+  return {
+    title: t("infor"),
+  };
+}
+
+async function InforPage() {
+  const t = await getTranslations("InforPage");
 
   const breadCrumbItems = [
     { label: t("breadcrumb.home"), href: routes.home },

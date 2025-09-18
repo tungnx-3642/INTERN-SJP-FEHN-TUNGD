@@ -1,22 +1,40 @@
 import { DynamicBreadcrumb } from "@/app/[locale]/(user)/_components/DynamicBreadcrumb";
 import { routes } from "@/lib/routes";
-import {Link} from '@/i18n/navigation';
+import { Link } from "@/i18n/navigation";
 import Image from "next/image";
 import LoginForm from "./_components/LoginForm";
 import GoogleSignInButton from "@/components/GoogleLoginButton";
 import FacebookSignInButton from "@/components/FacebookSignInButton";
+import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
+import { Metadata } from "next";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { locale: string };
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "Metadata" });
+
+  return {
+    title: t("login"),
+  };
+}
 
 function LoginPage() {
+  const t = useTranslations("LoginPage");
+
   const breadcrumbItems = [
-    { label: "Trang chủ", href: routes.home },
-    { label: "Đăng nhập", href: routes.auth.login },
+    { label: t("home"), href: routes.home },
+    { label: t("login"), href: routes.auth.login },
   ];
   return (
     <div className="max-md:p-4 max-w-7xl mx-auto my-10">
       <DynamicBreadcrumb items={breadcrumbItems} />
       <div className="flex justify-between mt-5">
         <div>
-          <h1 className="text-2xl uppercase">Đăng nhập</h1>
+          <h1 className="text-2xl uppercase">{t("login")}</h1>
           <Image
             src="/titleleft-dark.png"
             alt="title-left"
@@ -32,7 +50,7 @@ function LoginPage() {
             href={routes.auth.register}
             className="bg-foreground text-white px-7 h-12 flex justify-center items-center hover:bg-background hover:text-foreground"
           >
-            Đăng ký
+            {t("register")}
           </Link>
         </div>
       </div>

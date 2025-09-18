@@ -13,6 +13,7 @@ import { Link } from "@/i18n/navigation";
 import { routes } from "@/lib/routes";
 import { formatShortTime } from "@/utlis/formatData";
 import { StatusBadge } from "@/components/StatusBadge";
+import { useTranslations } from "next-intl";
 
 interface OrderTableProps {
   orders: Order[];
@@ -20,19 +21,21 @@ interface OrderTableProps {
 }
 
 function OrderTable({ orders, activeStatus }: OrderTableProps) {
+  const t = useTranslations("OrdersPage");
+
   const tableHeaders = [
-    "Mã đơn hàng",
-    "Ngày đặt",
-    "Số lượng SP",
-    "Tổng tiền",
-    "Trạng thái",
-    "Thao tác",
+    t("orderCode"),
+    t("orderDate"),
+    t("quantity"),
+    t("total"),
+    t("status"),
+    t("actions"),
   ];
 
   if (!orders || orders.length === 0) {
     return (
       <div className="text-center py-10 text-muted-foreground">
-        Bạn chưa có đơn hàng nào
+        {t("noOrders")}
       </div>
     );
   }
@@ -79,7 +82,7 @@ function OrderTable({ orders, activeStatus }: OrderTableProps) {
                   href={routes.orders.detail(order.id || "")}
                   className="border rounded-lg px-2 py-1 shadow hover:underline"
                 >
-                  Chi tiết
+                  {t("viewDetails")}
                 </Link>
               </TableCell>
             </TableRow>
@@ -87,7 +90,7 @@ function OrderTable({ orders, activeStatus }: OrderTableProps) {
         ) : (
           <TableRow>
             <TableCell colSpan={6} className="text-center italic h-40">
-              Không có dơn hàng
+              {t("noOrders")}
             </TableCell>
           </TableRow>
         )}

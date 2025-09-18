@@ -17,8 +17,10 @@ import { routes } from "@/lib/routes";
 import { toast } from "sonner";
 import CartItemRow from "../../_components/ItemRow";
 import { useMemo } from "react";
+import { useTranslations } from "next-intl";
 
 function CartTable() {
+  const t = useTranslations("CartPage");
   const router = useRouter();
   const { user } = useAuth();
   const { cart, removeAll } = useCart();
@@ -43,13 +45,13 @@ function CartTable() {
 
   const handleCreateOrder = () => {
     if (!user) {
-      toast.error("Bạn cần đăng nhập để có thể đặt đơn");
+      toast.error(t("loginRequired"));
       router.push(routes.auth.login);
       return;
     }
 
     if (!products || products.length === 0) {
-      toast.error("Không có sản phẩm nào trong giỏ hàng");
+      toast.error(t("noProducts"));
       return;
     }
 
@@ -59,10 +61,10 @@ function CartTable() {
   if (!cart.items.length) {
     return (
       <div className="w-full text-center py-10 text-muted-foreground">
-        Giỏ hàng của bạn đang trống.
+        {t("emptyCart")}
         <div className="mt-2">
           <Button onClick={() => router.push(routes.products.list)}>
-            Tiếp tục mua hàng
+            {t("continueShopping")}
           </Button>
         </div>
       </div>
@@ -74,11 +76,11 @@ function CartTable() {
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead className="max-md:text-center">Sản phẩm</TableHead>
-            <TableHead className="text-center">Giá</TableHead>
-            <TableHead className="text-center">Số lượng</TableHead>
-            <TableHead className="text-center">Thành tiền</TableHead>
-            <TableHead className="text-center">Thao tác</TableHead>
+            <TableHead className="max-md:text-center">{t("product")}</TableHead>
+            <TableHead className="text-center">{t("price")}</TableHead>
+            <TableHead className="text-center">{t("quantity")}</TableHead>
+            <TableHead className="text-center">{t("subtotal")}</TableHead>
+            <TableHead className="text-center">{t("actions")}</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -89,7 +91,7 @@ function CartTable() {
         <TableFooter>
           <TableRow>
             <TableCell colSpan={3} className="text-right font-medium">
-              Tổng cộng
+              {t("total")}
             </TableCell>
             <TableCell className="font-bold">{formatToVND(total)}</TableCell>
             <TableCell />
@@ -98,10 +100,10 @@ function CartTable() {
       </Table>
       <div className="mt-5 flex gap-5 justify-end">
         <Button onClick={() => router.push(routes.products.list)}>
-          Tiếp tục mua hàng
+          {t("continueShopping")}
         </Button>
-        <Button onClick={() => removeAll()}>Xóa tất cả</Button>
-        <Button onClick={handleCreateOrder}>Đặt đơn</Button>
+        <Button onClick={() => removeAll()}>{t("removeAll")}</Button>
+        <Button onClick={handleCreateOrder}>{t("placeOrder")}</Button>
       </div>
     </div>
   );

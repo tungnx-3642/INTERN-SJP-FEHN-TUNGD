@@ -1,18 +1,31 @@
 import type { Metadata } from "next";
 import { DynamicBreadcrumb } from "../../_components/DynamicBreadcrumb";
 import { routes } from "@/lib/routes";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import Image from "next/image";
 import RegisterForm from "./_components/registerForm";
+import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 
-export const metadata: Metadata = {
-  title: "Đăng nhập",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: { locale: string };
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "Metadata" });
+
+  return {
+    title: t("register"),
+  };
+}
 
 function RegisterPage() {
+  const t = useTranslations("RegisterPage");
+
   const breadcrumbItems = [
-    { label: "Trang chủ", href: routes.home },
-    { label: "Đăng ký", href: routes.auth.register },
+    { label: t("home"), href: routes.home },
+    { label: t("register"), href: routes.auth.register },
   ];
 
   return (
@@ -20,7 +33,7 @@ function RegisterPage() {
       <DynamicBreadcrumb items={breadcrumbItems} />
       <div className="flex justify-between mt-5">
         <div>
-          <h1 className="text-2xl uppercase">Đăng ký</h1>
+          <h1 className="text-2xl uppercase">{t("title")}</h1>
           <Image
             src="/titleleft-dark.png"
             alt="title-left"
@@ -33,7 +46,7 @@ function RegisterPage() {
           href={routes.auth.login}
           className="bg-foreground text-white px-7 h-12 flex justify-center items-center hover:bg-background hover:text-foreground"
         >
-          Đăng nhập
+          {t("login")}
         </Link>
       </div>
       <RegisterForm />

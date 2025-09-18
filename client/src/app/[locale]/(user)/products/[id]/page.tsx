@@ -2,19 +2,21 @@ import { Metadata } from "next";
 import ProductSection from "./_components/ProductSection";
 import RelativeProducts from "./_components/RelativeProducts";
 import { productApi } from "@/api";
+import { getTranslations } from "next-intl/server";
 
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ id: string }>;
+  params: Promise<{ id: string; locale: string }>;
 }): Promise<Metadata> {
-  const { id } = await params;
+  const { id, locale } = await params;
+  const t = await getTranslations({ locale, namespace: "Metadata" });
   const product = await productApi.getById(Number(id));
 
   if (!product) {
     return {
-      title: "Product Not Found",
-      description: "The requested product could not be found.",
+      title: t("productNotFound"),
+      description: t("productNotFoundDesc"),
       openGraph: { images: [] },
     };
   }
