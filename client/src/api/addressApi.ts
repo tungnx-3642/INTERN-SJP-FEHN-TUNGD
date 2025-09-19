@@ -12,6 +12,16 @@ export interface Address {
   phone: string;
 }
 
+export interface AddressValue {
+  firstName: string;
+  lastName: string;
+  address: string;
+  city: string;
+  nationality: string;
+  zipCode: string;
+  phone: string;
+}
+
 const resource = "addresses";
 
 export const addressApi = {

@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter, usePathname } from "@/i18n/navigation";
+import { useSearchParams } from "next/navigation";
 import { useParams } from "next/navigation";
 import {
   DropdownMenu,
@@ -20,6 +21,7 @@ const locales = [
 export default function LanguageSwitcher() {
   const router = useRouter();
   const pathname = usePathname();
+  const searchParams = useSearchParams();
   const params = useParams();
   const [isPending, startTransition] = useTransition();
   const currentLocale = params.locale as string;
@@ -28,7 +30,11 @@ export default function LanguageSwitcher() {
     if (locale === currentLocale) return;
 
     startTransition(() => {
-      router.replace(pathname, { locale });
+      const queryString = searchParams.toString();
+      router.replace(
+        queryString ? `${pathname}?${queryString}` : pathname,
+        { locale }
+      );
     });
   };
 

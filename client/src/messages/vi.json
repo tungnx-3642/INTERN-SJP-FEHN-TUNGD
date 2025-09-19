@@ -407,7 +407,28 @@
     "placeOrder": "Đặt hàng",
     "emptyCart": "Giỏ hàng của bạn đang trống.",
     "loginRequired": "Bạn cần đăng nhập để đặt hàng",
-    "noProducts": "Không có sản phẩm trong giỏ hàng"
+    "noProducts": "Không có sản phẩm trong giỏ hàng",
+    "shippingInfo": "Thông tin giao hàng",
+    "selectAddress": "Chọn địa chỉ",
+    "selectAddressPlaceholder": "Vui lòng chọn địa chỉ",
+    "firstName": "Tên",
+    "lastName": "Họ",
+    "address": "Địa chỉ",
+    "city": "Thành phố",
+    "zipCode": "Mã bưu điện",
+    "nationality": "Quốc tịch",
+    "phone": "Số điện thoại",
+    "cancel": "Hủy",
+    "firstNameRequired": "Vui lòng nhập tên",
+    "lastNameRequired": "Vui lòng nhập họ",
+    "addressRequired": "Vui lòng nhập địa chỉ",
+    "cityRequired": "Vui lòng nhập thành phố",
+    "nationalityRequired": "Vui lòng nhập quốc tịch",
+    "zipCodeRequired": "Vui lòng nhập mã bưu điện",
+    "zipCodeInvalid": "Mã bưu điện không hợp lệ",
+    "phoneRequired": "Vui lòng nhập số điện thoại",
+    "phoneInvalid": "Số điện thoại không hợp lệ",
+    "orderCanceled": "Đơn hàng đã bị hủy"
   },
   "OrderDetailPage": {
     "title": "Chi tiết đơn hàng",
@@ -424,6 +445,16 @@
     "quantity": "Số lượng",
     "amount": "Thành tiền",
     "total": "Tổng cộng"
+  },
+  "SuccessPage": {
+    "paymentSuccess": "Thanh toán thành công!",
+    "thankYou": "Cảm ơn bạn đã mua hàng. Xác nhận đơn hàng đã được gửi đến",
+    "totalAmount": "Tổng số tiền",
+    "createdTime": "Thời gian tạo",
+    "recipientName": "Tên người nhận",
+    "address": "Địa chỉ",
+    "city": "Thành phố",
+    "continueShopping": "Tiếp tục mua hàng"
   },
   "NotFound": {
     "Activating": "Đang kích hoạt...",
