@@ -64,7 +64,6 @@ export const authOptions = {
             `${process.env.NEXT_PUBLIC_SERVER_HOST}/users?email=${user.email}`
           );
           const existingUsers = await checkRes.json();
-
           let data;
           if (existingUsers.length > 0) {
             const loginRes = await fetch(

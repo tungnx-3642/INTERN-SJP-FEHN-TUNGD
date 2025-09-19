@@ -16,8 +16,10 @@ import { useRouter } from "@/i18n/navigation";
 import { routes } from "@/lib/routes";
 import { toast } from "sonner";
 import CartItemRow from "../../_components/ItemRow";
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useTranslations } from "next-intl";
+import CheckoutAddressDialog from "./CheckoutAddressDialog";
+import { useSearchParams } from "next/navigation";
 
 function CartTable() {
   const t = useTranslations("CartPage");
@@ -26,12 +28,19 @@ function CartTable() {
   const { cart, removeAll } = useCart();
   const productIds = cart.items.map((item) => Number(item.productId));
   const { data: products } = useProductsList(productIds);
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const searchParams = useSearchParams();
+
+    useEffect(() => {
+    if (searchParams.get("canceled") === "true") {
+      toast.error(t("orderCanceled"));
+    }
+  }, [searchParams, t]);
 
   const enrichedItems = cart.items.map((cartItem) => {
     const product = products?.find((p) => p.id === Number(cartItem.productId));
     return {
       ...cartItem,
-      product: product,
       price: product?.price || 0,
       name: product?.name || `#${cartItem.productId}`,
       imageUrl: product?.imageUrl,
@@ -43,10 +52,10 @@ function CartTable() {
     return enrichedItems.reduce((sum, it) => sum + it.price * it.quantity, 0);
   }, [enrichedItems]);
 
-  const handleCreateOrder = () => {
+  const handleCreateOrder = async () => {
     if (!user) {
-      toast.error(t("loginRequired"));
       router.push(routes.auth.login);
+      toast.error(t("loginRequired"));
       return;
     }
 
@@ -55,7 +64,7 @@ function CartTable() {
       return;
     }
 
-    router.push(routes.checkout);
+    setDialogOpen(true);
   };
 
   if (!cart.items.length) {
@@ -105,6 +114,11 @@ function CartTable() {
         <Button onClick={() => removeAll()}>{t("removeAll")}</Button>
         <Button onClick={handleCreateOrder}>{t("placeOrder")}</Button>
       </div>
+      <CheckoutAddressDialog
+        open={dialogOpen}
+        onClose={() => setDialogOpen(false)}
+        items={enrichedItems}
+      />
     </div>
   );
 }

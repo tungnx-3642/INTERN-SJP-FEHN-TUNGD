@@ -467,7 +467,28 @@
     "placeOrder": "Place Order",
     "emptyCart": "Your cart is empty.",
     "loginRequired": "You need to login to place an order",
-    "noProducts": "No products in cart"
+    "noProducts": "No products in cart",
+    "shippingInfo": "Shipping Information",
+    "selectAddress": "Select Address",
+    "selectAddressPlaceholder": "Please select an address",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "address": "Address",
+    "city": "City",
+    "zipCode": "Zip Code",
+    "nationality": "Nationality",
+    "phone": "Phone",
+    "cancel": "Cancel",
+    "firstNameRequired": "First name is required",
+    "lastNameRequired": "Last name is required",
+    "addressRequired": "Address is required",
+    "cityRequired": "City is required",
+    "nationalityRequired": "Nationality is required",
+    "zipCodeRequired": "Zip code is required",
+    "zipCodeInvalid": "Invalid zip code",
+    "phoneRequired": "Phone is required",
+    "phoneInvalid": "Invalid phone number",
+    "orderCanceled": "Order was canceled"
   },
   "OrderDetailPage": {
     "title": "Order Details",
@@ -484,6 +505,16 @@
     "quantity": "Quantity",
     "amount": "Amount",
     "total": "Total"
+  },
+  "SuccessPage": {
+    "paymentSuccess": "Payment Successful!",
+    "thankYou": "Thank you for your purchase. Order confirmation has been sent to",
+    "totalAmount": "Total Amount",
+    "createdTime": "Created Time",
+    "recipientName": "Recipient Name",
+    "address": "Address",
+    "city": "City",
+    "continueShopping": "Continue Shopping"
   },
   "NotFound": {
     "Activating": "Activating...",

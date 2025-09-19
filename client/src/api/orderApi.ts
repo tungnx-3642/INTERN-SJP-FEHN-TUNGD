@@ -14,11 +14,14 @@ export enum OrderStatus {
 export interface OrderItem {
   productId: number;
   quantity: number;
+  name?: string;
+  price?: number;
+  imageUrl?: string;
+  description?: string;
 }
 
 export interface Order {
   id?: number;
-  addressId?: number;
   userId: number;
   user?: User;
   items: OrderItem[];
@@ -26,6 +29,13 @@ export interface Order {
   status: OrderStatus;
   created_at?: string;
   updated_at?: string;
+  firstName?: string;
+  lastName?: string;
+  address?: string;
+  city?: string;
+  nationality?: string;
+  zipCode?: string;
+  phone?: string;
 }
 
 export const orderApi = {
