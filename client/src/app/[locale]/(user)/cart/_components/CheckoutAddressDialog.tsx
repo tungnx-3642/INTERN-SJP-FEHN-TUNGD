@@ -68,7 +68,7 @@ function CheckoutAddressDialog({
 
 
     if (!jsonReq.id) {
-      toast.error("Tạo đơn thất bại");
+      toast.error("Tạo đơn không thành công");
       return;
     }
 
